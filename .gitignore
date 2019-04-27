@@ -5,3 +5,8 @@
 **/conf.properties
 **/hikariPool.properties
 **/mybatis/generatorConfig.xml
+**/*.log
+**/*.out
+**/*.versionsBackup
+**/database.properties
+**/thrift/gen-java
