@@ -22,3 +22,26 @@ create index reply_update_time_index
 
 
 
+create table topic
+(
+    id              bigint auto_increment
+        primary key,
+    theme           varchar(100)         null comment '主帖标签',
+    content         mediumtext           null comment '帖子内容',
+    gaea_id         bigint               null comment '主帖发起人id',
+    anonymous_send  tinyint(1) default 0 null comment '主帖是否匿名发送',
+    anonymous_reply tinyint(1) default 0 null comment '是否允许匿名回复',
+    update_time     timestamp            null comment '帖子更新时间',
+    add_time        timestamp            null comment '新建帖子时间'
+);
+
+create index topic_gaea_id_index
+    on topic (gaea_id);
+
+create index topic_update_time_index
+    on topic (update_time);
+
+
+
+
+
