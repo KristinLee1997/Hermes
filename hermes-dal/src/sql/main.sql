@@ -1,6 +1,28 @@
 CREATE DATABASE `hermes_aries_hotel` character set utf8mb4;
 use `hermes_aries_hotel`;
 
+
+create table topic
+(
+    id              bigint auto_increment
+        primary key,
+    theme           varchar(100)         null comment '主帖标签',
+    content         mediumtext           null comment '帖子内容',
+    gaea_id         bigint               null comment '主帖发起人id',
+    anonymous_send  tinyint(1) default 0 null comment '主帖是否匿名发送',
+    anonymous_reply tinyint(1) default 0 null comment '是否允许匿名回复',
+    update_time     timestamp            null comment '帖子更新时间',
+    add_time        timestamp            null comment '新建帖子时间'
+);
+
+create index topic_gaea_id_index
+    on topic (gaea_id);
+
+create index topic_update_time_index
+    on topic (update_time);
+
+
+
 create table reply
 (
 	id bigint auto_increment,
@@ -22,24 +44,29 @@ create index reply_update_time_index
 
 
 
-create table topic
+create table sub_reply
 (
-    id              bigint auto_increment
-        primary key,
-    theme           varchar(100)         null comment '主帖标签',
-    content         mediumtext           null comment '帖子内容',
-    gaea_id         bigint               null comment '主帖发起人id',
-    anonymous_send  tinyint(1) default 0 null comment '主帖是否匿名发送',
-    anonymous_reply tinyint(1) default 0 null comment '是否允许匿名回复',
-    update_time     timestamp            null comment '帖子更新时间',
-    add_time        timestamp            null comment '新建帖子时间'
+	id bigint auto_increment,
+	reply_id bigint null comment '二级贴id',
+	sender_gaea_id bigint null comment '发送人',
+	receiver_gaea_id bigint null comment '接收人',
+	content MEDIUMTEXT null comment '内容',
+	insert_time TIMESTAMP default CURRENT_TIMESTAMP null,
+	constraint sub_reply_pk
+		primary key (id)
 );
 
-create index topic_gaea_id_index
-    on topic (gaea_id);
+create index sub_reply_sender_gaea_id_index
+	on sub_reply (sender_gaea_id);
 
-create index topic_update_time_index
-    on topic (update_time);
+create index sub_reply_receiver_gaea_id_index
+	on sub_reply (receiver_gaea_id);
+
+create index sub_reply_reply_id_index
+	on sub_reply (reply_id);
+
+create index sub_reply_insert_time_index
+	on sub_reply (insert_time);
 
 
 
