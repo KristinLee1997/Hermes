@@ -305,6 +305,76 @@ public class CompanyExample {
             return (Criteria) this;
         }
 
+        public Criteria andDbNameIsNull() {
+            addCriterion("db_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDbNameIsNotNull() {
+            addCriterion("db_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDbNameEqualTo(String value) {
+            addCriterion("db_name =", value, "dbName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDbNameNotEqualTo(String value) {
+            addCriterion("db_name <>", value, "dbName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDbNameGreaterThan(String value) {
+            addCriterion("db_name >", value, "dbName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDbNameGreaterThanOrEqualTo(String value) {
+            addCriterion("db_name >=", value, "dbName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDbNameLessThan(String value) {
+            addCriterion("db_name <", value, "dbName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDbNameLessThanOrEqualTo(String value) {
+            addCriterion("db_name <=", value, "dbName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDbNameLike(String value) {
+            addCriterion("db_name like", value, "dbName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDbNameNotLike(String value) {
+            addCriterion("db_name not like", value, "dbName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDbNameIn(List<String> values) {
+            addCriterion("db_name in", values, "dbName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDbNameNotIn(List<String> values) {
+            addCriterion("db_name not in", values, "dbName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDbNameBetween(String value1, String value2) {
+            addCriterion("db_name between", value1, value2, "dbName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDbNameNotBetween(String value1, String value2) {
+            addCriterion("db_name not between", value1, value2, "dbName");
+            return (Criteria) this;
+        }
+
         public Criteria andKeywordIsNull() {
             addCriterion("keyword is null");
             return (Criteria) this;

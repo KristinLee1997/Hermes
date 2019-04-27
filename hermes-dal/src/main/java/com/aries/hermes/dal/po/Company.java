@@ -23,6 +23,12 @@ public class Company {
     private String password;
 
     /**
+     * 公司对应数据库的名字
+     */
+    @Column(name = "`db_name`")
+    private String dbName;
+
+    /**
      * 注册码
      */
     @Column(name = "`keyword`")
@@ -82,6 +88,24 @@ public class Company {
      */
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    /**
+     * 获取公司对应数据库的名字
+     *
+     * @return db_name - 公司对应数据库的名字
+     */
+    public String getDbName() {
+        return dbName;
+    }
+
+    /**
+     * 设置公司对应数据库的名字
+     *
+     * @param dbName 公司对应数据库的名字
+     */
+    public void setDbName(String dbName) {
+        this.dbName = dbName == null ? null : dbName.trim();
     }
 
     /**
