@@ -1,25 +1,29 @@
 CREATE DATABASE `hermes_aries_hotel` character set utf8mb4;
-use `hermes_aries_hotel`;
 
+use `hermes_aries_hotel`;
 
 create table topic
 (
-    id              bigint auto_increment
-        primary key,
-    theme           varchar(100)         null comment '主帖标签',
-    content         mediumtext           null comment '帖子内容',
-    gaea_id         bigint               null comment '主帖发起人id',
-    anonymous_send  tinyint(1) default 0 null comment '主帖是否匿名发送',
-    anonymous_reply tinyint(1) default 0 null comment '是否允许匿名回复',
-    update_time     timestamp            null comment '帖子更新时间',
-    add_time        timestamp            null comment '新建帖子时间'
+	id bigint auto_increment
+		primary key,
+	theme varchar(100) null comment '帖子主题',
+	content mediumtext null comment '帖子内容',
+	gaea_id bigint null comment '主帖发起人id',
+	anonymous_send tinyint(1) default 0 null comment '主帖是否匿名发送',
+	anonymous_reply tinyint(1) default 0 null comment '是否允许匿名回复',
+	category_id bigint null comment '帖子标签，种类',
+	update_time timestamp default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP comment '帖子更新时间',
+	insert_time timestamp default CURRENT_TIMESTAMP null comment '新建帖子时间'
 );
 
+create index topic_category_id_index
+	on topic (category_id);
+
 create index topic_gaea_id_index
-    on topic (gaea_id);
+	on topic (gaea_id);
 
 create index topic_update_time_index
-    on topic (update_time);
+	on topic (update_time);
 
 
 
@@ -70,5 +74,13 @@ create index sub_reply_insert_time_index
 
 
 
+
+create table category
+(
+	id bigint auto_increment,
+	name varchar(20) null,
+	constraint category_pk
+		primary key (id)
+);
 
 
