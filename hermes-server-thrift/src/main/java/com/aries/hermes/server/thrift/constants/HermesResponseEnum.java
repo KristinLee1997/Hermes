@@ -1,4 +1,4 @@
-package com.aries.hermes.server.thrift.server.constants;
+package com.aries.hermes.server.thrift.constants;
 
 
 import com.aries.hermes.idl.dto.ResponseCode;

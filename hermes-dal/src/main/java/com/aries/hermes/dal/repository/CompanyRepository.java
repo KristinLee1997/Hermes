@@ -33,7 +33,7 @@ public class CompanyRepository {
      * @param companyName
      * @return
      */
-    public static Company queryDatabaseByPassword(String database, String companyName, String password) {
+    public static String queryDatabaseByPassword(String database, String companyName, String password) {
         try (SqlSession session = SqlSessionUtil.openSession(database)) {
             CompanyMapper companyMapper = session.getMapper(CompanyMapper.class);
             CompanyExample example = new CompanyExample();
@@ -42,7 +42,7 @@ public class CompanyRepository {
             if (CollectionUtils.isEmpty(companyList)) {
                 return null;
             } else {
-                return companyList.get(0);
+                return companyList.get(0).getDbName();
             }
         }
     }

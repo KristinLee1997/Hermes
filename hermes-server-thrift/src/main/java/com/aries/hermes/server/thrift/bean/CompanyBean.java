@@ -1,4 +1,4 @@
-package com.aries.hermes.server.thrift.server.bean;
+package com.aries.hermes.server.thrift.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

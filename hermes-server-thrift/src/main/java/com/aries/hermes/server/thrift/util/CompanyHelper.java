@@ -1,10 +1,12 @@
-package com.aries.hermes.server.thrift.server.util;
+package com.aries.hermes.server.thrift.util;
 
 import com.aries.hermes.idl.dto.CompanyDTO;
 import com.aries.hermes.idl.dto.ThriftResponse;
-import com.aries.hermes.server.thrift.server.bean.CompanyBean;
+import com.aries.hermes.server.thrift.bean.CompanyBean;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
+
+import static com.aries.hermes.server.thrift.constants.HermesResponseEnum.*;
 
 
 @Getter
