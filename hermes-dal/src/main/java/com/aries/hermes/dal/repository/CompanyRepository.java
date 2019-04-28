@@ -9,8 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.List;
 
 public class CompanyRepository {
-    public static boolean addCompany(Company company) {
-        try (SqlSession session = SqlSessionUtil.openSession(company.getCompanyName())) {
+    public static boolean addCompany(String database, Company company) {
+        try (SqlSession session = SqlSessionUtil.openSession(database)) {
             CompanyMapper companyMapper = session.getMapper(CompanyMapper.class);
             int i = companyMapper.insertSelective(company);
             if (i > 0) {
@@ -21,8 +21,8 @@ public class CompanyRepository {
         }
     }
 
-    public static Company selectByNameAndPassword(Company company) {
-        try (SqlSession session = SqlSessionUtil.openSession(company.getCompanyName())) {
+    public static Company selectByNameAndPassword(String database, Company company) {
+        try (SqlSession session = SqlSessionUtil.openSession(database)) {
             CompanyMapper companyMapper = session.getMapper(CompanyMapper.class);
             CompanyExample example = new CompanyExample();
             example.createCriteria().andCompanyNameEqualTo(company.getCompanyName()).andPasswordEqualTo(company.getPassword());

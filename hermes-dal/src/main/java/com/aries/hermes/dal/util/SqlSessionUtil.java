@@ -6,12 +6,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 public class SqlSessionUtil {
     public static SqlSession openSession(String databaseName) {
-        SqlSessionFactory sqlSessionFactory = null;
-        if (databaseName.equals(SystemConstants.SYSTEM_DATABASE_NAME)) {
-            sqlSessionFactory = SqlSessionFactoryUtil.getSqlSessionFactory(databaseName);
-        } else {
-            sqlSessionFactory = SqlSessionFactoryUtil.getSqlSessionFactory(SystemConstants.DATABASE_NAME_PREFIX + databaseName);
-        }
+        SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtil.getSqlSessionFactory(databaseName);
         return sqlSessionFactory.openSession(true);
     }
 }

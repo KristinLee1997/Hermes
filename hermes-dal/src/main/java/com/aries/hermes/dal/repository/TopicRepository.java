@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TopicRepository {
-    public boolean addTopic(String companyName, Topic topic) {
-        try (SqlSession sqlSession = SqlSessionUtil.openSession(companyName)) {
+    public boolean addTopic(String database, Topic topic) {
+        try (SqlSession sqlSession = SqlSessionUtil.openSession(database)) {
             TopicMapper topicMapper = sqlSession.getMapper(TopicMapper.class);
             int i = topicMapper.insertSelective(topic);
             if (i > 0) {
@@ -22,8 +22,8 @@ public class TopicRepository {
         }
     }
 
-    public List<Topic> selectBySelective(String companyName, Topic topic) {
-        try (SqlSession sqlSession = SqlSessionUtil.openSession(companyName)) {
+    public List<Topic> selectBySelective(String database, Topic topic) {
+        try (SqlSession sqlSession = SqlSessionUtil.openSession(database)) {
             TopicMapper topicMapper = sqlSession.getMapper(TopicMapper.class);
             TopicExample example = new TopicExample();
             TopicExample.Criteria criteria = example.createCriteria();
