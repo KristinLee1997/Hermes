@@ -7,16 +7,6 @@ struct CompanyDTO {
     3: string keyword
 }
 
-struct ReplyDTO {
-    1: i64 id,
-    2: i64 topicId,
-    3: i64 gaeaId,
-    4: string content,
-    5: string insertTime,
-    6: string updateTime,
-    7: bool anonymousSend,
-}
-
 struct CategoryDTO {
     1: i64 id,
     2: string name,
@@ -31,5 +21,15 @@ struct SubReplyDTO {
     6: string insertTime,
 }
 
+struct ReplyDTO {
+    1: i64 id,
+    2: i64 topicId,
+    3: i64 gaeaId,
+    4: string content,
+    5: string insertTime,
+    6: string updateTime,
+    7: bool anonymousSend,
+    8: list<SubReplyDTO> subReplies,
+}
 
 
