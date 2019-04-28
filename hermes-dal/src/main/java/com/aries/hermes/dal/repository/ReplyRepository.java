@@ -45,7 +45,7 @@ public class ReplyRepository {
         }
     }
 
-    public static Reply queryNexy(String database, long topicId, long lastReplyId) {
+    public static Reply queryNext(String database, long topicId, long lastReplyId) {
         try (SqlSession session = SqlSessionUtil.openSession(database)) {
             ReplyMapper replyMapper = session.getMapper(ReplyMapper.class);
 
