@@ -1,5 +1,6 @@
 package com.aries.hermes.dal.repository;
 
+import com.aries.hermes.dal.constants.SystemConstants;
 import com.aries.hermes.dal.mapper.CompanyMapper;
 import com.aries.hermes.dal.po.Company;
 import com.aries.hermes.dal.po.CompanyExample;
@@ -14,12 +15,11 @@ public class CompanyRepository {
     /**
      * 新增公司
      *
-     * @param database
      * @param company
      * @return
      */
-    public static boolean addCompany(String database, Company company) {
-        try (SqlSession session = SqlSessionUtil.openSession(database)) {
+    public static boolean addCompany(Company company) {
+        try (SqlSession session = SqlSessionUtil.openSession(SystemConstants.SYSTEM_DATABASE_NAME)) {
             CompanyMapper companyMapper = session.getMapper(CompanyMapper.class);
             int i = companyMapper.insertSelective(company);
             return i > 0;
@@ -29,12 +29,11 @@ public class CompanyRepository {
     /**
      * 通过公司名或者密码查询公司
      *
-     * @param database
      * @param companyName
      * @return
      */
-    public static String queryDatabaseByPassword(String database, String companyName, String password) {
-        try (SqlSession session = SqlSessionUtil.openSession(database)) {
+    public static String queryDatabaseByPassword(String companyName, String password) {
+        try (SqlSession session = SqlSessionUtil.openSession(SystemConstants.SYSTEM_DATABASE_NAME)) {
             CompanyMapper companyMapper = session.getMapper(CompanyMapper.class);
             CompanyExample example = new CompanyExample();
             example.createCriteria().andCompanyNameEqualTo(companyName).andPasswordEqualTo(password);

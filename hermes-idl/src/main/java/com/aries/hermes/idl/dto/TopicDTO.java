@@ -14,10 +14,10 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
   private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.I64, (short)1);
   private static final org.apache.thrift.protocol.TField THEME_FIELD_DESC = new org.apache.thrift.protocol.TField("theme", org.apache.thrift.protocol.TType.STRING, (short)2);
   private static final org.apache.thrift.protocol.TField CONTENT_FIELD_DESC = new org.apache.thrift.protocol.TField("content", org.apache.thrift.protocol.TType.STRING, (short)3);
-  private static final org.apache.thrift.protocol.TField GAEA_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("gaea_id", org.apache.thrift.protocol.TType.I64, (short)4);
-  private static final org.apache.thrift.protocol.TField ANONYMOUS_SEND_FIELD_DESC = new org.apache.thrift.protocol.TField("anonymous_send", org.apache.thrift.protocol.TType.BOOL, (short)5);
-  private static final org.apache.thrift.protocol.TField ANONYMOUS_REPLY_FIELD_DESC = new org.apache.thrift.protocol.TField("anonymous_reply", org.apache.thrift.protocol.TType.BOOL, (short)6);
-  private static final org.apache.thrift.protocol.TField CATEGORY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("category_id", org.apache.thrift.protocol.TType.I64, (short)7);
+  private static final org.apache.thrift.protocol.TField GAEA_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("gaeaId", org.apache.thrift.protocol.TType.I64, (short)4);
+  private static final org.apache.thrift.protocol.TField ANONYMOUS_SEND_FIELD_DESC = new org.apache.thrift.protocol.TField("anonymousSend", org.apache.thrift.protocol.TType.BOOL, (short)5);
+  private static final org.apache.thrift.protocol.TField ANONYMOUS_REPLY_FIELD_DESC = new org.apache.thrift.protocol.TField("anonymousReply", org.apache.thrift.protocol.TType.BOOL, (short)6);
+  private static final org.apache.thrift.protocol.TField CATEGORY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("categoryId", org.apache.thrift.protocol.TType.I64, (short)7);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new TopicDTOStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new TopicDTOTupleSchemeFactory();
@@ -25,20 +25,20 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
   public long id; // required
   public @org.apache.thrift.annotation.Nullable java.lang.String theme; // required
   public @org.apache.thrift.annotation.Nullable java.lang.String content; // required
-  public long gaea_id; // required
-  public boolean anonymous_send; // required
-  public boolean anonymous_reply; // required
-  public long category_id; // required
+  public long gaeaId; // required
+  public boolean anonymousSend; // required
+  public boolean anonymousReply; // required
+  public long categoryId; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
     ID((short)1, "id"),
     THEME((short)2, "theme"),
     CONTENT((short)3, "content"),
-    GAEA_ID((short)4, "gaea_id"),
-    ANONYMOUS_SEND((short)5, "anonymous_send"),
-    ANONYMOUS_REPLY((short)6, "anonymous_reply"),
-    CATEGORY_ID((short)7, "category_id");
+    GAEA_ID((short)4, "gaeaId"),
+    ANONYMOUS_SEND((short)5, "anonymousSend"),
+    ANONYMOUS_REPLY((short)6, "anonymousReply"),
+    CATEGORY_ID((short)7, "categoryId");
 
     private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -110,10 +110,10 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
 
   // isset id assignments
   private static final int __ID_ISSET_ID = 0;
-  private static final int __GAEA_ID_ISSET_ID = 1;
-  private static final int __ANONYMOUS_SEND_ISSET_ID = 2;
-  private static final int __ANONYMOUS_REPLY_ISSET_ID = 3;
-  private static final int __CATEGORY_ID_ISSET_ID = 4;
+  private static final int __GAEAID_ISSET_ID = 1;
+  private static final int __ANONYMOUSSEND_ISSET_ID = 2;
+  private static final int __ANONYMOUSREPLY_ISSET_ID = 3;
+  private static final int __CATEGORYID_ISSET_ID = 4;
   private byte __isset_bitfield = 0;
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
@@ -124,13 +124,13 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.CONTENT, new org.apache.thrift.meta_data.FieldMetaData("content", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.GAEA_ID, new org.apache.thrift.meta_data.FieldMetaData("gaea_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.GAEA_ID, new org.apache.thrift.meta_data.FieldMetaData("gaeaId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
-    tmpMap.put(_Fields.ANONYMOUS_SEND, new org.apache.thrift.meta_data.FieldMetaData("anonymous_send", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.ANONYMOUS_SEND, new org.apache.thrift.meta_data.FieldMetaData("anonymousSend", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
-    tmpMap.put(_Fields.ANONYMOUS_REPLY, new org.apache.thrift.meta_data.FieldMetaData("anonymous_reply", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.ANONYMOUS_REPLY, new org.apache.thrift.meta_data.FieldMetaData("anonymousReply", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
-    tmpMap.put(_Fields.CATEGORY_ID, new org.apache.thrift.meta_data.FieldMetaData("category_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.CATEGORY_ID, new org.apache.thrift.meta_data.FieldMetaData("categoryId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TopicDTO.class, metaDataMap);
@@ -143,24 +143,24 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
     long id,
     java.lang.String theme,
     java.lang.String content,
-    long gaea_id,
-    boolean anonymous_send,
-    boolean anonymous_reply,
-    long category_id)
+    long gaeaId,
+    boolean anonymousSend,
+    boolean anonymousReply,
+    long categoryId)
   {
     this();
     this.id = id;
     setIdIsSet(true);
     this.theme = theme;
     this.content = content;
-    this.gaea_id = gaea_id;
-    setGaea_idIsSet(true);
-    this.anonymous_send = anonymous_send;
-    setAnonymous_sendIsSet(true);
-    this.anonymous_reply = anonymous_reply;
-    setAnonymous_replyIsSet(true);
-    this.category_id = category_id;
-    setCategory_idIsSet(true);
+    this.gaeaId = gaeaId;
+    setGaeaIdIsSet(true);
+    this.anonymousSend = anonymousSend;
+    setAnonymousSendIsSet(true);
+    this.anonymousReply = anonymousReply;
+    setAnonymousReplyIsSet(true);
+    this.categoryId = categoryId;
+    setCategoryIdIsSet(true);
   }
 
   /**
@@ -175,10 +175,10 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
     if (other.isSetContent()) {
       this.content = other.content;
     }
-    this.gaea_id = other.gaea_id;
-    this.anonymous_send = other.anonymous_send;
-    this.anonymous_reply = other.anonymous_reply;
-    this.category_id = other.category_id;
+    this.gaeaId = other.gaeaId;
+    this.anonymousSend = other.anonymousSend;
+    this.anonymousReply = other.anonymousReply;
+    this.categoryId = other.categoryId;
   }
 
   public TopicDTO deepCopy() {
@@ -191,14 +191,14 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
     this.id = 0;
     this.theme = null;
     this.content = null;
-    setGaea_idIsSet(false);
-    this.gaea_id = 0;
-    setAnonymous_sendIsSet(false);
-    this.anonymous_send = false;
-    setAnonymous_replyIsSet(false);
-    this.anonymous_reply = false;
-    setCategory_idIsSet(false);
-    this.category_id = 0;
+    setGaeaIdIsSet(false);
+    this.gaeaId = 0;
+    setAnonymousSendIsSet(false);
+    this.anonymousSend = false;
+    setAnonymousReplyIsSet(false);
+    this.anonymousReply = false;
+    setCategoryIdIsSet(false);
+    this.categoryId = 0;
   }
 
   public long getId() {
@@ -274,96 +274,96 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
     }
   }
 
-  public long getGaea_id() {
-    return this.gaea_id;
+  public long getGaeaId() {
+    return this.gaeaId;
   }
 
-  public TopicDTO setGaea_id(long gaea_id) {
-    this.gaea_id = gaea_id;
-    setGaea_idIsSet(true);
+  public TopicDTO setGaeaId(long gaeaId) {
+    this.gaeaId = gaeaId;
+    setGaeaIdIsSet(true);
     return this;
   }
 
-  public void unsetGaea_id() {
-    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __GAEA_ID_ISSET_ID);
+  public void unsetGaeaId() {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __GAEAID_ISSET_ID);
   }
 
-  /** Returns true if field gaea_id is set (has been assigned a value) and false otherwise */
-  public boolean isSetGaea_id() {
-    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __GAEA_ID_ISSET_ID);
+  /** Returns true if field gaeaId is set (has been assigned a value) and false otherwise */
+  public boolean isSetGaeaId() {
+    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __GAEAID_ISSET_ID);
   }
 
-  public void setGaea_idIsSet(boolean value) {
-    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __GAEA_ID_ISSET_ID, value);
+  public void setGaeaIdIsSet(boolean value) {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __GAEAID_ISSET_ID, value);
   }
 
-  public boolean isAnonymous_send() {
-    return this.anonymous_send;
+  public boolean isAnonymousSend() {
+    return this.anonymousSend;
   }
 
-  public TopicDTO setAnonymous_send(boolean anonymous_send) {
-    this.anonymous_send = anonymous_send;
-    setAnonymous_sendIsSet(true);
+  public TopicDTO setAnonymousSend(boolean anonymousSend) {
+    this.anonymousSend = anonymousSend;
+    setAnonymousSendIsSet(true);
     return this;
   }
 
-  public void unsetAnonymous_send() {
-    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __ANONYMOUS_SEND_ISSET_ID);
+  public void unsetAnonymousSend() {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __ANONYMOUSSEND_ISSET_ID);
   }
 
-  /** Returns true if field anonymous_send is set (has been assigned a value) and false otherwise */
-  public boolean isSetAnonymous_send() {
-    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __ANONYMOUS_SEND_ISSET_ID);
+  /** Returns true if field anonymousSend is set (has been assigned a value) and false otherwise */
+  public boolean isSetAnonymousSend() {
+    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __ANONYMOUSSEND_ISSET_ID);
   }
 
-  public void setAnonymous_sendIsSet(boolean value) {
-    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __ANONYMOUS_SEND_ISSET_ID, value);
+  public void setAnonymousSendIsSet(boolean value) {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __ANONYMOUSSEND_ISSET_ID, value);
   }
 
-  public boolean isAnonymous_reply() {
-    return this.anonymous_reply;
+  public boolean isAnonymousReply() {
+    return this.anonymousReply;
   }
 
-  public TopicDTO setAnonymous_reply(boolean anonymous_reply) {
-    this.anonymous_reply = anonymous_reply;
-    setAnonymous_replyIsSet(true);
+  public TopicDTO setAnonymousReply(boolean anonymousReply) {
+    this.anonymousReply = anonymousReply;
+    setAnonymousReplyIsSet(true);
     return this;
   }
 
-  public void unsetAnonymous_reply() {
-    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __ANONYMOUS_REPLY_ISSET_ID);
+  public void unsetAnonymousReply() {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __ANONYMOUSREPLY_ISSET_ID);
   }
 
-  /** Returns true if field anonymous_reply is set (has been assigned a value) and false otherwise */
-  public boolean isSetAnonymous_reply() {
-    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __ANONYMOUS_REPLY_ISSET_ID);
+  /** Returns true if field anonymousReply is set (has been assigned a value) and false otherwise */
+  public boolean isSetAnonymousReply() {
+    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __ANONYMOUSREPLY_ISSET_ID);
   }
 
-  public void setAnonymous_replyIsSet(boolean value) {
-    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __ANONYMOUS_REPLY_ISSET_ID, value);
+  public void setAnonymousReplyIsSet(boolean value) {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __ANONYMOUSREPLY_ISSET_ID, value);
   }
 
-  public long getCategory_id() {
-    return this.category_id;
+  public long getCategoryId() {
+    return this.categoryId;
   }
 
-  public TopicDTO setCategory_id(long category_id) {
-    this.category_id = category_id;
-    setCategory_idIsSet(true);
+  public TopicDTO setCategoryId(long categoryId) {
+    this.categoryId = categoryId;
+    setCategoryIdIsSet(true);
     return this;
   }
 
-  public void unsetCategory_id() {
-    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __CATEGORY_ID_ISSET_ID);
+  public void unsetCategoryId() {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __CATEGORYID_ISSET_ID);
   }
 
-  /** Returns true if field category_id is set (has been assigned a value) and false otherwise */
-  public boolean isSetCategory_id() {
-    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __CATEGORY_ID_ISSET_ID);
+  /** Returns true if field categoryId is set (has been assigned a value) and false otherwise */
+  public boolean isSetCategoryId() {
+    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __CATEGORYID_ISSET_ID);
   }
 
-  public void setCategory_idIsSet(boolean value) {
-    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __CATEGORY_ID_ISSET_ID, value);
+  public void setCategoryIdIsSet(boolean value) {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __CATEGORYID_ISSET_ID, value);
   }
 
   public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
@@ -394,33 +394,33 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
 
     case GAEA_ID:
       if (value == null) {
-        unsetGaea_id();
+        unsetGaeaId();
       } else {
-        setGaea_id((java.lang.Long)value);
+        setGaeaId((java.lang.Long)value);
       }
       break;
 
     case ANONYMOUS_SEND:
       if (value == null) {
-        unsetAnonymous_send();
+        unsetAnonymousSend();
       } else {
-        setAnonymous_send((java.lang.Boolean)value);
+        setAnonymousSend((java.lang.Boolean)value);
       }
       break;
 
     case ANONYMOUS_REPLY:
       if (value == null) {
-        unsetAnonymous_reply();
+        unsetAnonymousReply();
       } else {
-        setAnonymous_reply((java.lang.Boolean)value);
+        setAnonymousReply((java.lang.Boolean)value);
       }
       break;
 
     case CATEGORY_ID:
       if (value == null) {
-        unsetCategory_id();
+        unsetCategoryId();
       } else {
-        setCategory_id((java.lang.Long)value);
+        setCategoryId((java.lang.Long)value);
       }
       break;
 
@@ -440,16 +440,16 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
       return getContent();
 
     case GAEA_ID:
-      return getGaea_id();
+      return getGaeaId();
 
     case ANONYMOUS_SEND:
-      return isAnonymous_send();
+      return isAnonymousSend();
 
     case ANONYMOUS_REPLY:
-      return isAnonymous_reply();
+      return isAnonymousReply();
 
     case CATEGORY_ID:
-      return getCategory_id();
+      return getCategoryId();
 
     }
     throw new java.lang.IllegalStateException();
@@ -469,13 +469,13 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
     case CONTENT:
       return isSetContent();
     case GAEA_ID:
-      return isSetGaea_id();
+      return isSetGaeaId();
     case ANONYMOUS_SEND:
-      return isSetAnonymous_send();
+      return isSetAnonymousSend();
     case ANONYMOUS_REPLY:
-      return isSetAnonymous_reply();
+      return isSetAnonymousReply();
     case CATEGORY_ID:
-      return isSetCategory_id();
+      return isSetCategoryId();
     }
     throw new java.lang.IllegalStateException();
   }
@@ -522,39 +522,39 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
         return false;
     }
 
-    boolean this_present_gaea_id = true;
-    boolean that_present_gaea_id = true;
-    if (this_present_gaea_id || that_present_gaea_id) {
-      if (!(this_present_gaea_id && that_present_gaea_id))
+    boolean this_present_gaeaId = true;
+    boolean that_present_gaeaId = true;
+    if (this_present_gaeaId || that_present_gaeaId) {
+      if (!(this_present_gaeaId && that_present_gaeaId))
         return false;
-      if (this.gaea_id != that.gaea_id)
-        return false;
-    }
-
-    boolean this_present_anonymous_send = true;
-    boolean that_present_anonymous_send = true;
-    if (this_present_anonymous_send || that_present_anonymous_send) {
-      if (!(this_present_anonymous_send && that_present_anonymous_send))
-        return false;
-      if (this.anonymous_send != that.anonymous_send)
+      if (this.gaeaId != that.gaeaId)
         return false;
     }
 
-    boolean this_present_anonymous_reply = true;
-    boolean that_present_anonymous_reply = true;
-    if (this_present_anonymous_reply || that_present_anonymous_reply) {
-      if (!(this_present_anonymous_reply && that_present_anonymous_reply))
+    boolean this_present_anonymousSend = true;
+    boolean that_present_anonymousSend = true;
+    if (this_present_anonymousSend || that_present_anonymousSend) {
+      if (!(this_present_anonymousSend && that_present_anonymousSend))
         return false;
-      if (this.anonymous_reply != that.anonymous_reply)
+      if (this.anonymousSend != that.anonymousSend)
         return false;
     }
 
-    boolean this_present_category_id = true;
-    boolean that_present_category_id = true;
-    if (this_present_category_id || that_present_category_id) {
-      if (!(this_present_category_id && that_present_category_id))
+    boolean this_present_anonymousReply = true;
+    boolean that_present_anonymousReply = true;
+    if (this_present_anonymousReply || that_present_anonymousReply) {
+      if (!(this_present_anonymousReply && that_present_anonymousReply))
         return false;
-      if (this.category_id != that.category_id)
+      if (this.anonymousReply != that.anonymousReply)
+        return false;
+    }
+
+    boolean this_present_categoryId = true;
+    boolean that_present_categoryId = true;
+    if (this_present_categoryId || that_present_categoryId) {
+      if (!(this_present_categoryId && that_present_categoryId))
+        return false;
+      if (this.categoryId != that.categoryId)
         return false;
     }
 
@@ -575,13 +575,13 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
     if (isSetContent())
       hashCode = hashCode * 8191 + content.hashCode();
 
-    hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(gaea_id);
+    hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(gaeaId);
 
-    hashCode = hashCode * 8191 + ((anonymous_send) ? 131071 : 524287);
+    hashCode = hashCode * 8191 + ((anonymousSend) ? 131071 : 524287);
 
-    hashCode = hashCode * 8191 + ((anonymous_reply) ? 131071 : 524287);
+    hashCode = hashCode * 8191 + ((anonymousReply) ? 131071 : 524287);
 
-    hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(category_id);
+    hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(categoryId);
 
     return hashCode;
   }
@@ -624,42 +624,42 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetGaea_id()).compareTo(other.isSetGaea_id());
+    lastComparison = java.lang.Boolean.valueOf(isSetGaeaId()).compareTo(other.isSetGaeaId());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetGaea_id()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.gaea_id, other.gaea_id);
+    if (isSetGaeaId()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.gaeaId, other.gaeaId);
       if (lastComparison != 0) {
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetAnonymous_send()).compareTo(other.isSetAnonymous_send());
+    lastComparison = java.lang.Boolean.valueOf(isSetAnonymousSend()).compareTo(other.isSetAnonymousSend());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetAnonymous_send()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.anonymous_send, other.anonymous_send);
+    if (isSetAnonymousSend()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.anonymousSend, other.anonymousSend);
       if (lastComparison != 0) {
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetAnonymous_reply()).compareTo(other.isSetAnonymous_reply());
+    lastComparison = java.lang.Boolean.valueOf(isSetAnonymousReply()).compareTo(other.isSetAnonymousReply());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetAnonymous_reply()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.anonymous_reply, other.anonymous_reply);
+    if (isSetAnonymousReply()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.anonymousReply, other.anonymousReply);
       if (lastComparison != 0) {
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetCategory_id()).compareTo(other.isSetCategory_id());
+    lastComparison = java.lang.Boolean.valueOf(isSetCategoryId()).compareTo(other.isSetCategoryId());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetCategory_id()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.category_id, other.category_id);
+    if (isSetCategoryId()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.categoryId, other.categoryId);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -705,20 +705,20 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
     }
     first = false;
     if (!first) sb.append(", ");
-    sb.append("gaea_id:");
-    sb.append(this.gaea_id);
+    sb.append("gaeaId:");
+    sb.append(this.gaeaId);
     first = false;
     if (!first) sb.append(", ");
-    sb.append("anonymous_send:");
-    sb.append(this.anonymous_send);
+    sb.append("anonymousSend:");
+    sb.append(this.anonymousSend);
     first = false;
     if (!first) sb.append(", ");
-    sb.append("anonymous_reply:");
-    sb.append(this.anonymous_reply);
+    sb.append("anonymousReply:");
+    sb.append(this.anonymousReply);
     first = false;
     if (!first) sb.append(", ");
-    sb.append("category_id:");
-    sb.append(this.category_id);
+    sb.append("categoryId:");
+    sb.append(this.categoryId);
     first = false;
     sb.append(")");
     return sb.toString();
@@ -791,32 +791,32 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
             break;
           case 4: // GAEA_ID
             if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
-              struct.gaea_id = iprot.readI64();
-              struct.setGaea_idIsSet(true);
+              struct.gaeaId = iprot.readI64();
+              struct.setGaeaIdIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
           case 5: // ANONYMOUS_SEND
             if (schemeField.type == org.apache.thrift.protocol.TType.BOOL) {
-              struct.anonymous_send = iprot.readBool();
-              struct.setAnonymous_sendIsSet(true);
+              struct.anonymousSend = iprot.readBool();
+              struct.setAnonymousSendIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
           case 6: // ANONYMOUS_REPLY
             if (schemeField.type == org.apache.thrift.protocol.TType.BOOL) {
-              struct.anonymous_reply = iprot.readBool();
-              struct.setAnonymous_replyIsSet(true);
+              struct.anonymousReply = iprot.readBool();
+              struct.setAnonymousReplyIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
           case 7: // CATEGORY_ID
             if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
-              struct.category_id = iprot.readI64();
-              struct.setCategory_idIsSet(true);
+              struct.categoryId = iprot.readI64();
+              struct.setCategoryIdIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
@@ -850,16 +850,16 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
         oprot.writeFieldEnd();
       }
       oprot.writeFieldBegin(GAEA_ID_FIELD_DESC);
-      oprot.writeI64(struct.gaea_id);
+      oprot.writeI64(struct.gaeaId);
       oprot.writeFieldEnd();
       oprot.writeFieldBegin(ANONYMOUS_SEND_FIELD_DESC);
-      oprot.writeBool(struct.anonymous_send);
+      oprot.writeBool(struct.anonymousSend);
       oprot.writeFieldEnd();
       oprot.writeFieldBegin(ANONYMOUS_REPLY_FIELD_DESC);
-      oprot.writeBool(struct.anonymous_reply);
+      oprot.writeBool(struct.anonymousReply);
       oprot.writeFieldEnd();
       oprot.writeFieldBegin(CATEGORY_ID_FIELD_DESC);
-      oprot.writeI64(struct.category_id);
+      oprot.writeI64(struct.categoryId);
       oprot.writeFieldEnd();
       oprot.writeFieldStop();
       oprot.writeStructEnd();
@@ -888,16 +888,16 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
       if (struct.isSetContent()) {
         optionals.set(2);
       }
-      if (struct.isSetGaea_id()) {
+      if (struct.isSetGaeaId()) {
         optionals.set(3);
       }
-      if (struct.isSetAnonymous_send()) {
+      if (struct.isSetAnonymousSend()) {
         optionals.set(4);
       }
-      if (struct.isSetAnonymous_reply()) {
+      if (struct.isSetAnonymousReply()) {
         optionals.set(5);
       }
-      if (struct.isSetCategory_id()) {
+      if (struct.isSetCategoryId()) {
         optionals.set(6);
       }
       oprot.writeBitSet(optionals, 7);
@@ -910,17 +910,17 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
       if (struct.isSetContent()) {
         oprot.writeString(struct.content);
       }
-      if (struct.isSetGaea_id()) {
-        oprot.writeI64(struct.gaea_id);
+      if (struct.isSetGaeaId()) {
+        oprot.writeI64(struct.gaeaId);
       }
-      if (struct.isSetAnonymous_send()) {
-        oprot.writeBool(struct.anonymous_send);
+      if (struct.isSetAnonymousSend()) {
+        oprot.writeBool(struct.anonymousSend);
       }
-      if (struct.isSetAnonymous_reply()) {
-        oprot.writeBool(struct.anonymous_reply);
+      if (struct.isSetAnonymousReply()) {
+        oprot.writeBool(struct.anonymousReply);
       }
-      if (struct.isSetCategory_id()) {
-        oprot.writeI64(struct.category_id);
+      if (struct.isSetCategoryId()) {
+        oprot.writeI64(struct.categoryId);
       }
     }
 
@@ -941,20 +941,20 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
         struct.setContentIsSet(true);
       }
       if (incoming.get(3)) {
-        struct.gaea_id = iprot.readI64();
-        struct.setGaea_idIsSet(true);
+        struct.gaeaId = iprot.readI64();
+        struct.setGaeaIdIsSet(true);
       }
       if (incoming.get(4)) {
-        struct.anonymous_send = iprot.readBool();
-        struct.setAnonymous_sendIsSet(true);
+        struct.anonymousSend = iprot.readBool();
+        struct.setAnonymousSendIsSet(true);
       }
       if (incoming.get(5)) {
-        struct.anonymous_reply = iprot.readBool();
-        struct.setAnonymous_replyIsSet(true);
+        struct.anonymousReply = iprot.readBool();
+        struct.setAnonymousReplyIsSet(true);
       }
       if (incoming.get(6)) {
-        struct.category_id = iprot.readI64();
-        struct.setCategory_idIsSet(true);
+        struct.categoryId = iprot.readI64();
+        struct.setCategoryIdIsSet(true);
       }
     }
   }

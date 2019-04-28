@@ -14,7 +14,7 @@ public class CompanyRepositoryTest {
             setDbName("hermes_aries_edu");
             setPassword("123123");
         }};
-        boolean hemers = CompanyRepository.addCompany("hermes", company);
+        boolean hemers = CompanyRepository.addCompany(company);
         System.out.println(hemers);
     }
 
@@ -23,7 +23,7 @@ public class CompanyRepositoryTest {
      */
     @Test
     public void queryDatabaseByPasswordTest() {
-        Company company = CompanyRepository.queryDatabaseByPassword("hermes", "aries_edu", "123123");
-        System.out.println(company == null);
+        String dbName = CompanyRepository.queryDatabaseByPassword("aries_edu", "123123");
+        System.out.println(dbName);
     }
 }

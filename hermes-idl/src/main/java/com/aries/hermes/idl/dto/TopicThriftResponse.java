@@ -13,20 +13,20 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
 
   private static final org.apache.thrift.protocol.TField CODE_FIELD_DESC = new org.apache.thrift.protocol.TField("code", org.apache.thrift.protocol.TType.I32, (short)1);
   private static final org.apache.thrift.protocol.TField MESSAGE_FIELD_DESC = new org.apache.thrift.protocol.TField("message", org.apache.thrift.protocol.TType.STRING, (short)2);
-  private static final org.apache.thrift.protocol.TField TOPIC_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("topicDto", org.apache.thrift.protocol.TType.STRUCT, (short)3);
+  private static final org.apache.thrift.protocol.TField TOPIC_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("topicDTO", org.apache.thrift.protocol.TType.STRUCT, (short)3);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new TopicThriftResponseStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new TopicThriftResponseTupleSchemeFactory();
 
   public int code; // required
   public @org.apache.thrift.annotation.Nullable java.lang.String message; // required
-  public @org.apache.thrift.annotation.Nullable TopicDTO topicDto; // required
+  public @org.apache.thrift.annotation.Nullable TopicDTO topicDTO; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
     CODE((short)1, "code"),
     MESSAGE((short)2, "message"),
-    TOPIC_DTO((short)3, "topicDto");
+    TOPIC_DTO((short)3, "topicDTO");
 
     private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -98,7 +98,7 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
     tmpMap.put(_Fields.MESSAGE, new org.apache.thrift.meta_data.FieldMetaData("message", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.TOPIC_DTO, new org.apache.thrift.meta_data.FieldMetaData("topicDto", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.TOPIC_DTO, new org.apache.thrift.meta_data.FieldMetaData("topicDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, TopicDTO.class)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TopicThriftResponse.class, metaDataMap);
@@ -110,13 +110,13 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
   public TopicThriftResponse(
     int code,
     java.lang.String message,
-    TopicDTO topicDto)
+    TopicDTO topicDTO)
   {
     this();
     this.code = code;
     setCodeIsSet(true);
     this.message = message;
-    this.topicDto = topicDto;
+    this.topicDTO = topicDTO;
   }
 
   /**
@@ -128,8 +128,8 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
     if (other.isSetMessage()) {
       this.message = other.message;
     }
-    if (other.isSetTopicDto()) {
-      this.topicDto = new TopicDTO(other.topicDto);
+    if (other.isSetTopicDTO()) {
+      this.topicDTO = new TopicDTO(other.topicDTO);
     }
   }
 
@@ -142,7 +142,7 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
     setCodeIsSet(false);
     this.code = 0;
     this.message = null;
-    this.topicDto = null;
+    this.topicDTO = null;
   }
 
   public int getCode() {
@@ -194,27 +194,27 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
   }
 
   @org.apache.thrift.annotation.Nullable
-  public TopicDTO getTopicDto() {
-    return this.topicDto;
+  public TopicDTO getTopicDTO() {
+    return this.topicDTO;
   }
 
-  public TopicThriftResponse setTopicDto(@org.apache.thrift.annotation.Nullable TopicDTO topicDto) {
-    this.topicDto = topicDto;
+  public TopicThriftResponse setTopicDTO(@org.apache.thrift.annotation.Nullable TopicDTO topicDTO) {
+    this.topicDTO = topicDTO;
     return this;
   }
 
-  public void unsetTopicDto() {
-    this.topicDto = null;
+  public void unsetTopicDTO() {
+    this.topicDTO = null;
   }
 
-  /** Returns true if field topicDto is set (has been assigned a value) and false otherwise */
-  public boolean isSetTopicDto() {
-    return this.topicDto != null;
+  /** Returns true if field topicDTO is set (has been assigned a value) and false otherwise */
+  public boolean isSetTopicDTO() {
+    return this.topicDTO != null;
   }
 
-  public void setTopicDtoIsSet(boolean value) {
+  public void setTopicDTOIsSet(boolean value) {
     if (!value) {
-      this.topicDto = null;
+      this.topicDTO = null;
     }
   }
 
@@ -238,9 +238,9 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
 
     case TOPIC_DTO:
       if (value == null) {
-        unsetTopicDto();
+        unsetTopicDTO();
       } else {
-        setTopicDto((TopicDTO)value);
+        setTopicDTO((TopicDTO)value);
       }
       break;
 
@@ -257,7 +257,7 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
       return getMessage();
 
     case TOPIC_DTO:
-      return getTopicDto();
+      return getTopicDTO();
 
     }
     throw new java.lang.IllegalStateException();
@@ -275,7 +275,7 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
     case MESSAGE:
       return isSetMessage();
     case TOPIC_DTO:
-      return isSetTopicDto();
+      return isSetTopicDTO();
     }
     throw new java.lang.IllegalStateException();
   }
@@ -313,12 +313,12 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
         return false;
     }
 
-    boolean this_present_topicDto = true && this.isSetTopicDto();
-    boolean that_present_topicDto = true && that.isSetTopicDto();
-    if (this_present_topicDto || that_present_topicDto) {
-      if (!(this_present_topicDto && that_present_topicDto))
+    boolean this_present_topicDTO = true && this.isSetTopicDTO();
+    boolean that_present_topicDTO = true && that.isSetTopicDTO();
+    if (this_present_topicDTO || that_present_topicDTO) {
+      if (!(this_present_topicDTO && that_present_topicDTO))
         return false;
-      if (!this.topicDto.equals(that.topicDto))
+      if (!this.topicDTO.equals(that.topicDTO))
         return false;
     }
 
@@ -335,9 +335,9 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
     if (isSetMessage())
       hashCode = hashCode * 8191 + message.hashCode();
 
-    hashCode = hashCode * 8191 + ((isSetTopicDto()) ? 131071 : 524287);
-    if (isSetTopicDto())
-      hashCode = hashCode * 8191 + topicDto.hashCode();
+    hashCode = hashCode * 8191 + ((isSetTopicDTO()) ? 131071 : 524287);
+    if (isSetTopicDTO())
+      hashCode = hashCode * 8191 + topicDTO.hashCode();
 
     return hashCode;
   }
@@ -370,12 +370,12 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetTopicDto()).compareTo(other.isSetTopicDto());
+    lastComparison = java.lang.Boolean.valueOf(isSetTopicDTO()).compareTo(other.isSetTopicDTO());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetTopicDto()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.topicDto, other.topicDto);
+    if (isSetTopicDTO()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.topicDTO, other.topicDTO);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -413,11 +413,11 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
     }
     first = false;
     if (!first) sb.append(", ");
-    sb.append("topicDto:");
-    if (this.topicDto == null) {
+    sb.append("topicDTO:");
+    if (this.topicDTO == null) {
       sb.append("null");
     } else {
-      sb.append(this.topicDto);
+      sb.append(this.topicDTO);
     }
     first = false;
     sb.append(")");
@@ -427,8 +427,8 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
     // check for sub-struct validity
-    if (topicDto != null) {
-      topicDto.validate();
+    if (topicDTO != null) {
+      topicDTO.validate();
     }
   }
 
@@ -486,9 +486,9 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
             break;
           case 3: // TOPIC_DTO
             if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-              struct.topicDto = new TopicDTO();
-              struct.topicDto.read(iprot);
-              struct.setTopicDtoIsSet(true);
+              struct.topicDTO = new TopicDTO();
+              struct.topicDTO.read(iprot);
+              struct.setTopicDTOIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
@@ -516,9 +516,9 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
         oprot.writeString(struct.message);
         oprot.writeFieldEnd();
       }
-      if (struct.topicDto != null) {
+      if (struct.topicDTO != null) {
         oprot.writeFieldBegin(TOPIC_DTO_FIELD_DESC);
-        struct.topicDto.write(oprot);
+        struct.topicDTO.write(oprot);
         oprot.writeFieldEnd();
       }
       oprot.writeFieldStop();
@@ -545,7 +545,7 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
       if (struct.isSetMessage()) {
         optionals.set(1);
       }
-      if (struct.isSetTopicDto()) {
+      if (struct.isSetTopicDTO()) {
         optionals.set(2);
       }
       oprot.writeBitSet(optionals, 3);
@@ -555,8 +555,8 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
       if (struct.isSetMessage()) {
         oprot.writeString(struct.message);
       }
-      if (struct.isSetTopicDto()) {
-        struct.topicDto.write(oprot);
+      if (struct.isSetTopicDTO()) {
+        struct.topicDTO.write(oprot);
       }
     }
 
@@ -573,9 +573,9 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
         struct.setMessageIsSet(true);
       }
       if (incoming.get(2)) {
-        struct.topicDto = new TopicDTO();
-        struct.topicDto.read(iprot);
-        struct.setTopicDtoIsSet(true);
+        struct.topicDTO = new TopicDTO();
+        struct.topicDTO.read(iprot);
+        struct.setTopicDTOIsSet(true);
       }
     }
   }

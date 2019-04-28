@@ -15,7 +15,7 @@ struct ThriftResponse{
 //    4000：
 //    4001: 希望调用方重试
     1:required i32 code,
-    2:required string message
+    2:required string message,
 }
 
 enum ResponseCode{
@@ -32,23 +32,23 @@ enum ResponseCode{
 struct CompanyDTO {
     1: string name,
     2: string password,
-    3: string keyword
+    3: string keyword,
 }
 
 struct TopicDTO{
     1:i64 id,
     2:string theme,
     3:string content,
-    4:i64 gaea_id,
-    5:bool anonymous_send,
-    6:bool anonymous_reply,
-    7:i64 category_id
+    4:i64 gaeaId,
+    5:bool anonymousSend,
+    6:bool anonymousReply,
+    7:i64 categoryId,
 }
 
 struct TopicThriftResponse{
     1:i32 code,
     2:string message,
-    3:TopicDTO topicDto
+    3:TopicDTO topicDTO,
 }
 
 
