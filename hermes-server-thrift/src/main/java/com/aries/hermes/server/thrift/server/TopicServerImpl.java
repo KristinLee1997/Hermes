@@ -1,5 +1,6 @@
 package com.aries.hermes.server.thrift.server;
 
+import com.aries.hermes.idl.dto.ResponseCode;
 import com.aries.hermes.idl.service.TopicServer;
 import org.apache.thrift.TException;
 
