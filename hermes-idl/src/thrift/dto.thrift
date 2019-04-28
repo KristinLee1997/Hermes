@@ -26,6 +26,7 @@ enum ResponseCode{
     PARAM_NULL = 2002,          // 2002：参数为null
     SYSTEM_ERROR = 3000,        // 3000：系统内部未知异常
     OTHERS_SYSTEM_ERROR = 3001, // 3001：调用其他系统异常
+    PERMISSION_FAIL = 3002,     // 3002: 权限异常
     HOPE_RETRY = 4001,          // 4001: 希望调用方重试
 }
 struct CompanyDTO {

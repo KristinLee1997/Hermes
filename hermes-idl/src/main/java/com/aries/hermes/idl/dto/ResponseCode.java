@@ -16,6 +16,7 @@ public enum ResponseCode implements org.apache.thrift.TEnum {
   PARAM_NULL(2002),
   SYSTEM_ERROR(3000),
   OTHERS_SYSTEM_ERROR(3001),
+  PERMISSION_FAIL(3002),
   HOPE_RETRY(4001);
 
   private final int value;
@@ -52,6 +53,8 @@ public enum ResponseCode implements org.apache.thrift.TEnum {
         return SYSTEM_ERROR;
       case 3001:
         return OTHERS_SYSTEM_ERROR;
+      case 3002:
+        return PERMISSION_FAIL;
       case 4001:
         return HOPE_RETRY;
       default:

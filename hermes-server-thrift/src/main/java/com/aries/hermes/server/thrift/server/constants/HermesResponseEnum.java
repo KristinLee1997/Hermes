@@ -12,7 +12,9 @@ public enum HermesResponseEnum {
     PARAM_NULL(ResponseCode.PARAM_NULL.getValue(), "参数为null"),
     SYSTEM_ERROR(ResponseCode.SYSTEM_ERROR.getValue(), "系统内部未知异常"),
     OTHERS_SYSTEM_ERROR(ResponseCode.OTHERS_SYSTEM_ERROR.getValue(), "调用其他系统异常"),
+    PERMISSION_FAIL(ResponseCode.PERMISSION_FAIL.getValue(), "权限异常"),
     HOPE_RETRY(ResponseCode.HOPE_RETRY.getValue(), "希望调用方重试");
+
 
     private int code;
     private String message;

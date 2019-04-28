@@ -22,8 +22,8 @@ public class CompanyRepositoryTest {
      * 根据公司名称查询公司信息
      */
     @Test
-    public void selectByNameAndPasswordTest() {
-        Company company = CompanyRepository.selectByNameAndPassword("hermes", "aries_edu", "123123");
+    public void queryDatabaseByPasswordTest() {
+        Company company = CompanyRepository.queryDatabaseByPassword("hermes", "aries_edu", "123123");
         System.out.println(company == null);
     }
 }

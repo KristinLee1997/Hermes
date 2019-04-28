@@ -6,9 +6,16 @@ import com.aries.hermes.dal.repository.CompanyRepository;
 import com.aries.hermes.idl.dto.CompanyDTO;
 
 public class CompanyVerify {
-    public static boolean judge(CompanyDTO companyDTO) {
-        Company company = CompanyRepository.selectByNameAndPassword(SystemConstants.SYSTEM_DATABASE_NAME,
+    public static String judgePermission(CompanyDTO companyDTO) {
+        Company company = CompanyRepository.queryDatabaseByPassword(SystemConstants.SYSTEM_DATABASE_NAME,
                 companyDTO.getName(), companyDTO.getPassword());
-        return company != null;
+        return company.getDbName();
+    }
+
+    public static boolean judgeParam(CompanyDTO companyDTO) {
+        if (companyDTO.getName() == null || companyDTO.getPassword() == null) {
+            return false;
+        }
+        return true;
     }
 }
