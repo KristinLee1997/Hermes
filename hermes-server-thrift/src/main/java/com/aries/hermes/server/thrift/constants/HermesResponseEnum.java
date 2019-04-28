@@ -3,7 +3,9 @@ package com.aries.hermes.server.thrift.constants;
 
 import com.aries.hermes.idl.dto.ResponseCode;
 import com.aries.hermes.idl.dto.ThriftResponse;
+import lombok.Data;
 
+@Data
 public enum HermesResponseEnum {
     SUCCESS(ResponseCode.SUCCESS.getValue(), "成功生效"),
     NOT_CHANGED(ResponseCode.NOT_CHANGED.getValue(), "成功但无变化"),

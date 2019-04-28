@@ -13,14 +13,14 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
 
   private static final org.apache.thrift.protocol.TField CODE_FIELD_DESC = new org.apache.thrift.protocol.TField("code", org.apache.thrift.protocol.TType.I32, (short)1);
   private static final org.apache.thrift.protocol.TField MESSAGE_FIELD_DESC = new org.apache.thrift.protocol.TField("message", org.apache.thrift.protocol.TType.STRING, (short)2);
-  private static final org.apache.thrift.protocol.TField TOPIC_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("topicDTO", org.apache.thrift.protocol.TType.STRUCT, (short)3);
+  private static final org.apache.thrift.protocol.TField TOPIC_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("topicDTO", org.apache.thrift.protocol.TType.LIST, (short)3);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new TopicThriftResponseStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new TopicThriftResponseTupleSchemeFactory();
 
   public int code; // required
   public @org.apache.thrift.annotation.Nullable java.lang.String message; // required
-  public @org.apache.thrift.annotation.Nullable TopicDTO topicDTO; // required
+  public @org.apache.thrift.annotation.Nullable java.util.List<TopicDTO> topicDTO; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -99,7 +99,8 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
     tmpMap.put(_Fields.MESSAGE, new org.apache.thrift.meta_data.FieldMetaData("message", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.TOPIC_DTO, new org.apache.thrift.meta_data.FieldMetaData("topicDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, TopicDTO.class)));
+        new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+            new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, TopicDTO.class))));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TopicThriftResponse.class, metaDataMap);
   }
@@ -110,7 +111,7 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
   public TopicThriftResponse(
     int code,
     java.lang.String message,
-    TopicDTO topicDTO)
+    java.util.List<TopicDTO> topicDTO)
   {
     this();
     this.code = code;
@@ -129,7 +130,11 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
       this.message = other.message;
     }
     if (other.isSetTopicDTO()) {
-      this.topicDTO = new TopicDTO(other.topicDTO);
+      java.util.List<TopicDTO> __this__topicDTO = new java.util.ArrayList<TopicDTO>(other.topicDTO.size());
+      for (TopicDTO other_element : other.topicDTO) {
+        __this__topicDTO.add(new TopicDTO(other_element));
+      }
+      this.topicDTO = __this__topicDTO;
     }
   }
 
@@ -193,12 +198,28 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
     }
   }
 
+  public int getTopicDTOSize() {
+    return (this.topicDTO == null) ? 0 : this.topicDTO.size();
+  }
+
   @org.apache.thrift.annotation.Nullable
-  public TopicDTO getTopicDTO() {
+  public java.util.Iterator<TopicDTO> getTopicDTOIterator() {
+    return (this.topicDTO == null) ? null : this.topicDTO.iterator();
+  }
+
+  public void addToTopicDTO(TopicDTO elem) {
+    if (this.topicDTO == null) {
+      this.topicDTO = new java.util.ArrayList<TopicDTO>();
+    }
+    this.topicDTO.add(elem);
+  }
+
+  @org.apache.thrift.annotation.Nullable
+  public java.util.List<TopicDTO> getTopicDTO() {
     return this.topicDTO;
   }
 
-  public TopicThriftResponse setTopicDTO(@org.apache.thrift.annotation.Nullable TopicDTO topicDTO) {
+  public TopicThriftResponse setTopicDTO(@org.apache.thrift.annotation.Nullable java.util.List<TopicDTO> topicDTO) {
     this.topicDTO = topicDTO;
     return this;
   }
@@ -240,7 +261,7 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
       if (value == null) {
         unsetTopicDTO();
       } else {
-        setTopicDTO((TopicDTO)value);
+        setTopicDTO((java.util.List<TopicDTO>)value);
       }
       break;
 
@@ -427,9 +448,6 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
     // check for sub-struct validity
-    if (topicDTO != null) {
-      topicDTO.validate();
-    }
   }
 
   private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
@@ -485,9 +503,19 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
             }
             break;
           case 3: // TOPIC_DTO
-            if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-              struct.topicDTO = new TopicDTO();
-              struct.topicDTO.read(iprot);
+            if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+              {
+                org.apache.thrift.protocol.TList _list0 = iprot.readListBegin();
+                struct.topicDTO = new java.util.ArrayList<TopicDTO>(_list0.size);
+                @org.apache.thrift.annotation.Nullable TopicDTO _elem1;
+                for (int _i2 = 0; _i2 < _list0.size; ++_i2)
+                {
+                  _elem1 = new TopicDTO();
+                  _elem1.read(iprot);
+                  struct.topicDTO.add(_elem1);
+                }
+                iprot.readListEnd();
+              }
               struct.setTopicDTOIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -518,7 +546,14 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
       }
       if (struct.topicDTO != null) {
         oprot.writeFieldBegin(TOPIC_DTO_FIELD_DESC);
-        struct.topicDTO.write(oprot);
+        {
+          oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.topicDTO.size()));
+          for (TopicDTO _iter3 : struct.topicDTO)
+          {
+            _iter3.write(oprot);
+          }
+          oprot.writeListEnd();
+        }
         oprot.writeFieldEnd();
       }
       oprot.writeFieldStop();
@@ -556,7 +591,13 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
         oprot.writeString(struct.message);
       }
       if (struct.isSetTopicDTO()) {
-        struct.topicDTO.write(oprot);
+        {
+          oprot.writeI32(struct.topicDTO.size());
+          for (TopicDTO _iter4 : struct.topicDTO)
+          {
+            _iter4.write(oprot);
+          }
+        }
       }
     }
 
@@ -573,8 +614,17 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
         struct.setMessageIsSet(true);
       }
       if (incoming.get(2)) {
-        struct.topicDTO = new TopicDTO();
-        struct.topicDTO.read(iprot);
+        {
+          org.apache.thrift.protocol.TList _list5 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+          struct.topicDTO = new java.util.ArrayList<TopicDTO>(_list5.size);
+          @org.apache.thrift.annotation.Nullable TopicDTO _elem6;
+          for (int _i7 = 0; _i7 < _list5.size; ++_i7)
+          {
+            _elem6 = new TopicDTO();
+            _elem6.read(iprot);
+            struct.topicDTO.add(_elem6);
+          }
+        }
         struct.setTopicDTOIsSet(true);
       }
     }

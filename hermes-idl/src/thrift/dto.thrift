@@ -43,12 +43,14 @@ struct TopicDTO{
     5:bool anonymousSend,
     6:bool anonymousReply,
     7:i64 categoryId,
+    8:string updateTime,
+    9:string insertTime,
 }
 
 struct TopicThriftResponse{
     1:i32 code,
     2:string message,
-    3:TopicDTO topicDTO,
+    3:list<TopicDTO> topicDTO,
 }
 
 

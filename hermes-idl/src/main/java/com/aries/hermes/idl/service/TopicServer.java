@@ -20,7 +20,7 @@ public class TopicServer {
 
     public com.aries.hermes.idl.dto.TopicThriftResponse selectAllTopics(com.aries.hermes.idl.dto.CompanyDTO companyDTO) throws org.apache.thrift.TException;
 
-    public com.aries.hermes.idl.dto.TopicThriftResponse batchQueryTopics(com.aries.hermes.idl.dto.CompanyDTO companyDTO, int page, long pagesize) throws org.apache.thrift.TException;
+    public com.aries.hermes.idl.dto.TopicThriftResponse batchQueryTopics(com.aries.hermes.idl.dto.CompanyDTO companyDTO, int page, int pagesize) throws org.apache.thrift.TException;
 
     public com.aries.hermes.idl.dto.ThriftResponse deleteById(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long id) throws org.apache.thrift.TException;
 
@@ -38,7 +38,7 @@ public class TopicServer {
 
     public void selectAllTopics(com.aries.hermes.idl.dto.CompanyDTO companyDTO, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.TopicThriftResponse> resultHandler) throws org.apache.thrift.TException;
 
-    public void batchQueryTopics(com.aries.hermes.idl.dto.CompanyDTO companyDTO, int page, long pagesize, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.TopicThriftResponse> resultHandler) throws org.apache.thrift.TException;
+    public void batchQueryTopics(com.aries.hermes.idl.dto.CompanyDTO companyDTO, int page, int pagesize, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.TopicThriftResponse> resultHandler) throws org.apache.thrift.TException;
 
     public void deleteById(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long id, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException;
 
@@ -159,13 +159,13 @@ public class TopicServer {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "selectAllTopics failed: unknown result");
     }
 
-    public com.aries.hermes.idl.dto.TopicThriftResponse batchQueryTopics(com.aries.hermes.idl.dto.CompanyDTO companyDTO, int page, long pagesize) throws org.apache.thrift.TException
+    public com.aries.hermes.idl.dto.TopicThriftResponse batchQueryTopics(com.aries.hermes.idl.dto.CompanyDTO companyDTO, int page, int pagesize) throws org.apache.thrift.TException
     {
       send_batchQueryTopics(companyDTO, page, pagesize);
       return recv_batchQueryTopics();
     }
 
-    public void send_batchQueryTopics(com.aries.hermes.idl.dto.CompanyDTO companyDTO, int page, long pagesize) throws org.apache.thrift.TException
+    public void send_batchQueryTopics(com.aries.hermes.idl.dto.CompanyDTO companyDTO, int page, int pagesize) throws org.apache.thrift.TException
     {
       batchQueryTopics_args args = new batchQueryTopics_args();
       args.setCompanyDTO(companyDTO);
@@ -381,7 +381,7 @@ public class TopicServer {
       }
     }
 
-    public void batchQueryTopics(com.aries.hermes.idl.dto.CompanyDTO companyDTO, int page, long pagesize, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.TopicThriftResponse> resultHandler) throws org.apache.thrift.TException {
+    public void batchQueryTopics(com.aries.hermes.idl.dto.CompanyDTO companyDTO, int page, int pagesize, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.TopicThriftResponse> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       batchQueryTopics_call method_call = new batchQueryTopics_call(companyDTO, page, pagesize, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -391,8 +391,8 @@ public class TopicServer {
     public static class batchQueryTopics_call extends org.apache.thrift.async.TAsyncMethodCall<com.aries.hermes.idl.dto.TopicThriftResponse> {
       private com.aries.hermes.idl.dto.CompanyDTO companyDTO;
       private int page;
-      private long pagesize;
-      public batchQueryTopics_call(com.aries.hermes.idl.dto.CompanyDTO companyDTO, int page, long pagesize, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.TopicThriftResponse> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private int pagesize;
+      public batchQueryTopics_call(com.aries.hermes.idl.dto.CompanyDTO companyDTO, int page, int pagesize, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.TopicThriftResponse> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.companyDTO = companyDTO;
         this.page = page;
@@ -4217,14 +4217,14 @@ public class TopicServer {
 
     private static final org.apache.thrift.protocol.TField COMPANY_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("companyDTO", org.apache.thrift.protocol.TType.STRUCT, (short)1);
     private static final org.apache.thrift.protocol.TField PAGE_FIELD_DESC = new org.apache.thrift.protocol.TField("page", org.apache.thrift.protocol.TType.I32, (short)2);
-    private static final org.apache.thrift.protocol.TField PAGESIZE_FIELD_DESC = new org.apache.thrift.protocol.TField("pagesize", org.apache.thrift.protocol.TType.I64, (short)3);
+    private static final org.apache.thrift.protocol.TField PAGESIZE_FIELD_DESC = new org.apache.thrift.protocol.TField("pagesize", org.apache.thrift.protocol.TType.I32, (short)3);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new batchQueryTopics_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new batchQueryTopics_argsTupleSchemeFactory();
 
     public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO; // required
     public int page; // required
-    public long pagesize; // required
+    public int pagesize; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -4304,7 +4304,7 @@ public class TopicServer {
       tmpMap.put(_Fields.PAGE, new org.apache.thrift.meta_data.FieldMetaData("page", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
       tmpMap.put(_Fields.PAGESIZE, new org.apache.thrift.meta_data.FieldMetaData("pagesize", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(batchQueryTopics_args.class, metaDataMap);
     }
@@ -4315,7 +4315,7 @@ public class TopicServer {
     public batchQueryTopics_args(
       com.aries.hermes.idl.dto.CompanyDTO companyDTO,
       int page,
-      long pagesize)
+      int pagesize)
     {
       this();
       this.companyDTO = companyDTO;
@@ -4398,11 +4398,11 @@ public class TopicServer {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __PAGE_ISSET_ID, value);
     }
 
-    public long getPagesize() {
+    public int getPagesize() {
       return this.pagesize;
     }
 
-    public batchQueryTopics_args setPagesize(long pagesize) {
+    public batchQueryTopics_args setPagesize(int pagesize) {
       this.pagesize = pagesize;
       setPagesizeIsSet(true);
       return this;
@@ -4443,7 +4443,7 @@ public class TopicServer {
         if (value == null) {
           unsetPagesize();
         } else {
-          setPagesize((java.lang.Long)value);
+          setPagesize((java.lang.Integer)value);
         }
         break;
 
@@ -4538,7 +4538,7 @@ public class TopicServer {
 
       hashCode = hashCode * 8191 + page;
 
-      hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(pagesize);
+      hashCode = hashCode * 8191 + pagesize;
 
       return hashCode;
     }
@@ -4683,8 +4683,8 @@ public class TopicServer {
               }
               break;
             case 3: // PAGESIZE
-              if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
-                struct.pagesize = iprot.readI64();
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.pagesize = iprot.readI32();
                 struct.setPagesizeIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -4714,7 +4714,7 @@ public class TopicServer {
         oprot.writeI32(struct.page);
         oprot.writeFieldEnd();
         oprot.writeFieldBegin(PAGESIZE_FIELD_DESC);
-        oprot.writeI64(struct.pagesize);
+        oprot.writeI32(struct.pagesize);
         oprot.writeFieldEnd();
         oprot.writeFieldStop();
         oprot.writeStructEnd();
@@ -4751,7 +4751,7 @@ public class TopicServer {
           oprot.writeI32(struct.page);
         }
         if (struct.isSetPagesize()) {
-          oprot.writeI64(struct.pagesize);
+          oprot.writeI32(struct.pagesize);
         }
       }
 
@@ -4769,7 +4769,7 @@ public class TopicServer {
           struct.setPageIsSet(true);
         }
         if (incoming.get(2)) {
-          struct.pagesize = iprot.readI64();
+          struct.pagesize = iprot.readI32();
           struct.setPagesizeIsSet(true);
         }
       }
