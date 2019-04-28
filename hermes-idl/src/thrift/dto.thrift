@@ -18,7 +18,27 @@ struct ThriftResponse{
     2:required string message
 }
 
+struct CompanyDTO {
+    1: string name,
+    2: string password,
+    3: string keyword
+}
 
+struct TopicDTO{
+    1:i64 id,
+    2:string theme,
+    3:string content,
+    4:i64 gaea_id,
+    5:bool anonymous_send,
+    6:bool anonymous_reply,
+    7:i64 category_id
+}
+
+struct TopicThriftResponse{
+    1:i32 code,
+    2:string message,
+    3:TopicDTO topicDto
+}
 
 
 

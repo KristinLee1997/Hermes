@@ -33,11 +33,11 @@ public class CompanyRepository {
      * @param companyName
      * @return
      */
-    public static Company selectByName(String database, String companyName) {
+    public static Company selectByNameAndPassword(String database, String companyName, String password) {
         try (SqlSession session = SqlSessionUtil.openSession(database)) {
             CompanyMapper companyMapper = session.getMapper(CompanyMapper.class);
             CompanyExample example = new CompanyExample();
-            example.createCriteria().andCompanyNameEqualTo(companyName);
+            example.createCriteria().andCompanyNameEqualTo(companyName).andPasswordEqualTo(password);
             List<Company> companyList = companyMapper.selectByExample(example);
             if (CollectionUtils.isEmpty(companyList)) {
                 return null;

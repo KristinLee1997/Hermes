@@ -23,7 +23,7 @@ public class CompanyRepositoryTest {
      */
     @Test
     public void selectByNameAndPasswordTest() {
-        Company company = CompanyRepository.selectByName("hermes", "aries_edu");
-        System.out.println(company.getPassword());
+        Company company = CompanyRepository.selectByNameAndPassword("hermes", "aries_edu", "123123");
+        System.out.println(company == null);
     }
 }
