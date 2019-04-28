@@ -14,11 +14,47 @@ public class SubReplyServer {
 
     public java.lang.String ping() throws org.apache.thrift.TException;
 
+    public com.aries.hermes.idl.dto.ThriftResponse addSubReply(com.aries.hermes.idl.dto.CompanyDTO companyDTO, com.aries.hermes.idl.dto.SubReplyDTO subReplyDTO) throws org.apache.thrift.TException;
+
+    public com.aries.hermes.idl.dto.SubReplyDTO queryFirst(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId) throws org.apache.thrift.TException;
+
+    public com.aries.hermes.idl.dto.SubReplyDTO queryById(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId) throws org.apache.thrift.TException;
+
+    public com.aries.hermes.idl.dto.SubReplyDTO queryNext(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, long lastReplyId) throws org.apache.thrift.TException;
+
+    public java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> queryAllByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId) throws org.apache.thrift.TException;
+
+    public java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> batchQueryByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, int page, int pageSize) throws org.apache.thrift.TException;
+
+    public com.aries.hermes.idl.dto.ThriftResponse updateContent(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId, java.lang.String content) throws org.apache.thrift.TException;
+
+    public com.aries.hermes.idl.dto.ThriftResponse deleteBySubReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId) throws org.apache.thrift.TException;
+
+    public com.aries.hermes.idl.dto.ThriftResponse batchDeleteByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId) throws org.apache.thrift.TException;
+
   }
 
   public interface AsyncIface {
 
     public void ping(org.apache.thrift.async.AsyncMethodCallback<java.lang.String> resultHandler) throws org.apache.thrift.TException;
+
+    public void addSubReply(com.aries.hermes.idl.dto.CompanyDTO companyDTO, com.aries.hermes.idl.dto.SubReplyDTO subReplyDTO, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException;
+
+    public void queryFirst(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> resultHandler) throws org.apache.thrift.TException;
+
+    public void queryById(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> resultHandler) throws org.apache.thrift.TException;
+
+    public void queryNext(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, long lastReplyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> resultHandler) throws org.apache.thrift.TException;
+
+    public void queryAllByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> resultHandler) throws org.apache.thrift.TException;
+
+    public void batchQueryByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, int page, int pageSize, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> resultHandler) throws org.apache.thrift.TException;
+
+    public void updateContent(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId, java.lang.String content, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException;
+
+    public void deleteBySubReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException;
+
+    public void batchDeleteByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException;
 
   }
 
@@ -62,6 +98,226 @@ public class SubReplyServer {
         return result.success;
       }
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "ping failed: unknown result");
+    }
+
+    public com.aries.hermes.idl.dto.ThriftResponse addSubReply(com.aries.hermes.idl.dto.CompanyDTO companyDTO, com.aries.hermes.idl.dto.SubReplyDTO subReplyDTO) throws org.apache.thrift.TException
+    {
+      send_addSubReply(companyDTO, subReplyDTO);
+      return recv_addSubReply();
+    }
+
+    public void send_addSubReply(com.aries.hermes.idl.dto.CompanyDTO companyDTO, com.aries.hermes.idl.dto.SubReplyDTO subReplyDTO) throws org.apache.thrift.TException
+    {
+      addSubReply_args args = new addSubReply_args();
+      args.setCompanyDTO(companyDTO);
+      args.setSubReplyDTO(subReplyDTO);
+      sendBase("addSubReply", args);
+    }
+
+    public com.aries.hermes.idl.dto.ThriftResponse recv_addSubReply() throws org.apache.thrift.TException
+    {
+      addSubReply_result result = new addSubReply_result();
+      receiveBase(result, "addSubReply");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "addSubReply failed: unknown result");
+    }
+
+    public com.aries.hermes.idl.dto.SubReplyDTO queryFirst(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId) throws org.apache.thrift.TException
+    {
+      send_queryFirst(companyDTO, replyId);
+      return recv_queryFirst();
+    }
+
+    public void send_queryFirst(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId) throws org.apache.thrift.TException
+    {
+      queryFirst_args args = new queryFirst_args();
+      args.setCompanyDTO(companyDTO);
+      args.setReplyId(replyId);
+      sendBase("queryFirst", args);
+    }
+
+    public com.aries.hermes.idl.dto.SubReplyDTO recv_queryFirst() throws org.apache.thrift.TException
+    {
+      queryFirst_result result = new queryFirst_result();
+      receiveBase(result, "queryFirst");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "queryFirst failed: unknown result");
+    }
+
+    public com.aries.hermes.idl.dto.SubReplyDTO queryById(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId) throws org.apache.thrift.TException
+    {
+      send_queryById(companyDTO, subReplyId);
+      return recv_queryById();
+    }
+
+    public void send_queryById(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId) throws org.apache.thrift.TException
+    {
+      queryById_args args = new queryById_args();
+      args.setCompanyDTO(companyDTO);
+      args.setSubReplyId(subReplyId);
+      sendBase("queryById", args);
+    }
+
+    public com.aries.hermes.idl.dto.SubReplyDTO recv_queryById() throws org.apache.thrift.TException
+    {
+      queryById_result result = new queryById_result();
+      receiveBase(result, "queryById");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "queryById failed: unknown result");
+    }
+
+    public com.aries.hermes.idl.dto.SubReplyDTO queryNext(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, long lastReplyId) throws org.apache.thrift.TException
+    {
+      send_queryNext(companyDTO, replyId, lastReplyId);
+      return recv_queryNext();
+    }
+
+    public void send_queryNext(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, long lastReplyId) throws org.apache.thrift.TException
+    {
+      queryNext_args args = new queryNext_args();
+      args.setCompanyDTO(companyDTO);
+      args.setReplyId(replyId);
+      args.setLastReplyId(lastReplyId);
+      sendBase("queryNext", args);
+    }
+
+    public com.aries.hermes.idl.dto.SubReplyDTO recv_queryNext() throws org.apache.thrift.TException
+    {
+      queryNext_result result = new queryNext_result();
+      receiveBase(result, "queryNext");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "queryNext failed: unknown result");
+    }
+
+    public java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> queryAllByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId) throws org.apache.thrift.TException
+    {
+      send_queryAllByReplyId(companyDTO, replyId);
+      return recv_queryAllByReplyId();
+    }
+
+    public void send_queryAllByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId) throws org.apache.thrift.TException
+    {
+      queryAllByReplyId_args args = new queryAllByReplyId_args();
+      args.setCompanyDTO(companyDTO);
+      args.setReplyId(replyId);
+      sendBase("queryAllByReplyId", args);
+    }
+
+    public java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> recv_queryAllByReplyId() throws org.apache.thrift.TException
+    {
+      queryAllByReplyId_result result = new queryAllByReplyId_result();
+      receiveBase(result, "queryAllByReplyId");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "queryAllByReplyId failed: unknown result");
+    }
+
+    public java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> batchQueryByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, int page, int pageSize) throws org.apache.thrift.TException
+    {
+      send_batchQueryByReplyId(companyDTO, replyId, page, pageSize);
+      return recv_batchQueryByReplyId();
+    }
+
+    public void send_batchQueryByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, int page, int pageSize) throws org.apache.thrift.TException
+    {
+      batchQueryByReplyId_args args = new batchQueryByReplyId_args();
+      args.setCompanyDTO(companyDTO);
+      args.setReplyId(replyId);
+      args.setPage(page);
+      args.setPageSize(pageSize);
+      sendBase("batchQueryByReplyId", args);
+    }
+
+    public java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> recv_batchQueryByReplyId() throws org.apache.thrift.TException
+    {
+      batchQueryByReplyId_result result = new batchQueryByReplyId_result();
+      receiveBase(result, "batchQueryByReplyId");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "batchQueryByReplyId failed: unknown result");
+    }
+
+    public com.aries.hermes.idl.dto.ThriftResponse updateContent(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId, java.lang.String content) throws org.apache.thrift.TException
+    {
+      send_updateContent(companyDTO, subReplyId, content);
+      return recv_updateContent();
+    }
+
+    public void send_updateContent(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId, java.lang.String content) throws org.apache.thrift.TException
+    {
+      updateContent_args args = new updateContent_args();
+      args.setCompanyDTO(companyDTO);
+      args.setSubReplyId(subReplyId);
+      args.setContent(content);
+      sendBase("updateContent", args);
+    }
+
+    public com.aries.hermes.idl.dto.ThriftResponse recv_updateContent() throws org.apache.thrift.TException
+    {
+      updateContent_result result = new updateContent_result();
+      receiveBase(result, "updateContent");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "updateContent failed: unknown result");
+    }
+
+    public com.aries.hermes.idl.dto.ThriftResponse deleteBySubReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId) throws org.apache.thrift.TException
+    {
+      send_deleteBySubReplyId(companyDTO, subReplyId);
+      return recv_deleteBySubReplyId();
+    }
+
+    public void send_deleteBySubReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId) throws org.apache.thrift.TException
+    {
+      deleteBySubReplyId_args args = new deleteBySubReplyId_args();
+      args.setCompanyDTO(companyDTO);
+      args.setSubReplyId(subReplyId);
+      sendBase("deleteBySubReplyId", args);
+    }
+
+    public com.aries.hermes.idl.dto.ThriftResponse recv_deleteBySubReplyId() throws org.apache.thrift.TException
+    {
+      deleteBySubReplyId_result result = new deleteBySubReplyId_result();
+      receiveBase(result, "deleteBySubReplyId");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "deleteBySubReplyId failed: unknown result");
+    }
+
+    public com.aries.hermes.idl.dto.ThriftResponse batchDeleteByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId) throws org.apache.thrift.TException
+    {
+      send_batchDeleteByReplyId(companyDTO, replyId);
+      return recv_batchDeleteByReplyId();
+    }
+
+    public void send_batchDeleteByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId) throws org.apache.thrift.TException
+    {
+      batchDeleteByReplyId_args args = new batchDeleteByReplyId_args();
+      args.setCompanyDTO(companyDTO);
+      args.setReplyId(replyId);
+      sendBase("batchDeleteByReplyId", args);
+    }
+
+    public com.aries.hermes.idl.dto.ThriftResponse recv_batchDeleteByReplyId() throws org.apache.thrift.TException
+    {
+      batchDeleteByReplyId_result result = new batchDeleteByReplyId_result();
+      receiveBase(result, "batchDeleteByReplyId");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "batchDeleteByReplyId failed: unknown result");
     }
 
   }
@@ -111,6 +367,333 @@ public class SubReplyServer {
       }
     }
 
+    public void addSubReply(com.aries.hermes.idl.dto.CompanyDTO companyDTO, com.aries.hermes.idl.dto.SubReplyDTO subReplyDTO, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      addSubReply_call method_call = new addSubReply_call(companyDTO, subReplyDTO, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class addSubReply_call extends org.apache.thrift.async.TAsyncMethodCall<com.aries.hermes.idl.dto.ThriftResponse> {
+      private com.aries.hermes.idl.dto.CompanyDTO companyDTO;
+      private com.aries.hermes.idl.dto.SubReplyDTO subReplyDTO;
+      public addSubReply_call(com.aries.hermes.idl.dto.CompanyDTO companyDTO, com.aries.hermes.idl.dto.SubReplyDTO subReplyDTO, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.companyDTO = companyDTO;
+        this.subReplyDTO = subReplyDTO;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("addSubReply", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        addSubReply_args args = new addSubReply_args();
+        args.setCompanyDTO(companyDTO);
+        args.setSubReplyDTO(subReplyDTO);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public com.aries.hermes.idl.dto.ThriftResponse getResult() throws org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new java.lang.IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_addSubReply();
+      }
+    }
+
+    public void queryFirst(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      queryFirst_call method_call = new queryFirst_call(companyDTO, replyId, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class queryFirst_call extends org.apache.thrift.async.TAsyncMethodCall<com.aries.hermes.idl.dto.SubReplyDTO> {
+      private com.aries.hermes.idl.dto.CompanyDTO companyDTO;
+      private long replyId;
+      public queryFirst_call(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.companyDTO = companyDTO;
+        this.replyId = replyId;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("queryFirst", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        queryFirst_args args = new queryFirst_args();
+        args.setCompanyDTO(companyDTO);
+        args.setReplyId(replyId);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public com.aries.hermes.idl.dto.SubReplyDTO getResult() throws org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new java.lang.IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_queryFirst();
+      }
+    }
+
+    public void queryById(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      queryById_call method_call = new queryById_call(companyDTO, subReplyId, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class queryById_call extends org.apache.thrift.async.TAsyncMethodCall<com.aries.hermes.idl.dto.SubReplyDTO> {
+      private com.aries.hermes.idl.dto.CompanyDTO companyDTO;
+      private long subReplyId;
+      public queryById_call(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.companyDTO = companyDTO;
+        this.subReplyId = subReplyId;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("queryById", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        queryById_args args = new queryById_args();
+        args.setCompanyDTO(companyDTO);
+        args.setSubReplyId(subReplyId);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public com.aries.hermes.idl.dto.SubReplyDTO getResult() throws org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new java.lang.IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_queryById();
+      }
+    }
+
+    public void queryNext(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, long lastReplyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      queryNext_call method_call = new queryNext_call(companyDTO, replyId, lastReplyId, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class queryNext_call extends org.apache.thrift.async.TAsyncMethodCall<com.aries.hermes.idl.dto.SubReplyDTO> {
+      private com.aries.hermes.idl.dto.CompanyDTO companyDTO;
+      private long replyId;
+      private long lastReplyId;
+      public queryNext_call(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, long lastReplyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.companyDTO = companyDTO;
+        this.replyId = replyId;
+        this.lastReplyId = lastReplyId;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("queryNext", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        queryNext_args args = new queryNext_args();
+        args.setCompanyDTO(companyDTO);
+        args.setReplyId(replyId);
+        args.setLastReplyId(lastReplyId);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public com.aries.hermes.idl.dto.SubReplyDTO getResult() throws org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new java.lang.IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_queryNext();
+      }
+    }
+
+    public void queryAllByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      queryAllByReplyId_call method_call = new queryAllByReplyId_call(companyDTO, replyId, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class queryAllByReplyId_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> {
+      private com.aries.hermes.idl.dto.CompanyDTO companyDTO;
+      private long replyId;
+      public queryAllByReplyId_call(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.companyDTO = companyDTO;
+        this.replyId = replyId;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("queryAllByReplyId", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        queryAllByReplyId_args args = new queryAllByReplyId_args();
+        args.setCompanyDTO(companyDTO);
+        args.setReplyId(replyId);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> getResult() throws org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new java.lang.IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_queryAllByReplyId();
+      }
+    }
+
+    public void batchQueryByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, int page, int pageSize, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      batchQueryByReplyId_call method_call = new batchQueryByReplyId_call(companyDTO, replyId, page, pageSize, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class batchQueryByReplyId_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> {
+      private com.aries.hermes.idl.dto.CompanyDTO companyDTO;
+      private long replyId;
+      private int page;
+      private int pageSize;
+      public batchQueryByReplyId_call(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, int page, int pageSize, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.companyDTO = companyDTO;
+        this.replyId = replyId;
+        this.page = page;
+        this.pageSize = pageSize;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("batchQueryByReplyId", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        batchQueryByReplyId_args args = new batchQueryByReplyId_args();
+        args.setCompanyDTO(companyDTO);
+        args.setReplyId(replyId);
+        args.setPage(page);
+        args.setPageSize(pageSize);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> getResult() throws org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new java.lang.IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_batchQueryByReplyId();
+      }
+    }
+
+    public void updateContent(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId, java.lang.String content, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      updateContent_call method_call = new updateContent_call(companyDTO, subReplyId, content, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class updateContent_call extends org.apache.thrift.async.TAsyncMethodCall<com.aries.hermes.idl.dto.ThriftResponse> {
+      private com.aries.hermes.idl.dto.CompanyDTO companyDTO;
+      private long subReplyId;
+      private java.lang.String content;
+      public updateContent_call(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId, java.lang.String content, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.companyDTO = companyDTO;
+        this.subReplyId = subReplyId;
+        this.content = content;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("updateContent", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        updateContent_args args = new updateContent_args();
+        args.setCompanyDTO(companyDTO);
+        args.setSubReplyId(subReplyId);
+        args.setContent(content);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public com.aries.hermes.idl.dto.ThriftResponse getResult() throws org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new java.lang.IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_updateContent();
+      }
+    }
+
+    public void deleteBySubReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      deleteBySubReplyId_call method_call = new deleteBySubReplyId_call(companyDTO, subReplyId, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class deleteBySubReplyId_call extends org.apache.thrift.async.TAsyncMethodCall<com.aries.hermes.idl.dto.ThriftResponse> {
+      private com.aries.hermes.idl.dto.CompanyDTO companyDTO;
+      private long subReplyId;
+      public deleteBySubReplyId_call(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long subReplyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.companyDTO = companyDTO;
+        this.subReplyId = subReplyId;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("deleteBySubReplyId", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        deleteBySubReplyId_args args = new deleteBySubReplyId_args();
+        args.setCompanyDTO(companyDTO);
+        args.setSubReplyId(subReplyId);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public com.aries.hermes.idl.dto.ThriftResponse getResult() throws org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new java.lang.IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_deleteBySubReplyId();
+      }
+    }
+
+    public void batchDeleteByReplyId(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      batchDeleteByReplyId_call method_call = new batchDeleteByReplyId_call(companyDTO, replyId, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class batchDeleteByReplyId_call extends org.apache.thrift.async.TAsyncMethodCall<com.aries.hermes.idl.dto.ThriftResponse> {
+      private com.aries.hermes.idl.dto.CompanyDTO companyDTO;
+      private long replyId;
+      public batchDeleteByReplyId_call(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long replyId, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.companyDTO = companyDTO;
+        this.replyId = replyId;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("batchDeleteByReplyId", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        batchDeleteByReplyId_args args = new batchDeleteByReplyId_args();
+        args.setCompanyDTO(companyDTO);
+        args.setReplyId(replyId);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public com.aries.hermes.idl.dto.ThriftResponse getResult() throws org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new java.lang.IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_batchDeleteByReplyId();
+      }
+    }
+
   }
 
   public static class Processor<I extends Iface> extends org.apache.thrift.TBaseProcessor<I> implements org.apache.thrift.TProcessor {
@@ -125,6 +708,15 @@ public class SubReplyServer {
 
     private static <I extends Iface> java.util.Map<java.lang.String,  org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>> getProcessMap(java.util.Map<java.lang.String, org.apache.thrift.ProcessFunction<I, ? extends  org.apache.thrift.TBase>> processMap) {
       processMap.put("ping", new ping());
+      processMap.put("addSubReply", new addSubReply());
+      processMap.put("queryFirst", new queryFirst());
+      processMap.put("queryById", new queryById());
+      processMap.put("queryNext", new queryNext());
+      processMap.put("queryAllByReplyId", new queryAllByReplyId());
+      processMap.put("batchQueryByReplyId", new batchQueryByReplyId());
+      processMap.put("updateContent", new updateContent());
+      processMap.put("deleteBySubReplyId", new deleteBySubReplyId());
+      processMap.put("batchDeleteByReplyId", new batchDeleteByReplyId());
       return processMap;
     }
 
@@ -153,6 +745,231 @@ public class SubReplyServer {
       }
     }
 
+    public static class addSubReply<I extends Iface> extends org.apache.thrift.ProcessFunction<I, addSubReply_args> {
+      public addSubReply() {
+        super("addSubReply");
+      }
+
+      public addSubReply_args getEmptyArgsInstance() {
+        return new addSubReply_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      protected boolean rethrowUnhandledExceptions() {
+        return false;
+      }
+
+      public addSubReply_result getResult(I iface, addSubReply_args args) throws org.apache.thrift.TException {
+        addSubReply_result result = new addSubReply_result();
+        result.success = iface.addSubReply(args.companyDTO, args.subReplyDTO);
+        return result;
+      }
+    }
+
+    public static class queryFirst<I extends Iface> extends org.apache.thrift.ProcessFunction<I, queryFirst_args> {
+      public queryFirst() {
+        super("queryFirst");
+      }
+
+      public queryFirst_args getEmptyArgsInstance() {
+        return new queryFirst_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      protected boolean rethrowUnhandledExceptions() {
+        return false;
+      }
+
+      public queryFirst_result getResult(I iface, queryFirst_args args) throws org.apache.thrift.TException {
+        queryFirst_result result = new queryFirst_result();
+        result.success = iface.queryFirst(args.companyDTO, args.replyId);
+        return result;
+      }
+    }
+
+    public static class queryById<I extends Iface> extends org.apache.thrift.ProcessFunction<I, queryById_args> {
+      public queryById() {
+        super("queryById");
+      }
+
+      public queryById_args getEmptyArgsInstance() {
+        return new queryById_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      protected boolean rethrowUnhandledExceptions() {
+        return false;
+      }
+
+      public queryById_result getResult(I iface, queryById_args args) throws org.apache.thrift.TException {
+        queryById_result result = new queryById_result();
+        result.success = iface.queryById(args.companyDTO, args.subReplyId);
+        return result;
+      }
+    }
+
+    public static class queryNext<I extends Iface> extends org.apache.thrift.ProcessFunction<I, queryNext_args> {
+      public queryNext() {
+        super("queryNext");
+      }
+
+      public queryNext_args getEmptyArgsInstance() {
+        return new queryNext_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      protected boolean rethrowUnhandledExceptions() {
+        return false;
+      }
+
+      public queryNext_result getResult(I iface, queryNext_args args) throws org.apache.thrift.TException {
+        queryNext_result result = new queryNext_result();
+        result.success = iface.queryNext(args.companyDTO, args.replyId, args.lastReplyId);
+        return result;
+      }
+    }
+
+    public static class queryAllByReplyId<I extends Iface> extends org.apache.thrift.ProcessFunction<I, queryAllByReplyId_args> {
+      public queryAllByReplyId() {
+        super("queryAllByReplyId");
+      }
+
+      public queryAllByReplyId_args getEmptyArgsInstance() {
+        return new queryAllByReplyId_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      protected boolean rethrowUnhandledExceptions() {
+        return false;
+      }
+
+      public queryAllByReplyId_result getResult(I iface, queryAllByReplyId_args args) throws org.apache.thrift.TException {
+        queryAllByReplyId_result result = new queryAllByReplyId_result();
+        result.success = iface.queryAllByReplyId(args.companyDTO, args.replyId);
+        return result;
+      }
+    }
+
+    public static class batchQueryByReplyId<I extends Iface> extends org.apache.thrift.ProcessFunction<I, batchQueryByReplyId_args> {
+      public batchQueryByReplyId() {
+        super("batchQueryByReplyId");
+      }
+
+      public batchQueryByReplyId_args getEmptyArgsInstance() {
+        return new batchQueryByReplyId_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      protected boolean rethrowUnhandledExceptions() {
+        return false;
+      }
+
+      public batchQueryByReplyId_result getResult(I iface, batchQueryByReplyId_args args) throws org.apache.thrift.TException {
+        batchQueryByReplyId_result result = new batchQueryByReplyId_result();
+        result.success = iface.batchQueryByReplyId(args.companyDTO, args.replyId, args.page, args.pageSize);
+        return result;
+      }
+    }
+
+    public static class updateContent<I extends Iface> extends org.apache.thrift.ProcessFunction<I, updateContent_args> {
+      public updateContent() {
+        super("updateContent");
+      }
+
+      public updateContent_args getEmptyArgsInstance() {
+        return new updateContent_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      protected boolean rethrowUnhandledExceptions() {
+        return false;
+      }
+
+      public updateContent_result getResult(I iface, updateContent_args args) throws org.apache.thrift.TException {
+        updateContent_result result = new updateContent_result();
+        result.success = iface.updateContent(args.companyDTO, args.subReplyId, args.content);
+        return result;
+      }
+    }
+
+    public static class deleteBySubReplyId<I extends Iface> extends org.apache.thrift.ProcessFunction<I, deleteBySubReplyId_args> {
+      public deleteBySubReplyId() {
+        super("deleteBySubReplyId");
+      }
+
+      public deleteBySubReplyId_args getEmptyArgsInstance() {
+        return new deleteBySubReplyId_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      protected boolean rethrowUnhandledExceptions() {
+        return false;
+      }
+
+      public deleteBySubReplyId_result getResult(I iface, deleteBySubReplyId_args args) throws org.apache.thrift.TException {
+        deleteBySubReplyId_result result = new deleteBySubReplyId_result();
+        result.success = iface.deleteBySubReplyId(args.companyDTO, args.subReplyId);
+        return result;
+      }
+    }
+
+    public static class batchDeleteByReplyId<I extends Iface> extends org.apache.thrift.ProcessFunction<I, batchDeleteByReplyId_args> {
+      public batchDeleteByReplyId() {
+        super("batchDeleteByReplyId");
+      }
+
+      public batchDeleteByReplyId_args getEmptyArgsInstance() {
+        return new batchDeleteByReplyId_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      protected boolean rethrowUnhandledExceptions() {
+        return false;
+      }
+
+      public batchDeleteByReplyId_result getResult(I iface, batchDeleteByReplyId_args args) throws org.apache.thrift.TException {
+        batchDeleteByReplyId_result result = new batchDeleteByReplyId_result();
+        result.success = iface.batchDeleteByReplyId(args.companyDTO, args.replyId);
+        return result;
+      }
+    }
+
   }
 
   public static class AsyncProcessor<I extends AsyncIface> extends org.apache.thrift.TBaseAsyncProcessor<I> {
@@ -167,6 +984,15 @@ public class SubReplyServer {
 
     private static <I extends AsyncIface> java.util.Map<java.lang.String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase,?>> getProcessMap(java.util.Map<java.lang.String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase, ?>> processMap) {
       processMap.put("ping", new ping());
+      processMap.put("addSubReply", new addSubReply());
+      processMap.put("queryFirst", new queryFirst());
+      processMap.put("queryById", new queryById());
+      processMap.put("queryNext", new queryNext());
+      processMap.put("queryAllByReplyId", new queryAllByReplyId());
+      processMap.put("batchQueryByReplyId", new batchQueryByReplyId());
+      processMap.put("updateContent", new updateContent());
+      processMap.put("deleteBySubReplyId", new deleteBySubReplyId());
+      processMap.put("batchDeleteByReplyId", new batchDeleteByReplyId());
       return processMap;
     }
 
@@ -228,6 +1054,555 @@ public class SubReplyServer {
 
       public void start(I iface, ping_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.String> resultHandler) throws org.apache.thrift.TException {
         iface.ping(resultHandler);
+      }
+    }
+
+    public static class addSubReply<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, addSubReply_args, com.aries.hermes.idl.dto.ThriftResponse> {
+      public addSubReply() {
+        super("addSubReply");
+      }
+
+      public addSubReply_args getEmptyArgsInstance() {
+        return new addSubReply_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse>() { 
+          public void onComplete(com.aries.hermes.idl.dto.ThriftResponse o) {
+            addSubReply_result result = new addSubReply_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (java.lang.Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(java.lang.Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            addSubReply_result result = new addSubReply_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (java.lang.Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, addSubReply_args args, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException {
+        iface.addSubReply(args.companyDTO, args.subReplyDTO,resultHandler);
+      }
+    }
+
+    public static class queryFirst<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, queryFirst_args, com.aries.hermes.idl.dto.SubReplyDTO> {
+      public queryFirst() {
+        super("queryFirst");
+      }
+
+      public queryFirst_args getEmptyArgsInstance() {
+        return new queryFirst_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO>() { 
+          public void onComplete(com.aries.hermes.idl.dto.SubReplyDTO o) {
+            queryFirst_result result = new queryFirst_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (java.lang.Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(java.lang.Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            queryFirst_result result = new queryFirst_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (java.lang.Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, queryFirst_args args, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> resultHandler) throws org.apache.thrift.TException {
+        iface.queryFirst(args.companyDTO, args.replyId,resultHandler);
+      }
+    }
+
+    public static class queryById<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, queryById_args, com.aries.hermes.idl.dto.SubReplyDTO> {
+      public queryById() {
+        super("queryById");
+      }
+
+      public queryById_args getEmptyArgsInstance() {
+        return new queryById_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO>() { 
+          public void onComplete(com.aries.hermes.idl.dto.SubReplyDTO o) {
+            queryById_result result = new queryById_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (java.lang.Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(java.lang.Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            queryById_result result = new queryById_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (java.lang.Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, queryById_args args, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> resultHandler) throws org.apache.thrift.TException {
+        iface.queryById(args.companyDTO, args.subReplyId,resultHandler);
+      }
+    }
+
+    public static class queryNext<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, queryNext_args, com.aries.hermes.idl.dto.SubReplyDTO> {
+      public queryNext() {
+        super("queryNext");
+      }
+
+      public queryNext_args getEmptyArgsInstance() {
+        return new queryNext_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO>() { 
+          public void onComplete(com.aries.hermes.idl.dto.SubReplyDTO o) {
+            queryNext_result result = new queryNext_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (java.lang.Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(java.lang.Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            queryNext_result result = new queryNext_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (java.lang.Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, queryNext_args args, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.SubReplyDTO> resultHandler) throws org.apache.thrift.TException {
+        iface.queryNext(args.companyDTO, args.replyId, args.lastReplyId,resultHandler);
+      }
+    }
+
+    public static class queryAllByReplyId<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, queryAllByReplyId_args, java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> {
+      public queryAllByReplyId() {
+        super("queryAllByReplyId");
+      }
+
+      public queryAllByReplyId_args getEmptyArgsInstance() {
+        return new queryAllByReplyId_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>>() { 
+          public void onComplete(java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> o) {
+            queryAllByReplyId_result result = new queryAllByReplyId_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (java.lang.Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(java.lang.Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            queryAllByReplyId_result result = new queryAllByReplyId_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (java.lang.Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, queryAllByReplyId_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> resultHandler) throws org.apache.thrift.TException {
+        iface.queryAllByReplyId(args.companyDTO, args.replyId,resultHandler);
+      }
+    }
+
+    public static class batchQueryByReplyId<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, batchQueryByReplyId_args, java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> {
+      public batchQueryByReplyId() {
+        super("batchQueryByReplyId");
+      }
+
+      public batchQueryByReplyId_args getEmptyArgsInstance() {
+        return new batchQueryByReplyId_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>>() { 
+          public void onComplete(java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> o) {
+            batchQueryByReplyId_result result = new batchQueryByReplyId_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (java.lang.Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(java.lang.Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            batchQueryByReplyId_result result = new batchQueryByReplyId_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (java.lang.Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, batchQueryByReplyId_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>> resultHandler) throws org.apache.thrift.TException {
+        iface.batchQueryByReplyId(args.companyDTO, args.replyId, args.page, args.pageSize,resultHandler);
+      }
+    }
+
+    public static class updateContent<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, updateContent_args, com.aries.hermes.idl.dto.ThriftResponse> {
+      public updateContent() {
+        super("updateContent");
+      }
+
+      public updateContent_args getEmptyArgsInstance() {
+        return new updateContent_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse>() { 
+          public void onComplete(com.aries.hermes.idl.dto.ThriftResponse o) {
+            updateContent_result result = new updateContent_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (java.lang.Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(java.lang.Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            updateContent_result result = new updateContent_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (java.lang.Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, updateContent_args args, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException {
+        iface.updateContent(args.companyDTO, args.subReplyId, args.content,resultHandler);
+      }
+    }
+
+    public static class deleteBySubReplyId<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, deleteBySubReplyId_args, com.aries.hermes.idl.dto.ThriftResponse> {
+      public deleteBySubReplyId() {
+        super("deleteBySubReplyId");
+      }
+
+      public deleteBySubReplyId_args getEmptyArgsInstance() {
+        return new deleteBySubReplyId_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse>() { 
+          public void onComplete(com.aries.hermes.idl.dto.ThriftResponse o) {
+            deleteBySubReplyId_result result = new deleteBySubReplyId_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (java.lang.Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(java.lang.Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            deleteBySubReplyId_result result = new deleteBySubReplyId_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (java.lang.Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, deleteBySubReplyId_args args, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException {
+        iface.deleteBySubReplyId(args.companyDTO, args.subReplyId,resultHandler);
+      }
+    }
+
+    public static class batchDeleteByReplyId<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, batchDeleteByReplyId_args, com.aries.hermes.idl.dto.ThriftResponse> {
+      public batchDeleteByReplyId() {
+        super("batchDeleteByReplyId");
+      }
+
+      public batchDeleteByReplyId_args getEmptyArgsInstance() {
+        return new batchDeleteByReplyId_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse>() { 
+          public void onComplete(com.aries.hermes.idl.dto.ThriftResponse o) {
+            batchDeleteByReplyId_result result = new batchDeleteByReplyId_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (java.lang.Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(java.lang.Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            batchDeleteByReplyId_result result = new batchDeleteByReplyId_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (java.lang.Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, batchDeleteByReplyId_args args, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException {
+        iface.batchDeleteByReplyId(args.companyDTO, args.replyId,resultHandler);
       }
     }
 
@@ -844,6 +2219,8105 @@ public class SubReplyServer {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           struct.success = iprot.readString();
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class addSubReply_args implements org.apache.thrift.TBase<addSubReply_args, addSubReply_args._Fields>, java.io.Serializable, Cloneable, Comparable<addSubReply_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("addSubReply_args");
+
+    private static final org.apache.thrift.protocol.TField COMPANY_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("companyDTO", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift.protocol.TField SUB_REPLY_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("subReplyDTO", org.apache.thrift.protocol.TType.STRUCT, (short)2);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new addSubReply_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new addSubReply_argsTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO; // required
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.SubReplyDTO subReplyDTO; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      COMPANY_DTO((short)1, "companyDTO"),
+      SUB_REPLY_DTO((short)2, "subReplyDTO");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // COMPANY_DTO
+            return COMPANY_DTO;
+          case 2: // SUB_REPLY_DTO
+            return SUB_REPLY_DTO;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.COMPANY_DTO, new org.apache.thrift.meta_data.FieldMetaData("companyDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.CompanyDTO.class)));
+      tmpMap.put(_Fields.SUB_REPLY_DTO, new org.apache.thrift.meta_data.FieldMetaData("subReplyDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.SubReplyDTO.class)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(addSubReply_args.class, metaDataMap);
+    }
+
+    public addSubReply_args() {
+    }
+
+    public addSubReply_args(
+      com.aries.hermes.idl.dto.CompanyDTO companyDTO,
+      com.aries.hermes.idl.dto.SubReplyDTO subReplyDTO)
+    {
+      this();
+      this.companyDTO = companyDTO;
+      this.subReplyDTO = subReplyDTO;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public addSubReply_args(addSubReply_args other) {
+      if (other.isSetCompanyDTO()) {
+        this.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO(other.companyDTO);
+      }
+      if (other.isSetSubReplyDTO()) {
+        this.subReplyDTO = new com.aries.hermes.idl.dto.SubReplyDTO(other.subReplyDTO);
+      }
+    }
+
+    public addSubReply_args deepCopy() {
+      return new addSubReply_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.companyDTO = null;
+      this.subReplyDTO = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.CompanyDTO getCompanyDTO() {
+      return this.companyDTO;
+    }
+
+    public addSubReply_args setCompanyDTO(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO) {
+      this.companyDTO = companyDTO;
+      return this;
+    }
+
+    public void unsetCompanyDTO() {
+      this.companyDTO = null;
+    }
+
+    /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+    public boolean isSetCompanyDTO() {
+      return this.companyDTO != null;
+    }
+
+    public void setCompanyDTOIsSet(boolean value) {
+      if (!value) {
+        this.companyDTO = null;
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.SubReplyDTO getSubReplyDTO() {
+      return this.subReplyDTO;
+    }
+
+    public addSubReply_args setSubReplyDTO(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.SubReplyDTO subReplyDTO) {
+      this.subReplyDTO = subReplyDTO;
+      return this;
+    }
+
+    public void unsetSubReplyDTO() {
+      this.subReplyDTO = null;
+    }
+
+    /** Returns true if field subReplyDTO is set (has been assigned a value) and false otherwise */
+    public boolean isSetSubReplyDTO() {
+      return this.subReplyDTO != null;
+    }
+
+    public void setSubReplyDTOIsSet(boolean value) {
+      if (!value) {
+        this.subReplyDTO = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case COMPANY_DTO:
+        if (value == null) {
+          unsetCompanyDTO();
+        } else {
+          setCompanyDTO((com.aries.hermes.idl.dto.CompanyDTO)value);
+        }
+        break;
+
+      case SUB_REPLY_DTO:
+        if (value == null) {
+          unsetSubReplyDTO();
+        } else {
+          setSubReplyDTO((com.aries.hermes.idl.dto.SubReplyDTO)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case COMPANY_DTO:
+        return getCompanyDTO();
+
+      case SUB_REPLY_DTO:
+        return getSubReplyDTO();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case COMPANY_DTO:
+        return isSetCompanyDTO();
+      case SUB_REPLY_DTO:
+        return isSetSubReplyDTO();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof addSubReply_args)
+        return this.equals((addSubReply_args)that);
+      return false;
+    }
+
+    public boolean equals(addSubReply_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_companyDTO = true && this.isSetCompanyDTO();
+      boolean that_present_companyDTO = true && that.isSetCompanyDTO();
+      if (this_present_companyDTO || that_present_companyDTO) {
+        if (!(this_present_companyDTO && that_present_companyDTO))
+          return false;
+        if (!this.companyDTO.equals(that.companyDTO))
+          return false;
+      }
+
+      boolean this_present_subReplyDTO = true && this.isSetSubReplyDTO();
+      boolean that_present_subReplyDTO = true && that.isSetSubReplyDTO();
+      if (this_present_subReplyDTO || that_present_subReplyDTO) {
+        if (!(this_present_subReplyDTO && that_present_subReplyDTO))
+          return false;
+        if (!this.subReplyDTO.equals(that.subReplyDTO))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetCompanyDTO()) ? 131071 : 524287);
+      if (isSetCompanyDTO())
+        hashCode = hashCode * 8191 + companyDTO.hashCode();
+
+      hashCode = hashCode * 8191 + ((isSetSubReplyDTO()) ? 131071 : 524287);
+      if (isSetSubReplyDTO())
+        hashCode = hashCode * 8191 + subReplyDTO.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(addSubReply_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetCompanyDTO()).compareTo(other.isSetCompanyDTO());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetCompanyDTO()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.companyDTO, other.companyDTO);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetSubReplyDTO()).compareTo(other.isSetSubReplyDTO());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSubReplyDTO()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.subReplyDTO, other.subReplyDTO);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("addSubReply_args(");
+      boolean first = true;
+
+      sb.append("companyDTO:");
+      if (this.companyDTO == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.companyDTO);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("subReplyDTO:");
+      if (this.subReplyDTO == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.subReplyDTO);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (companyDTO != null) {
+        companyDTO.validate();
+      }
+      if (subReplyDTO != null) {
+        subReplyDTO.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class addSubReply_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public addSubReply_argsStandardScheme getScheme() {
+        return new addSubReply_argsStandardScheme();
+      }
+    }
+
+    private static class addSubReply_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<addSubReply_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, addSubReply_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // COMPANY_DTO
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+                struct.companyDTO.read(iprot);
+                struct.setCompanyDTOIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // SUB_REPLY_DTO
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.subReplyDTO = new com.aries.hermes.idl.dto.SubReplyDTO();
+                struct.subReplyDTO.read(iprot);
+                struct.setSubReplyDTOIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, addSubReply_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.companyDTO != null) {
+          oprot.writeFieldBegin(COMPANY_DTO_FIELD_DESC);
+          struct.companyDTO.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        if (struct.subReplyDTO != null) {
+          oprot.writeFieldBegin(SUB_REPLY_DTO_FIELD_DESC);
+          struct.subReplyDTO.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class addSubReply_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public addSubReply_argsTupleScheme getScheme() {
+        return new addSubReply_argsTupleScheme();
+      }
+    }
+
+    private static class addSubReply_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<addSubReply_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, addSubReply_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetCompanyDTO()) {
+          optionals.set(0);
+        }
+        if (struct.isSetSubReplyDTO()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetCompanyDTO()) {
+          struct.companyDTO.write(oprot);
+        }
+        if (struct.isSetSubReplyDTO()) {
+          struct.subReplyDTO.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, addSubReply_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+          struct.companyDTO.read(iprot);
+          struct.setCompanyDTOIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.subReplyDTO = new com.aries.hermes.idl.dto.SubReplyDTO();
+          struct.subReplyDTO.read(iprot);
+          struct.setSubReplyDTOIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class addSubReply_result implements org.apache.thrift.TBase<addSubReply_result, addSubReply_result._Fields>, java.io.Serializable, Cloneable, Comparable<addSubReply_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("addSubReply_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new addSubReply_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new addSubReply_resultTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.ThriftResponse success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.ThriftResponse.class)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(addSubReply_result.class, metaDataMap);
+    }
+
+    public addSubReply_result() {
+    }
+
+    public addSubReply_result(
+      com.aries.hermes.idl.dto.ThriftResponse success)
+    {
+      this();
+      this.success = success;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public addSubReply_result(addSubReply_result other) {
+      if (other.isSetSuccess()) {
+        this.success = new com.aries.hermes.idl.dto.ThriftResponse(other.success);
+      }
+    }
+
+    public addSubReply_result deepCopy() {
+      return new addSubReply_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.ThriftResponse getSuccess() {
+      return this.success;
+    }
+
+    public addSubReply_result setSuccess(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.ThriftResponse success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((com.aries.hermes.idl.dto.ThriftResponse)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof addSubReply_result)
+        return this.equals((addSubReply_result)that);
+      return false;
+    }
+
+    public boolean equals(addSubReply_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(addSubReply_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("addSubReply_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (success != null) {
+        success.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class addSubReply_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public addSubReply_resultStandardScheme getScheme() {
+        return new addSubReply_resultStandardScheme();
+      }
+    }
+
+    private static class addSubReply_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<addSubReply_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, addSubReply_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.success = new com.aries.hermes.idl.dto.ThriftResponse();
+                struct.success.read(iprot);
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, addSubReply_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          struct.success.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class addSubReply_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public addSubReply_resultTupleScheme getScheme() {
+        return new addSubReply_resultTupleScheme();
+      }
+    }
+
+    private static class addSubReply_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<addSubReply_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, addSubReply_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          struct.success.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, addSubReply_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.success = new com.aries.hermes.idl.dto.ThriftResponse();
+          struct.success.read(iprot);
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class queryFirst_args implements org.apache.thrift.TBase<queryFirst_args, queryFirst_args._Fields>, java.io.Serializable, Cloneable, Comparable<queryFirst_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("queryFirst_args");
+
+    private static final org.apache.thrift.protocol.TField COMPANY_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("companyDTO", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift.protocol.TField REPLY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("replyId", org.apache.thrift.protocol.TType.I64, (short)2);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new queryFirst_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new queryFirst_argsTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO; // required
+    public long replyId; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      COMPANY_DTO((short)1, "companyDTO"),
+      REPLY_ID((short)2, "replyId");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // COMPANY_DTO
+            return COMPANY_DTO;
+          case 2: // REPLY_ID
+            return REPLY_ID;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __REPLYID_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.COMPANY_DTO, new org.apache.thrift.meta_data.FieldMetaData("companyDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.CompanyDTO.class)));
+      tmpMap.put(_Fields.REPLY_ID, new org.apache.thrift.meta_data.FieldMetaData("replyId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(queryFirst_args.class, metaDataMap);
+    }
+
+    public queryFirst_args() {
+    }
+
+    public queryFirst_args(
+      com.aries.hermes.idl.dto.CompanyDTO companyDTO,
+      long replyId)
+    {
+      this();
+      this.companyDTO = companyDTO;
+      this.replyId = replyId;
+      setReplyIdIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public queryFirst_args(queryFirst_args other) {
+      __isset_bitfield = other.__isset_bitfield;
+      if (other.isSetCompanyDTO()) {
+        this.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO(other.companyDTO);
+      }
+      this.replyId = other.replyId;
+    }
+
+    public queryFirst_args deepCopy() {
+      return new queryFirst_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.companyDTO = null;
+      setReplyIdIsSet(false);
+      this.replyId = 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.CompanyDTO getCompanyDTO() {
+      return this.companyDTO;
+    }
+
+    public queryFirst_args setCompanyDTO(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO) {
+      this.companyDTO = companyDTO;
+      return this;
+    }
+
+    public void unsetCompanyDTO() {
+      this.companyDTO = null;
+    }
+
+    /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+    public boolean isSetCompanyDTO() {
+      return this.companyDTO != null;
+    }
+
+    public void setCompanyDTOIsSet(boolean value) {
+      if (!value) {
+        this.companyDTO = null;
+      }
+    }
+
+    public long getReplyId() {
+      return this.replyId;
+    }
+
+    public queryFirst_args setReplyId(long replyId) {
+      this.replyId = replyId;
+      setReplyIdIsSet(true);
+      return this;
+    }
+
+    public void unsetReplyId() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __REPLYID_ISSET_ID);
+    }
+
+    /** Returns true if field replyId is set (has been assigned a value) and false otherwise */
+    public boolean isSetReplyId() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __REPLYID_ISSET_ID);
+    }
+
+    public void setReplyIdIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __REPLYID_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case COMPANY_DTO:
+        if (value == null) {
+          unsetCompanyDTO();
+        } else {
+          setCompanyDTO((com.aries.hermes.idl.dto.CompanyDTO)value);
+        }
+        break;
+
+      case REPLY_ID:
+        if (value == null) {
+          unsetReplyId();
+        } else {
+          setReplyId((java.lang.Long)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case COMPANY_DTO:
+        return getCompanyDTO();
+
+      case REPLY_ID:
+        return getReplyId();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case COMPANY_DTO:
+        return isSetCompanyDTO();
+      case REPLY_ID:
+        return isSetReplyId();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof queryFirst_args)
+        return this.equals((queryFirst_args)that);
+      return false;
+    }
+
+    public boolean equals(queryFirst_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_companyDTO = true && this.isSetCompanyDTO();
+      boolean that_present_companyDTO = true && that.isSetCompanyDTO();
+      if (this_present_companyDTO || that_present_companyDTO) {
+        if (!(this_present_companyDTO && that_present_companyDTO))
+          return false;
+        if (!this.companyDTO.equals(that.companyDTO))
+          return false;
+      }
+
+      boolean this_present_replyId = true;
+      boolean that_present_replyId = true;
+      if (this_present_replyId || that_present_replyId) {
+        if (!(this_present_replyId && that_present_replyId))
+          return false;
+        if (this.replyId != that.replyId)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetCompanyDTO()) ? 131071 : 524287);
+      if (isSetCompanyDTO())
+        hashCode = hashCode * 8191 + companyDTO.hashCode();
+
+      hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(replyId);
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(queryFirst_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetCompanyDTO()).compareTo(other.isSetCompanyDTO());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetCompanyDTO()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.companyDTO, other.companyDTO);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetReplyId()).compareTo(other.isSetReplyId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetReplyId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.replyId, other.replyId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("queryFirst_args(");
+      boolean first = true;
+
+      sb.append("companyDTO:");
+      if (this.companyDTO == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.companyDTO);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("replyId:");
+      sb.append(this.replyId);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (companyDTO != null) {
+        companyDTO.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class queryFirst_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryFirst_argsStandardScheme getScheme() {
+        return new queryFirst_argsStandardScheme();
+      }
+    }
+
+    private static class queryFirst_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<queryFirst_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, queryFirst_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // COMPANY_DTO
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+                struct.companyDTO.read(iprot);
+                struct.setCompanyDTOIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // REPLY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+                struct.replyId = iprot.readI64();
+                struct.setReplyIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, queryFirst_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.companyDTO != null) {
+          oprot.writeFieldBegin(COMPANY_DTO_FIELD_DESC);
+          struct.companyDTO.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldBegin(REPLY_ID_FIELD_DESC);
+        oprot.writeI64(struct.replyId);
+        oprot.writeFieldEnd();
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class queryFirst_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryFirst_argsTupleScheme getScheme() {
+        return new queryFirst_argsTupleScheme();
+      }
+    }
+
+    private static class queryFirst_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<queryFirst_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, queryFirst_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetCompanyDTO()) {
+          optionals.set(0);
+        }
+        if (struct.isSetReplyId()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetCompanyDTO()) {
+          struct.companyDTO.write(oprot);
+        }
+        if (struct.isSetReplyId()) {
+          oprot.writeI64(struct.replyId);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, queryFirst_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+          struct.companyDTO.read(iprot);
+          struct.setCompanyDTOIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.replyId = iprot.readI64();
+          struct.setReplyIdIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class queryFirst_result implements org.apache.thrift.TBase<queryFirst_result, queryFirst_result._Fields>, java.io.Serializable, Cloneable, Comparable<queryFirst_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("queryFirst_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new queryFirst_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new queryFirst_resultTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.SubReplyDTO success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.SubReplyDTO.class)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(queryFirst_result.class, metaDataMap);
+    }
+
+    public queryFirst_result() {
+    }
+
+    public queryFirst_result(
+      com.aries.hermes.idl.dto.SubReplyDTO success)
+    {
+      this();
+      this.success = success;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public queryFirst_result(queryFirst_result other) {
+      if (other.isSetSuccess()) {
+        this.success = new com.aries.hermes.idl.dto.SubReplyDTO(other.success);
+      }
+    }
+
+    public queryFirst_result deepCopy() {
+      return new queryFirst_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.SubReplyDTO getSuccess() {
+      return this.success;
+    }
+
+    public queryFirst_result setSuccess(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.SubReplyDTO success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((com.aries.hermes.idl.dto.SubReplyDTO)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof queryFirst_result)
+        return this.equals((queryFirst_result)that);
+      return false;
+    }
+
+    public boolean equals(queryFirst_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(queryFirst_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("queryFirst_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (success != null) {
+        success.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class queryFirst_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryFirst_resultStandardScheme getScheme() {
+        return new queryFirst_resultStandardScheme();
+      }
+    }
+
+    private static class queryFirst_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<queryFirst_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, queryFirst_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.success = new com.aries.hermes.idl.dto.SubReplyDTO();
+                struct.success.read(iprot);
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, queryFirst_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          struct.success.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class queryFirst_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryFirst_resultTupleScheme getScheme() {
+        return new queryFirst_resultTupleScheme();
+      }
+    }
+
+    private static class queryFirst_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<queryFirst_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, queryFirst_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          struct.success.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, queryFirst_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.success = new com.aries.hermes.idl.dto.SubReplyDTO();
+          struct.success.read(iprot);
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class queryById_args implements org.apache.thrift.TBase<queryById_args, queryById_args._Fields>, java.io.Serializable, Cloneable, Comparable<queryById_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("queryById_args");
+
+    private static final org.apache.thrift.protocol.TField COMPANY_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("companyDTO", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift.protocol.TField SUB_REPLY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("subReplyId", org.apache.thrift.protocol.TType.I64, (short)2);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new queryById_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new queryById_argsTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO; // required
+    public long subReplyId; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      COMPANY_DTO((short)1, "companyDTO"),
+      SUB_REPLY_ID((short)2, "subReplyId");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // COMPANY_DTO
+            return COMPANY_DTO;
+          case 2: // SUB_REPLY_ID
+            return SUB_REPLY_ID;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __SUBREPLYID_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.COMPANY_DTO, new org.apache.thrift.meta_data.FieldMetaData("companyDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.CompanyDTO.class)));
+      tmpMap.put(_Fields.SUB_REPLY_ID, new org.apache.thrift.meta_data.FieldMetaData("subReplyId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(queryById_args.class, metaDataMap);
+    }
+
+    public queryById_args() {
+    }
+
+    public queryById_args(
+      com.aries.hermes.idl.dto.CompanyDTO companyDTO,
+      long subReplyId)
+    {
+      this();
+      this.companyDTO = companyDTO;
+      this.subReplyId = subReplyId;
+      setSubReplyIdIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public queryById_args(queryById_args other) {
+      __isset_bitfield = other.__isset_bitfield;
+      if (other.isSetCompanyDTO()) {
+        this.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO(other.companyDTO);
+      }
+      this.subReplyId = other.subReplyId;
+    }
+
+    public queryById_args deepCopy() {
+      return new queryById_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.companyDTO = null;
+      setSubReplyIdIsSet(false);
+      this.subReplyId = 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.CompanyDTO getCompanyDTO() {
+      return this.companyDTO;
+    }
+
+    public queryById_args setCompanyDTO(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO) {
+      this.companyDTO = companyDTO;
+      return this;
+    }
+
+    public void unsetCompanyDTO() {
+      this.companyDTO = null;
+    }
+
+    /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+    public boolean isSetCompanyDTO() {
+      return this.companyDTO != null;
+    }
+
+    public void setCompanyDTOIsSet(boolean value) {
+      if (!value) {
+        this.companyDTO = null;
+      }
+    }
+
+    public long getSubReplyId() {
+      return this.subReplyId;
+    }
+
+    public queryById_args setSubReplyId(long subReplyId) {
+      this.subReplyId = subReplyId;
+      setSubReplyIdIsSet(true);
+      return this;
+    }
+
+    public void unsetSubReplyId() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SUBREPLYID_ISSET_ID);
+    }
+
+    /** Returns true if field subReplyId is set (has been assigned a value) and false otherwise */
+    public boolean isSetSubReplyId() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SUBREPLYID_ISSET_ID);
+    }
+
+    public void setSubReplyIdIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUBREPLYID_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case COMPANY_DTO:
+        if (value == null) {
+          unsetCompanyDTO();
+        } else {
+          setCompanyDTO((com.aries.hermes.idl.dto.CompanyDTO)value);
+        }
+        break;
+
+      case SUB_REPLY_ID:
+        if (value == null) {
+          unsetSubReplyId();
+        } else {
+          setSubReplyId((java.lang.Long)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case COMPANY_DTO:
+        return getCompanyDTO();
+
+      case SUB_REPLY_ID:
+        return getSubReplyId();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case COMPANY_DTO:
+        return isSetCompanyDTO();
+      case SUB_REPLY_ID:
+        return isSetSubReplyId();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof queryById_args)
+        return this.equals((queryById_args)that);
+      return false;
+    }
+
+    public boolean equals(queryById_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_companyDTO = true && this.isSetCompanyDTO();
+      boolean that_present_companyDTO = true && that.isSetCompanyDTO();
+      if (this_present_companyDTO || that_present_companyDTO) {
+        if (!(this_present_companyDTO && that_present_companyDTO))
+          return false;
+        if (!this.companyDTO.equals(that.companyDTO))
+          return false;
+      }
+
+      boolean this_present_subReplyId = true;
+      boolean that_present_subReplyId = true;
+      if (this_present_subReplyId || that_present_subReplyId) {
+        if (!(this_present_subReplyId && that_present_subReplyId))
+          return false;
+        if (this.subReplyId != that.subReplyId)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetCompanyDTO()) ? 131071 : 524287);
+      if (isSetCompanyDTO())
+        hashCode = hashCode * 8191 + companyDTO.hashCode();
+
+      hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(subReplyId);
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(queryById_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetCompanyDTO()).compareTo(other.isSetCompanyDTO());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetCompanyDTO()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.companyDTO, other.companyDTO);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetSubReplyId()).compareTo(other.isSetSubReplyId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSubReplyId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.subReplyId, other.subReplyId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("queryById_args(");
+      boolean first = true;
+
+      sb.append("companyDTO:");
+      if (this.companyDTO == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.companyDTO);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("subReplyId:");
+      sb.append(this.subReplyId);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (companyDTO != null) {
+        companyDTO.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class queryById_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryById_argsStandardScheme getScheme() {
+        return new queryById_argsStandardScheme();
+      }
+    }
+
+    private static class queryById_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<queryById_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, queryById_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // COMPANY_DTO
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+                struct.companyDTO.read(iprot);
+                struct.setCompanyDTOIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // SUB_REPLY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+                struct.subReplyId = iprot.readI64();
+                struct.setSubReplyIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, queryById_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.companyDTO != null) {
+          oprot.writeFieldBegin(COMPANY_DTO_FIELD_DESC);
+          struct.companyDTO.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldBegin(SUB_REPLY_ID_FIELD_DESC);
+        oprot.writeI64(struct.subReplyId);
+        oprot.writeFieldEnd();
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class queryById_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryById_argsTupleScheme getScheme() {
+        return new queryById_argsTupleScheme();
+      }
+    }
+
+    private static class queryById_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<queryById_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, queryById_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetCompanyDTO()) {
+          optionals.set(0);
+        }
+        if (struct.isSetSubReplyId()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetCompanyDTO()) {
+          struct.companyDTO.write(oprot);
+        }
+        if (struct.isSetSubReplyId()) {
+          oprot.writeI64(struct.subReplyId);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, queryById_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+          struct.companyDTO.read(iprot);
+          struct.setCompanyDTOIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.subReplyId = iprot.readI64();
+          struct.setSubReplyIdIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class queryById_result implements org.apache.thrift.TBase<queryById_result, queryById_result._Fields>, java.io.Serializable, Cloneable, Comparable<queryById_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("queryById_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new queryById_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new queryById_resultTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.SubReplyDTO success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.SubReplyDTO.class)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(queryById_result.class, metaDataMap);
+    }
+
+    public queryById_result() {
+    }
+
+    public queryById_result(
+      com.aries.hermes.idl.dto.SubReplyDTO success)
+    {
+      this();
+      this.success = success;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public queryById_result(queryById_result other) {
+      if (other.isSetSuccess()) {
+        this.success = new com.aries.hermes.idl.dto.SubReplyDTO(other.success);
+      }
+    }
+
+    public queryById_result deepCopy() {
+      return new queryById_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.SubReplyDTO getSuccess() {
+      return this.success;
+    }
+
+    public queryById_result setSuccess(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.SubReplyDTO success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((com.aries.hermes.idl.dto.SubReplyDTO)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof queryById_result)
+        return this.equals((queryById_result)that);
+      return false;
+    }
+
+    public boolean equals(queryById_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(queryById_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("queryById_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (success != null) {
+        success.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class queryById_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryById_resultStandardScheme getScheme() {
+        return new queryById_resultStandardScheme();
+      }
+    }
+
+    private static class queryById_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<queryById_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, queryById_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.success = new com.aries.hermes.idl.dto.SubReplyDTO();
+                struct.success.read(iprot);
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, queryById_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          struct.success.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class queryById_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryById_resultTupleScheme getScheme() {
+        return new queryById_resultTupleScheme();
+      }
+    }
+
+    private static class queryById_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<queryById_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, queryById_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          struct.success.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, queryById_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.success = new com.aries.hermes.idl.dto.SubReplyDTO();
+          struct.success.read(iprot);
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class queryNext_args implements org.apache.thrift.TBase<queryNext_args, queryNext_args._Fields>, java.io.Serializable, Cloneable, Comparable<queryNext_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("queryNext_args");
+
+    private static final org.apache.thrift.protocol.TField COMPANY_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("companyDTO", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift.protocol.TField REPLY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("replyId", org.apache.thrift.protocol.TType.I64, (short)2);
+    private static final org.apache.thrift.protocol.TField LAST_REPLY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("lastReplyId", org.apache.thrift.protocol.TType.I64, (short)3);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new queryNext_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new queryNext_argsTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO; // required
+    public long replyId; // required
+    public long lastReplyId; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      COMPANY_DTO((short)1, "companyDTO"),
+      REPLY_ID((short)2, "replyId"),
+      LAST_REPLY_ID((short)3, "lastReplyId");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // COMPANY_DTO
+            return COMPANY_DTO;
+          case 2: // REPLY_ID
+            return REPLY_ID;
+          case 3: // LAST_REPLY_ID
+            return LAST_REPLY_ID;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __REPLYID_ISSET_ID = 0;
+    private static final int __LASTREPLYID_ISSET_ID = 1;
+    private byte __isset_bitfield = 0;
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.COMPANY_DTO, new org.apache.thrift.meta_data.FieldMetaData("companyDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.CompanyDTO.class)));
+      tmpMap.put(_Fields.REPLY_ID, new org.apache.thrift.meta_data.FieldMetaData("replyId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
+      tmpMap.put(_Fields.LAST_REPLY_ID, new org.apache.thrift.meta_data.FieldMetaData("lastReplyId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(queryNext_args.class, metaDataMap);
+    }
+
+    public queryNext_args() {
+    }
+
+    public queryNext_args(
+      com.aries.hermes.idl.dto.CompanyDTO companyDTO,
+      long replyId,
+      long lastReplyId)
+    {
+      this();
+      this.companyDTO = companyDTO;
+      this.replyId = replyId;
+      setReplyIdIsSet(true);
+      this.lastReplyId = lastReplyId;
+      setLastReplyIdIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public queryNext_args(queryNext_args other) {
+      __isset_bitfield = other.__isset_bitfield;
+      if (other.isSetCompanyDTO()) {
+        this.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO(other.companyDTO);
+      }
+      this.replyId = other.replyId;
+      this.lastReplyId = other.lastReplyId;
+    }
+
+    public queryNext_args deepCopy() {
+      return new queryNext_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.companyDTO = null;
+      setReplyIdIsSet(false);
+      this.replyId = 0;
+      setLastReplyIdIsSet(false);
+      this.lastReplyId = 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.CompanyDTO getCompanyDTO() {
+      return this.companyDTO;
+    }
+
+    public queryNext_args setCompanyDTO(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO) {
+      this.companyDTO = companyDTO;
+      return this;
+    }
+
+    public void unsetCompanyDTO() {
+      this.companyDTO = null;
+    }
+
+    /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+    public boolean isSetCompanyDTO() {
+      return this.companyDTO != null;
+    }
+
+    public void setCompanyDTOIsSet(boolean value) {
+      if (!value) {
+        this.companyDTO = null;
+      }
+    }
+
+    public long getReplyId() {
+      return this.replyId;
+    }
+
+    public queryNext_args setReplyId(long replyId) {
+      this.replyId = replyId;
+      setReplyIdIsSet(true);
+      return this;
+    }
+
+    public void unsetReplyId() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __REPLYID_ISSET_ID);
+    }
+
+    /** Returns true if field replyId is set (has been assigned a value) and false otherwise */
+    public boolean isSetReplyId() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __REPLYID_ISSET_ID);
+    }
+
+    public void setReplyIdIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __REPLYID_ISSET_ID, value);
+    }
+
+    public long getLastReplyId() {
+      return this.lastReplyId;
+    }
+
+    public queryNext_args setLastReplyId(long lastReplyId) {
+      this.lastReplyId = lastReplyId;
+      setLastReplyIdIsSet(true);
+      return this;
+    }
+
+    public void unsetLastReplyId() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __LASTREPLYID_ISSET_ID);
+    }
+
+    /** Returns true if field lastReplyId is set (has been assigned a value) and false otherwise */
+    public boolean isSetLastReplyId() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __LASTREPLYID_ISSET_ID);
+    }
+
+    public void setLastReplyIdIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __LASTREPLYID_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case COMPANY_DTO:
+        if (value == null) {
+          unsetCompanyDTO();
+        } else {
+          setCompanyDTO((com.aries.hermes.idl.dto.CompanyDTO)value);
+        }
+        break;
+
+      case REPLY_ID:
+        if (value == null) {
+          unsetReplyId();
+        } else {
+          setReplyId((java.lang.Long)value);
+        }
+        break;
+
+      case LAST_REPLY_ID:
+        if (value == null) {
+          unsetLastReplyId();
+        } else {
+          setLastReplyId((java.lang.Long)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case COMPANY_DTO:
+        return getCompanyDTO();
+
+      case REPLY_ID:
+        return getReplyId();
+
+      case LAST_REPLY_ID:
+        return getLastReplyId();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case COMPANY_DTO:
+        return isSetCompanyDTO();
+      case REPLY_ID:
+        return isSetReplyId();
+      case LAST_REPLY_ID:
+        return isSetLastReplyId();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof queryNext_args)
+        return this.equals((queryNext_args)that);
+      return false;
+    }
+
+    public boolean equals(queryNext_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_companyDTO = true && this.isSetCompanyDTO();
+      boolean that_present_companyDTO = true && that.isSetCompanyDTO();
+      if (this_present_companyDTO || that_present_companyDTO) {
+        if (!(this_present_companyDTO && that_present_companyDTO))
+          return false;
+        if (!this.companyDTO.equals(that.companyDTO))
+          return false;
+      }
+
+      boolean this_present_replyId = true;
+      boolean that_present_replyId = true;
+      if (this_present_replyId || that_present_replyId) {
+        if (!(this_present_replyId && that_present_replyId))
+          return false;
+        if (this.replyId != that.replyId)
+          return false;
+      }
+
+      boolean this_present_lastReplyId = true;
+      boolean that_present_lastReplyId = true;
+      if (this_present_lastReplyId || that_present_lastReplyId) {
+        if (!(this_present_lastReplyId && that_present_lastReplyId))
+          return false;
+        if (this.lastReplyId != that.lastReplyId)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetCompanyDTO()) ? 131071 : 524287);
+      if (isSetCompanyDTO())
+        hashCode = hashCode * 8191 + companyDTO.hashCode();
+
+      hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(replyId);
+
+      hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(lastReplyId);
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(queryNext_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetCompanyDTO()).compareTo(other.isSetCompanyDTO());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetCompanyDTO()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.companyDTO, other.companyDTO);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetReplyId()).compareTo(other.isSetReplyId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetReplyId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.replyId, other.replyId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetLastReplyId()).compareTo(other.isSetLastReplyId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetLastReplyId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.lastReplyId, other.lastReplyId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("queryNext_args(");
+      boolean first = true;
+
+      sb.append("companyDTO:");
+      if (this.companyDTO == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.companyDTO);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("replyId:");
+      sb.append(this.replyId);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("lastReplyId:");
+      sb.append(this.lastReplyId);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (companyDTO != null) {
+        companyDTO.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class queryNext_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryNext_argsStandardScheme getScheme() {
+        return new queryNext_argsStandardScheme();
+      }
+    }
+
+    private static class queryNext_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<queryNext_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, queryNext_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // COMPANY_DTO
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+                struct.companyDTO.read(iprot);
+                struct.setCompanyDTOIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // REPLY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+                struct.replyId = iprot.readI64();
+                struct.setReplyIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 3: // LAST_REPLY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+                struct.lastReplyId = iprot.readI64();
+                struct.setLastReplyIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, queryNext_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.companyDTO != null) {
+          oprot.writeFieldBegin(COMPANY_DTO_FIELD_DESC);
+          struct.companyDTO.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldBegin(REPLY_ID_FIELD_DESC);
+        oprot.writeI64(struct.replyId);
+        oprot.writeFieldEnd();
+        oprot.writeFieldBegin(LAST_REPLY_ID_FIELD_DESC);
+        oprot.writeI64(struct.lastReplyId);
+        oprot.writeFieldEnd();
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class queryNext_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryNext_argsTupleScheme getScheme() {
+        return new queryNext_argsTupleScheme();
+      }
+    }
+
+    private static class queryNext_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<queryNext_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, queryNext_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetCompanyDTO()) {
+          optionals.set(0);
+        }
+        if (struct.isSetReplyId()) {
+          optionals.set(1);
+        }
+        if (struct.isSetLastReplyId()) {
+          optionals.set(2);
+        }
+        oprot.writeBitSet(optionals, 3);
+        if (struct.isSetCompanyDTO()) {
+          struct.companyDTO.write(oprot);
+        }
+        if (struct.isSetReplyId()) {
+          oprot.writeI64(struct.replyId);
+        }
+        if (struct.isSetLastReplyId()) {
+          oprot.writeI64(struct.lastReplyId);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, queryNext_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(3);
+        if (incoming.get(0)) {
+          struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+          struct.companyDTO.read(iprot);
+          struct.setCompanyDTOIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.replyId = iprot.readI64();
+          struct.setReplyIdIsSet(true);
+        }
+        if (incoming.get(2)) {
+          struct.lastReplyId = iprot.readI64();
+          struct.setLastReplyIdIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class queryNext_result implements org.apache.thrift.TBase<queryNext_result, queryNext_result._Fields>, java.io.Serializable, Cloneable, Comparable<queryNext_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("queryNext_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new queryNext_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new queryNext_resultTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.SubReplyDTO success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.SubReplyDTO.class)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(queryNext_result.class, metaDataMap);
+    }
+
+    public queryNext_result() {
+    }
+
+    public queryNext_result(
+      com.aries.hermes.idl.dto.SubReplyDTO success)
+    {
+      this();
+      this.success = success;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public queryNext_result(queryNext_result other) {
+      if (other.isSetSuccess()) {
+        this.success = new com.aries.hermes.idl.dto.SubReplyDTO(other.success);
+      }
+    }
+
+    public queryNext_result deepCopy() {
+      return new queryNext_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.SubReplyDTO getSuccess() {
+      return this.success;
+    }
+
+    public queryNext_result setSuccess(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.SubReplyDTO success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((com.aries.hermes.idl.dto.SubReplyDTO)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof queryNext_result)
+        return this.equals((queryNext_result)that);
+      return false;
+    }
+
+    public boolean equals(queryNext_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(queryNext_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("queryNext_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (success != null) {
+        success.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class queryNext_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryNext_resultStandardScheme getScheme() {
+        return new queryNext_resultStandardScheme();
+      }
+    }
+
+    private static class queryNext_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<queryNext_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, queryNext_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.success = new com.aries.hermes.idl.dto.SubReplyDTO();
+                struct.success.read(iprot);
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, queryNext_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          struct.success.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class queryNext_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryNext_resultTupleScheme getScheme() {
+        return new queryNext_resultTupleScheme();
+      }
+    }
+
+    private static class queryNext_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<queryNext_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, queryNext_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          struct.success.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, queryNext_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.success = new com.aries.hermes.idl.dto.SubReplyDTO();
+          struct.success.read(iprot);
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class queryAllByReplyId_args implements org.apache.thrift.TBase<queryAllByReplyId_args, queryAllByReplyId_args._Fields>, java.io.Serializable, Cloneable, Comparable<queryAllByReplyId_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("queryAllByReplyId_args");
+
+    private static final org.apache.thrift.protocol.TField COMPANY_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("companyDTO", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift.protocol.TField REPLY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("replyId", org.apache.thrift.protocol.TType.I64, (short)2);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new queryAllByReplyId_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new queryAllByReplyId_argsTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO; // required
+    public long replyId; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      COMPANY_DTO((short)1, "companyDTO"),
+      REPLY_ID((short)2, "replyId");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // COMPANY_DTO
+            return COMPANY_DTO;
+          case 2: // REPLY_ID
+            return REPLY_ID;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __REPLYID_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.COMPANY_DTO, new org.apache.thrift.meta_data.FieldMetaData("companyDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.CompanyDTO.class)));
+      tmpMap.put(_Fields.REPLY_ID, new org.apache.thrift.meta_data.FieldMetaData("replyId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(queryAllByReplyId_args.class, metaDataMap);
+    }
+
+    public queryAllByReplyId_args() {
+    }
+
+    public queryAllByReplyId_args(
+      com.aries.hermes.idl.dto.CompanyDTO companyDTO,
+      long replyId)
+    {
+      this();
+      this.companyDTO = companyDTO;
+      this.replyId = replyId;
+      setReplyIdIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public queryAllByReplyId_args(queryAllByReplyId_args other) {
+      __isset_bitfield = other.__isset_bitfield;
+      if (other.isSetCompanyDTO()) {
+        this.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO(other.companyDTO);
+      }
+      this.replyId = other.replyId;
+    }
+
+    public queryAllByReplyId_args deepCopy() {
+      return new queryAllByReplyId_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.companyDTO = null;
+      setReplyIdIsSet(false);
+      this.replyId = 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.CompanyDTO getCompanyDTO() {
+      return this.companyDTO;
+    }
+
+    public queryAllByReplyId_args setCompanyDTO(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO) {
+      this.companyDTO = companyDTO;
+      return this;
+    }
+
+    public void unsetCompanyDTO() {
+      this.companyDTO = null;
+    }
+
+    /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+    public boolean isSetCompanyDTO() {
+      return this.companyDTO != null;
+    }
+
+    public void setCompanyDTOIsSet(boolean value) {
+      if (!value) {
+        this.companyDTO = null;
+      }
+    }
+
+    public long getReplyId() {
+      return this.replyId;
+    }
+
+    public queryAllByReplyId_args setReplyId(long replyId) {
+      this.replyId = replyId;
+      setReplyIdIsSet(true);
+      return this;
+    }
+
+    public void unsetReplyId() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __REPLYID_ISSET_ID);
+    }
+
+    /** Returns true if field replyId is set (has been assigned a value) and false otherwise */
+    public boolean isSetReplyId() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __REPLYID_ISSET_ID);
+    }
+
+    public void setReplyIdIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __REPLYID_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case COMPANY_DTO:
+        if (value == null) {
+          unsetCompanyDTO();
+        } else {
+          setCompanyDTO((com.aries.hermes.idl.dto.CompanyDTO)value);
+        }
+        break;
+
+      case REPLY_ID:
+        if (value == null) {
+          unsetReplyId();
+        } else {
+          setReplyId((java.lang.Long)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case COMPANY_DTO:
+        return getCompanyDTO();
+
+      case REPLY_ID:
+        return getReplyId();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case COMPANY_DTO:
+        return isSetCompanyDTO();
+      case REPLY_ID:
+        return isSetReplyId();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof queryAllByReplyId_args)
+        return this.equals((queryAllByReplyId_args)that);
+      return false;
+    }
+
+    public boolean equals(queryAllByReplyId_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_companyDTO = true && this.isSetCompanyDTO();
+      boolean that_present_companyDTO = true && that.isSetCompanyDTO();
+      if (this_present_companyDTO || that_present_companyDTO) {
+        if (!(this_present_companyDTO && that_present_companyDTO))
+          return false;
+        if (!this.companyDTO.equals(that.companyDTO))
+          return false;
+      }
+
+      boolean this_present_replyId = true;
+      boolean that_present_replyId = true;
+      if (this_present_replyId || that_present_replyId) {
+        if (!(this_present_replyId && that_present_replyId))
+          return false;
+        if (this.replyId != that.replyId)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetCompanyDTO()) ? 131071 : 524287);
+      if (isSetCompanyDTO())
+        hashCode = hashCode * 8191 + companyDTO.hashCode();
+
+      hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(replyId);
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(queryAllByReplyId_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetCompanyDTO()).compareTo(other.isSetCompanyDTO());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetCompanyDTO()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.companyDTO, other.companyDTO);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetReplyId()).compareTo(other.isSetReplyId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetReplyId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.replyId, other.replyId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("queryAllByReplyId_args(");
+      boolean first = true;
+
+      sb.append("companyDTO:");
+      if (this.companyDTO == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.companyDTO);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("replyId:");
+      sb.append(this.replyId);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (companyDTO != null) {
+        companyDTO.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class queryAllByReplyId_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryAllByReplyId_argsStandardScheme getScheme() {
+        return new queryAllByReplyId_argsStandardScheme();
+      }
+    }
+
+    private static class queryAllByReplyId_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<queryAllByReplyId_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, queryAllByReplyId_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // COMPANY_DTO
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+                struct.companyDTO.read(iprot);
+                struct.setCompanyDTOIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // REPLY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+                struct.replyId = iprot.readI64();
+                struct.setReplyIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, queryAllByReplyId_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.companyDTO != null) {
+          oprot.writeFieldBegin(COMPANY_DTO_FIELD_DESC);
+          struct.companyDTO.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldBegin(REPLY_ID_FIELD_DESC);
+        oprot.writeI64(struct.replyId);
+        oprot.writeFieldEnd();
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class queryAllByReplyId_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryAllByReplyId_argsTupleScheme getScheme() {
+        return new queryAllByReplyId_argsTupleScheme();
+      }
+    }
+
+    private static class queryAllByReplyId_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<queryAllByReplyId_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, queryAllByReplyId_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetCompanyDTO()) {
+          optionals.set(0);
+        }
+        if (struct.isSetReplyId()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetCompanyDTO()) {
+          struct.companyDTO.write(oprot);
+        }
+        if (struct.isSetReplyId()) {
+          oprot.writeI64(struct.replyId);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, queryAllByReplyId_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+          struct.companyDTO.read(iprot);
+          struct.setCompanyDTOIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.replyId = iprot.readI64();
+          struct.setReplyIdIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class queryAllByReplyId_result implements org.apache.thrift.TBase<queryAllByReplyId_result, queryAllByReplyId_result._Fields>, java.io.Serializable, Cloneable, Comparable<queryAllByReplyId_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("queryAllByReplyId_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.LIST, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new queryAllByReplyId_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new queryAllByReplyId_resultTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.SubReplyDTO.class))));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(queryAllByReplyId_result.class, metaDataMap);
+    }
+
+    public queryAllByReplyId_result() {
+    }
+
+    public queryAllByReplyId_result(
+      java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> success)
+    {
+      this();
+      this.success = success;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public queryAllByReplyId_result(queryAllByReplyId_result other) {
+      if (other.isSetSuccess()) {
+        java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> __this__success = new java.util.ArrayList<com.aries.hermes.idl.dto.SubReplyDTO>(other.success.size());
+        for (com.aries.hermes.idl.dto.SubReplyDTO other_element : other.success) {
+          __this__success.add(new com.aries.hermes.idl.dto.SubReplyDTO(other_element));
+        }
+        this.success = __this__success;
+      }
+    }
+
+    public queryAllByReplyId_result deepCopy() {
+      return new queryAllByReplyId_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+    }
+
+    public int getSuccessSize() {
+      return (this.success == null) ? 0 : this.success.size();
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.util.Iterator<com.aries.hermes.idl.dto.SubReplyDTO> getSuccessIterator() {
+      return (this.success == null) ? null : this.success.iterator();
+    }
+
+    public void addToSuccess(com.aries.hermes.idl.dto.SubReplyDTO elem) {
+      if (this.success == null) {
+        this.success = new java.util.ArrayList<com.aries.hermes.idl.dto.SubReplyDTO>();
+      }
+      this.success.add(elem);
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> getSuccess() {
+      return this.success;
+    }
+
+    public queryAllByReplyId_result setSuccess(@org.apache.thrift.annotation.Nullable java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof queryAllByReplyId_result)
+        return this.equals((queryAllByReplyId_result)that);
+      return false;
+    }
+
+    public boolean equals(queryAllByReplyId_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(queryAllByReplyId_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("queryAllByReplyId_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class queryAllByReplyId_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryAllByReplyId_resultStandardScheme getScheme() {
+        return new queryAllByReplyId_resultStandardScheme();
+      }
+    }
+
+    private static class queryAllByReplyId_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<queryAllByReplyId_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, queryAllByReplyId_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list16 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<com.aries.hermes.idl.dto.SubReplyDTO>(_list16.size);
+                  @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.SubReplyDTO _elem17;
+                  for (int _i18 = 0; _i18 < _list16.size; ++_i18)
+                  {
+                    _elem17 = new com.aries.hermes.idl.dto.SubReplyDTO();
+                    _elem17.read(iprot);
+                    struct.success.add(_elem17);
+                  }
+                  iprot.readListEnd();
+                }
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, queryAllByReplyId_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
+            for (com.aries.hermes.idl.dto.SubReplyDTO _iter19 : struct.success)
+            {
+              _iter19.write(oprot);
+            }
+            oprot.writeListEnd();
+          }
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class queryAllByReplyId_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public queryAllByReplyId_resultTupleScheme getScheme() {
+        return new queryAllByReplyId_resultTupleScheme();
+      }
+    }
+
+    private static class queryAllByReplyId_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<queryAllByReplyId_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, queryAllByReplyId_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          {
+            oprot.writeI32(struct.success.size());
+            for (com.aries.hermes.idl.dto.SubReplyDTO _iter20 : struct.success)
+            {
+              _iter20.write(oprot);
+            }
+          }
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, queryAllByReplyId_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          {
+            org.apache.thrift.protocol.TList _list21 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<com.aries.hermes.idl.dto.SubReplyDTO>(_list21.size);
+            @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.SubReplyDTO _elem22;
+            for (int _i23 = 0; _i23 < _list21.size; ++_i23)
+            {
+              _elem22 = new com.aries.hermes.idl.dto.SubReplyDTO();
+              _elem22.read(iprot);
+              struct.success.add(_elem22);
+            }
+          }
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class batchQueryByReplyId_args implements org.apache.thrift.TBase<batchQueryByReplyId_args, batchQueryByReplyId_args._Fields>, java.io.Serializable, Cloneable, Comparable<batchQueryByReplyId_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("batchQueryByReplyId_args");
+
+    private static final org.apache.thrift.protocol.TField COMPANY_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("companyDTO", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift.protocol.TField REPLY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("replyId", org.apache.thrift.protocol.TType.I64, (short)2);
+    private static final org.apache.thrift.protocol.TField PAGE_FIELD_DESC = new org.apache.thrift.protocol.TField("page", org.apache.thrift.protocol.TType.I32, (short)3);
+    private static final org.apache.thrift.protocol.TField PAGE_SIZE_FIELD_DESC = new org.apache.thrift.protocol.TField("pageSize", org.apache.thrift.protocol.TType.I32, (short)4);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new batchQueryByReplyId_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new batchQueryByReplyId_argsTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO; // required
+    public long replyId; // required
+    public int page; // required
+    public int pageSize; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      COMPANY_DTO((short)1, "companyDTO"),
+      REPLY_ID((short)2, "replyId"),
+      PAGE((short)3, "page"),
+      PAGE_SIZE((short)4, "pageSize");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // COMPANY_DTO
+            return COMPANY_DTO;
+          case 2: // REPLY_ID
+            return REPLY_ID;
+          case 3: // PAGE
+            return PAGE;
+          case 4: // PAGE_SIZE
+            return PAGE_SIZE;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __REPLYID_ISSET_ID = 0;
+    private static final int __PAGE_ISSET_ID = 1;
+    private static final int __PAGESIZE_ISSET_ID = 2;
+    private byte __isset_bitfield = 0;
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.COMPANY_DTO, new org.apache.thrift.meta_data.FieldMetaData("companyDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.CompanyDTO.class)));
+      tmpMap.put(_Fields.REPLY_ID, new org.apache.thrift.meta_data.FieldMetaData("replyId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
+      tmpMap.put(_Fields.PAGE, new org.apache.thrift.meta_data.FieldMetaData("page", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+      tmpMap.put(_Fields.PAGE_SIZE, new org.apache.thrift.meta_data.FieldMetaData("pageSize", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(batchQueryByReplyId_args.class, metaDataMap);
+    }
+
+    public batchQueryByReplyId_args() {
+    }
+
+    public batchQueryByReplyId_args(
+      com.aries.hermes.idl.dto.CompanyDTO companyDTO,
+      long replyId,
+      int page,
+      int pageSize)
+    {
+      this();
+      this.companyDTO = companyDTO;
+      this.replyId = replyId;
+      setReplyIdIsSet(true);
+      this.page = page;
+      setPageIsSet(true);
+      this.pageSize = pageSize;
+      setPageSizeIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public batchQueryByReplyId_args(batchQueryByReplyId_args other) {
+      __isset_bitfield = other.__isset_bitfield;
+      if (other.isSetCompanyDTO()) {
+        this.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO(other.companyDTO);
+      }
+      this.replyId = other.replyId;
+      this.page = other.page;
+      this.pageSize = other.pageSize;
+    }
+
+    public batchQueryByReplyId_args deepCopy() {
+      return new batchQueryByReplyId_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.companyDTO = null;
+      setReplyIdIsSet(false);
+      this.replyId = 0;
+      setPageIsSet(false);
+      this.page = 0;
+      setPageSizeIsSet(false);
+      this.pageSize = 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.CompanyDTO getCompanyDTO() {
+      return this.companyDTO;
+    }
+
+    public batchQueryByReplyId_args setCompanyDTO(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO) {
+      this.companyDTO = companyDTO;
+      return this;
+    }
+
+    public void unsetCompanyDTO() {
+      this.companyDTO = null;
+    }
+
+    /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+    public boolean isSetCompanyDTO() {
+      return this.companyDTO != null;
+    }
+
+    public void setCompanyDTOIsSet(boolean value) {
+      if (!value) {
+        this.companyDTO = null;
+      }
+    }
+
+    public long getReplyId() {
+      return this.replyId;
+    }
+
+    public batchQueryByReplyId_args setReplyId(long replyId) {
+      this.replyId = replyId;
+      setReplyIdIsSet(true);
+      return this;
+    }
+
+    public void unsetReplyId() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __REPLYID_ISSET_ID);
+    }
+
+    /** Returns true if field replyId is set (has been assigned a value) and false otherwise */
+    public boolean isSetReplyId() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __REPLYID_ISSET_ID);
+    }
+
+    public void setReplyIdIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __REPLYID_ISSET_ID, value);
+    }
+
+    public int getPage() {
+      return this.page;
+    }
+
+    public batchQueryByReplyId_args setPage(int page) {
+      this.page = page;
+      setPageIsSet(true);
+      return this;
+    }
+
+    public void unsetPage() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __PAGE_ISSET_ID);
+    }
+
+    /** Returns true if field page is set (has been assigned a value) and false otherwise */
+    public boolean isSetPage() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __PAGE_ISSET_ID);
+    }
+
+    public void setPageIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __PAGE_ISSET_ID, value);
+    }
+
+    public int getPageSize() {
+      return this.pageSize;
+    }
+
+    public batchQueryByReplyId_args setPageSize(int pageSize) {
+      this.pageSize = pageSize;
+      setPageSizeIsSet(true);
+      return this;
+    }
+
+    public void unsetPageSize() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __PAGESIZE_ISSET_ID);
+    }
+
+    /** Returns true if field pageSize is set (has been assigned a value) and false otherwise */
+    public boolean isSetPageSize() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __PAGESIZE_ISSET_ID);
+    }
+
+    public void setPageSizeIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __PAGESIZE_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case COMPANY_DTO:
+        if (value == null) {
+          unsetCompanyDTO();
+        } else {
+          setCompanyDTO((com.aries.hermes.idl.dto.CompanyDTO)value);
+        }
+        break;
+
+      case REPLY_ID:
+        if (value == null) {
+          unsetReplyId();
+        } else {
+          setReplyId((java.lang.Long)value);
+        }
+        break;
+
+      case PAGE:
+        if (value == null) {
+          unsetPage();
+        } else {
+          setPage((java.lang.Integer)value);
+        }
+        break;
+
+      case PAGE_SIZE:
+        if (value == null) {
+          unsetPageSize();
+        } else {
+          setPageSize((java.lang.Integer)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case COMPANY_DTO:
+        return getCompanyDTO();
+
+      case REPLY_ID:
+        return getReplyId();
+
+      case PAGE:
+        return getPage();
+
+      case PAGE_SIZE:
+        return getPageSize();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case COMPANY_DTO:
+        return isSetCompanyDTO();
+      case REPLY_ID:
+        return isSetReplyId();
+      case PAGE:
+        return isSetPage();
+      case PAGE_SIZE:
+        return isSetPageSize();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof batchQueryByReplyId_args)
+        return this.equals((batchQueryByReplyId_args)that);
+      return false;
+    }
+
+    public boolean equals(batchQueryByReplyId_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_companyDTO = true && this.isSetCompanyDTO();
+      boolean that_present_companyDTO = true && that.isSetCompanyDTO();
+      if (this_present_companyDTO || that_present_companyDTO) {
+        if (!(this_present_companyDTO && that_present_companyDTO))
+          return false;
+        if (!this.companyDTO.equals(that.companyDTO))
+          return false;
+      }
+
+      boolean this_present_replyId = true;
+      boolean that_present_replyId = true;
+      if (this_present_replyId || that_present_replyId) {
+        if (!(this_present_replyId && that_present_replyId))
+          return false;
+        if (this.replyId != that.replyId)
+          return false;
+      }
+
+      boolean this_present_page = true;
+      boolean that_present_page = true;
+      if (this_present_page || that_present_page) {
+        if (!(this_present_page && that_present_page))
+          return false;
+        if (this.page != that.page)
+          return false;
+      }
+
+      boolean this_present_pageSize = true;
+      boolean that_present_pageSize = true;
+      if (this_present_pageSize || that_present_pageSize) {
+        if (!(this_present_pageSize && that_present_pageSize))
+          return false;
+        if (this.pageSize != that.pageSize)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetCompanyDTO()) ? 131071 : 524287);
+      if (isSetCompanyDTO())
+        hashCode = hashCode * 8191 + companyDTO.hashCode();
+
+      hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(replyId);
+
+      hashCode = hashCode * 8191 + page;
+
+      hashCode = hashCode * 8191 + pageSize;
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(batchQueryByReplyId_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetCompanyDTO()).compareTo(other.isSetCompanyDTO());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetCompanyDTO()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.companyDTO, other.companyDTO);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetReplyId()).compareTo(other.isSetReplyId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetReplyId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.replyId, other.replyId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetPage()).compareTo(other.isSetPage());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetPage()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.page, other.page);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetPageSize()).compareTo(other.isSetPageSize());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetPageSize()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.pageSize, other.pageSize);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("batchQueryByReplyId_args(");
+      boolean first = true;
+
+      sb.append("companyDTO:");
+      if (this.companyDTO == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.companyDTO);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("replyId:");
+      sb.append(this.replyId);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("page:");
+      sb.append(this.page);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("pageSize:");
+      sb.append(this.pageSize);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (companyDTO != null) {
+        companyDTO.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class batchQueryByReplyId_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public batchQueryByReplyId_argsStandardScheme getScheme() {
+        return new batchQueryByReplyId_argsStandardScheme();
+      }
+    }
+
+    private static class batchQueryByReplyId_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<batchQueryByReplyId_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, batchQueryByReplyId_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // COMPANY_DTO
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+                struct.companyDTO.read(iprot);
+                struct.setCompanyDTOIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // REPLY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+                struct.replyId = iprot.readI64();
+                struct.setReplyIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 3: // PAGE
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.page = iprot.readI32();
+                struct.setPageIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 4: // PAGE_SIZE
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.pageSize = iprot.readI32();
+                struct.setPageSizeIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, batchQueryByReplyId_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.companyDTO != null) {
+          oprot.writeFieldBegin(COMPANY_DTO_FIELD_DESC);
+          struct.companyDTO.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldBegin(REPLY_ID_FIELD_DESC);
+        oprot.writeI64(struct.replyId);
+        oprot.writeFieldEnd();
+        oprot.writeFieldBegin(PAGE_FIELD_DESC);
+        oprot.writeI32(struct.page);
+        oprot.writeFieldEnd();
+        oprot.writeFieldBegin(PAGE_SIZE_FIELD_DESC);
+        oprot.writeI32(struct.pageSize);
+        oprot.writeFieldEnd();
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class batchQueryByReplyId_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public batchQueryByReplyId_argsTupleScheme getScheme() {
+        return new batchQueryByReplyId_argsTupleScheme();
+      }
+    }
+
+    private static class batchQueryByReplyId_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<batchQueryByReplyId_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, batchQueryByReplyId_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetCompanyDTO()) {
+          optionals.set(0);
+        }
+        if (struct.isSetReplyId()) {
+          optionals.set(1);
+        }
+        if (struct.isSetPage()) {
+          optionals.set(2);
+        }
+        if (struct.isSetPageSize()) {
+          optionals.set(3);
+        }
+        oprot.writeBitSet(optionals, 4);
+        if (struct.isSetCompanyDTO()) {
+          struct.companyDTO.write(oprot);
+        }
+        if (struct.isSetReplyId()) {
+          oprot.writeI64(struct.replyId);
+        }
+        if (struct.isSetPage()) {
+          oprot.writeI32(struct.page);
+        }
+        if (struct.isSetPageSize()) {
+          oprot.writeI32(struct.pageSize);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, batchQueryByReplyId_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(4);
+        if (incoming.get(0)) {
+          struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+          struct.companyDTO.read(iprot);
+          struct.setCompanyDTOIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.replyId = iprot.readI64();
+          struct.setReplyIdIsSet(true);
+        }
+        if (incoming.get(2)) {
+          struct.page = iprot.readI32();
+          struct.setPageIsSet(true);
+        }
+        if (incoming.get(3)) {
+          struct.pageSize = iprot.readI32();
+          struct.setPageSizeIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class batchQueryByReplyId_result implements org.apache.thrift.TBase<batchQueryByReplyId_result, batchQueryByReplyId_result._Fields>, java.io.Serializable, Cloneable, Comparable<batchQueryByReplyId_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("batchQueryByReplyId_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.LIST, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new batchQueryByReplyId_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new batchQueryByReplyId_resultTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.SubReplyDTO.class))));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(batchQueryByReplyId_result.class, metaDataMap);
+    }
+
+    public batchQueryByReplyId_result() {
+    }
+
+    public batchQueryByReplyId_result(
+      java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> success)
+    {
+      this();
+      this.success = success;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public batchQueryByReplyId_result(batchQueryByReplyId_result other) {
+      if (other.isSetSuccess()) {
+        java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> __this__success = new java.util.ArrayList<com.aries.hermes.idl.dto.SubReplyDTO>(other.success.size());
+        for (com.aries.hermes.idl.dto.SubReplyDTO other_element : other.success) {
+          __this__success.add(new com.aries.hermes.idl.dto.SubReplyDTO(other_element));
+        }
+        this.success = __this__success;
+      }
+    }
+
+    public batchQueryByReplyId_result deepCopy() {
+      return new batchQueryByReplyId_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+    }
+
+    public int getSuccessSize() {
+      return (this.success == null) ? 0 : this.success.size();
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.util.Iterator<com.aries.hermes.idl.dto.SubReplyDTO> getSuccessIterator() {
+      return (this.success == null) ? null : this.success.iterator();
+    }
+
+    public void addToSuccess(com.aries.hermes.idl.dto.SubReplyDTO elem) {
+      if (this.success == null) {
+        this.success = new java.util.ArrayList<com.aries.hermes.idl.dto.SubReplyDTO>();
+      }
+      this.success.add(elem);
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> getSuccess() {
+      return this.success;
+    }
+
+    public batchQueryByReplyId_result setSuccess(@org.apache.thrift.annotation.Nullable java.util.List<com.aries.hermes.idl.dto.SubReplyDTO> success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((java.util.List<com.aries.hermes.idl.dto.SubReplyDTO>)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof batchQueryByReplyId_result)
+        return this.equals((batchQueryByReplyId_result)that);
+      return false;
+    }
+
+    public boolean equals(batchQueryByReplyId_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(batchQueryByReplyId_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("batchQueryByReplyId_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class batchQueryByReplyId_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public batchQueryByReplyId_resultStandardScheme getScheme() {
+        return new batchQueryByReplyId_resultStandardScheme();
+      }
+    }
+
+    private static class batchQueryByReplyId_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<batchQueryByReplyId_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, batchQueryByReplyId_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list24 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<com.aries.hermes.idl.dto.SubReplyDTO>(_list24.size);
+                  @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.SubReplyDTO _elem25;
+                  for (int _i26 = 0; _i26 < _list24.size; ++_i26)
+                  {
+                    _elem25 = new com.aries.hermes.idl.dto.SubReplyDTO();
+                    _elem25.read(iprot);
+                    struct.success.add(_elem25);
+                  }
+                  iprot.readListEnd();
+                }
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, batchQueryByReplyId_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
+            for (com.aries.hermes.idl.dto.SubReplyDTO _iter27 : struct.success)
+            {
+              _iter27.write(oprot);
+            }
+            oprot.writeListEnd();
+          }
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class batchQueryByReplyId_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public batchQueryByReplyId_resultTupleScheme getScheme() {
+        return new batchQueryByReplyId_resultTupleScheme();
+      }
+    }
+
+    private static class batchQueryByReplyId_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<batchQueryByReplyId_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, batchQueryByReplyId_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          {
+            oprot.writeI32(struct.success.size());
+            for (com.aries.hermes.idl.dto.SubReplyDTO _iter28 : struct.success)
+            {
+              _iter28.write(oprot);
+            }
+          }
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, batchQueryByReplyId_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          {
+            org.apache.thrift.protocol.TList _list29 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<com.aries.hermes.idl.dto.SubReplyDTO>(_list29.size);
+            @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.SubReplyDTO _elem30;
+            for (int _i31 = 0; _i31 < _list29.size; ++_i31)
+            {
+              _elem30 = new com.aries.hermes.idl.dto.SubReplyDTO();
+              _elem30.read(iprot);
+              struct.success.add(_elem30);
+            }
+          }
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class updateContent_args implements org.apache.thrift.TBase<updateContent_args, updateContent_args._Fields>, java.io.Serializable, Cloneable, Comparable<updateContent_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("updateContent_args");
+
+    private static final org.apache.thrift.protocol.TField COMPANY_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("companyDTO", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift.protocol.TField SUB_REPLY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("subReplyId", org.apache.thrift.protocol.TType.I64, (short)2);
+    private static final org.apache.thrift.protocol.TField CONTENT_FIELD_DESC = new org.apache.thrift.protocol.TField("content", org.apache.thrift.protocol.TType.STRING, (short)3);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new updateContent_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new updateContent_argsTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO; // required
+    public long subReplyId; // required
+    public @org.apache.thrift.annotation.Nullable java.lang.String content; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      COMPANY_DTO((short)1, "companyDTO"),
+      SUB_REPLY_ID((short)2, "subReplyId"),
+      CONTENT((short)3, "content");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // COMPANY_DTO
+            return COMPANY_DTO;
+          case 2: // SUB_REPLY_ID
+            return SUB_REPLY_ID;
+          case 3: // CONTENT
+            return CONTENT;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __SUBREPLYID_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.COMPANY_DTO, new org.apache.thrift.meta_data.FieldMetaData("companyDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.CompanyDTO.class)));
+      tmpMap.put(_Fields.SUB_REPLY_ID, new org.apache.thrift.meta_data.FieldMetaData("subReplyId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
+      tmpMap.put(_Fields.CONTENT, new org.apache.thrift.meta_data.FieldMetaData("content", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(updateContent_args.class, metaDataMap);
+    }
+
+    public updateContent_args() {
+    }
+
+    public updateContent_args(
+      com.aries.hermes.idl.dto.CompanyDTO companyDTO,
+      long subReplyId,
+      java.lang.String content)
+    {
+      this();
+      this.companyDTO = companyDTO;
+      this.subReplyId = subReplyId;
+      setSubReplyIdIsSet(true);
+      this.content = content;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public updateContent_args(updateContent_args other) {
+      __isset_bitfield = other.__isset_bitfield;
+      if (other.isSetCompanyDTO()) {
+        this.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO(other.companyDTO);
+      }
+      this.subReplyId = other.subReplyId;
+      if (other.isSetContent()) {
+        this.content = other.content;
+      }
+    }
+
+    public updateContent_args deepCopy() {
+      return new updateContent_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.companyDTO = null;
+      setSubReplyIdIsSet(false);
+      this.subReplyId = 0;
+      this.content = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.CompanyDTO getCompanyDTO() {
+      return this.companyDTO;
+    }
+
+    public updateContent_args setCompanyDTO(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO) {
+      this.companyDTO = companyDTO;
+      return this;
+    }
+
+    public void unsetCompanyDTO() {
+      this.companyDTO = null;
+    }
+
+    /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+    public boolean isSetCompanyDTO() {
+      return this.companyDTO != null;
+    }
+
+    public void setCompanyDTOIsSet(boolean value) {
+      if (!value) {
+        this.companyDTO = null;
+      }
+    }
+
+    public long getSubReplyId() {
+      return this.subReplyId;
+    }
+
+    public updateContent_args setSubReplyId(long subReplyId) {
+      this.subReplyId = subReplyId;
+      setSubReplyIdIsSet(true);
+      return this;
+    }
+
+    public void unsetSubReplyId() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SUBREPLYID_ISSET_ID);
+    }
+
+    /** Returns true if field subReplyId is set (has been assigned a value) and false otherwise */
+    public boolean isSetSubReplyId() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SUBREPLYID_ISSET_ID);
+    }
+
+    public void setSubReplyIdIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUBREPLYID_ISSET_ID, value);
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.String getContent() {
+      return this.content;
+    }
+
+    public updateContent_args setContent(@org.apache.thrift.annotation.Nullable java.lang.String content) {
+      this.content = content;
+      return this;
+    }
+
+    public void unsetContent() {
+      this.content = null;
+    }
+
+    /** Returns true if field content is set (has been assigned a value) and false otherwise */
+    public boolean isSetContent() {
+      return this.content != null;
+    }
+
+    public void setContentIsSet(boolean value) {
+      if (!value) {
+        this.content = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case COMPANY_DTO:
+        if (value == null) {
+          unsetCompanyDTO();
+        } else {
+          setCompanyDTO((com.aries.hermes.idl.dto.CompanyDTO)value);
+        }
+        break;
+
+      case SUB_REPLY_ID:
+        if (value == null) {
+          unsetSubReplyId();
+        } else {
+          setSubReplyId((java.lang.Long)value);
+        }
+        break;
+
+      case CONTENT:
+        if (value == null) {
+          unsetContent();
+        } else {
+          setContent((java.lang.String)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case COMPANY_DTO:
+        return getCompanyDTO();
+
+      case SUB_REPLY_ID:
+        return getSubReplyId();
+
+      case CONTENT:
+        return getContent();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case COMPANY_DTO:
+        return isSetCompanyDTO();
+      case SUB_REPLY_ID:
+        return isSetSubReplyId();
+      case CONTENT:
+        return isSetContent();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof updateContent_args)
+        return this.equals((updateContent_args)that);
+      return false;
+    }
+
+    public boolean equals(updateContent_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_companyDTO = true && this.isSetCompanyDTO();
+      boolean that_present_companyDTO = true && that.isSetCompanyDTO();
+      if (this_present_companyDTO || that_present_companyDTO) {
+        if (!(this_present_companyDTO && that_present_companyDTO))
+          return false;
+        if (!this.companyDTO.equals(that.companyDTO))
+          return false;
+      }
+
+      boolean this_present_subReplyId = true;
+      boolean that_present_subReplyId = true;
+      if (this_present_subReplyId || that_present_subReplyId) {
+        if (!(this_present_subReplyId && that_present_subReplyId))
+          return false;
+        if (this.subReplyId != that.subReplyId)
+          return false;
+      }
+
+      boolean this_present_content = true && this.isSetContent();
+      boolean that_present_content = true && that.isSetContent();
+      if (this_present_content || that_present_content) {
+        if (!(this_present_content && that_present_content))
+          return false;
+        if (!this.content.equals(that.content))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetCompanyDTO()) ? 131071 : 524287);
+      if (isSetCompanyDTO())
+        hashCode = hashCode * 8191 + companyDTO.hashCode();
+
+      hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(subReplyId);
+
+      hashCode = hashCode * 8191 + ((isSetContent()) ? 131071 : 524287);
+      if (isSetContent())
+        hashCode = hashCode * 8191 + content.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(updateContent_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetCompanyDTO()).compareTo(other.isSetCompanyDTO());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetCompanyDTO()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.companyDTO, other.companyDTO);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetSubReplyId()).compareTo(other.isSetSubReplyId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSubReplyId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.subReplyId, other.subReplyId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetContent()).compareTo(other.isSetContent());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetContent()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.content, other.content);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("updateContent_args(");
+      boolean first = true;
+
+      sb.append("companyDTO:");
+      if (this.companyDTO == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.companyDTO);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("subReplyId:");
+      sb.append(this.subReplyId);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("content:");
+      if (this.content == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.content);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (companyDTO != null) {
+        companyDTO.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class updateContent_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public updateContent_argsStandardScheme getScheme() {
+        return new updateContent_argsStandardScheme();
+      }
+    }
+
+    private static class updateContent_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<updateContent_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, updateContent_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // COMPANY_DTO
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+                struct.companyDTO.read(iprot);
+                struct.setCompanyDTOIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // SUB_REPLY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+                struct.subReplyId = iprot.readI64();
+                struct.setSubReplyIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 3: // CONTENT
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.content = iprot.readString();
+                struct.setContentIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, updateContent_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.companyDTO != null) {
+          oprot.writeFieldBegin(COMPANY_DTO_FIELD_DESC);
+          struct.companyDTO.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldBegin(SUB_REPLY_ID_FIELD_DESC);
+        oprot.writeI64(struct.subReplyId);
+        oprot.writeFieldEnd();
+        if (struct.content != null) {
+          oprot.writeFieldBegin(CONTENT_FIELD_DESC);
+          oprot.writeString(struct.content);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class updateContent_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public updateContent_argsTupleScheme getScheme() {
+        return new updateContent_argsTupleScheme();
+      }
+    }
+
+    private static class updateContent_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<updateContent_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, updateContent_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetCompanyDTO()) {
+          optionals.set(0);
+        }
+        if (struct.isSetSubReplyId()) {
+          optionals.set(1);
+        }
+        if (struct.isSetContent()) {
+          optionals.set(2);
+        }
+        oprot.writeBitSet(optionals, 3);
+        if (struct.isSetCompanyDTO()) {
+          struct.companyDTO.write(oprot);
+        }
+        if (struct.isSetSubReplyId()) {
+          oprot.writeI64(struct.subReplyId);
+        }
+        if (struct.isSetContent()) {
+          oprot.writeString(struct.content);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, updateContent_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(3);
+        if (incoming.get(0)) {
+          struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+          struct.companyDTO.read(iprot);
+          struct.setCompanyDTOIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.subReplyId = iprot.readI64();
+          struct.setSubReplyIdIsSet(true);
+        }
+        if (incoming.get(2)) {
+          struct.content = iprot.readString();
+          struct.setContentIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class updateContent_result implements org.apache.thrift.TBase<updateContent_result, updateContent_result._Fields>, java.io.Serializable, Cloneable, Comparable<updateContent_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("updateContent_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new updateContent_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new updateContent_resultTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.ThriftResponse success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.ThriftResponse.class)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(updateContent_result.class, metaDataMap);
+    }
+
+    public updateContent_result() {
+    }
+
+    public updateContent_result(
+      com.aries.hermes.idl.dto.ThriftResponse success)
+    {
+      this();
+      this.success = success;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public updateContent_result(updateContent_result other) {
+      if (other.isSetSuccess()) {
+        this.success = new com.aries.hermes.idl.dto.ThriftResponse(other.success);
+      }
+    }
+
+    public updateContent_result deepCopy() {
+      return new updateContent_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.ThriftResponse getSuccess() {
+      return this.success;
+    }
+
+    public updateContent_result setSuccess(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.ThriftResponse success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((com.aries.hermes.idl.dto.ThriftResponse)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof updateContent_result)
+        return this.equals((updateContent_result)that);
+      return false;
+    }
+
+    public boolean equals(updateContent_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(updateContent_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("updateContent_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (success != null) {
+        success.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class updateContent_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public updateContent_resultStandardScheme getScheme() {
+        return new updateContent_resultStandardScheme();
+      }
+    }
+
+    private static class updateContent_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<updateContent_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, updateContent_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.success = new com.aries.hermes.idl.dto.ThriftResponse();
+                struct.success.read(iprot);
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, updateContent_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          struct.success.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class updateContent_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public updateContent_resultTupleScheme getScheme() {
+        return new updateContent_resultTupleScheme();
+      }
+    }
+
+    private static class updateContent_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<updateContent_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, updateContent_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          struct.success.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, updateContent_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.success = new com.aries.hermes.idl.dto.ThriftResponse();
+          struct.success.read(iprot);
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class deleteBySubReplyId_args implements org.apache.thrift.TBase<deleteBySubReplyId_args, deleteBySubReplyId_args._Fields>, java.io.Serializable, Cloneable, Comparable<deleteBySubReplyId_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("deleteBySubReplyId_args");
+
+    private static final org.apache.thrift.protocol.TField COMPANY_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("companyDTO", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift.protocol.TField SUB_REPLY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("subReplyId", org.apache.thrift.protocol.TType.I64, (short)2);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new deleteBySubReplyId_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new deleteBySubReplyId_argsTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO; // required
+    public long subReplyId; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      COMPANY_DTO((short)1, "companyDTO"),
+      SUB_REPLY_ID((short)2, "subReplyId");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // COMPANY_DTO
+            return COMPANY_DTO;
+          case 2: // SUB_REPLY_ID
+            return SUB_REPLY_ID;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __SUBREPLYID_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.COMPANY_DTO, new org.apache.thrift.meta_data.FieldMetaData("companyDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.CompanyDTO.class)));
+      tmpMap.put(_Fields.SUB_REPLY_ID, new org.apache.thrift.meta_data.FieldMetaData("subReplyId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(deleteBySubReplyId_args.class, metaDataMap);
+    }
+
+    public deleteBySubReplyId_args() {
+    }
+
+    public deleteBySubReplyId_args(
+      com.aries.hermes.idl.dto.CompanyDTO companyDTO,
+      long subReplyId)
+    {
+      this();
+      this.companyDTO = companyDTO;
+      this.subReplyId = subReplyId;
+      setSubReplyIdIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public deleteBySubReplyId_args(deleteBySubReplyId_args other) {
+      __isset_bitfield = other.__isset_bitfield;
+      if (other.isSetCompanyDTO()) {
+        this.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO(other.companyDTO);
+      }
+      this.subReplyId = other.subReplyId;
+    }
+
+    public deleteBySubReplyId_args deepCopy() {
+      return new deleteBySubReplyId_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.companyDTO = null;
+      setSubReplyIdIsSet(false);
+      this.subReplyId = 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.CompanyDTO getCompanyDTO() {
+      return this.companyDTO;
+    }
+
+    public deleteBySubReplyId_args setCompanyDTO(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO) {
+      this.companyDTO = companyDTO;
+      return this;
+    }
+
+    public void unsetCompanyDTO() {
+      this.companyDTO = null;
+    }
+
+    /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+    public boolean isSetCompanyDTO() {
+      return this.companyDTO != null;
+    }
+
+    public void setCompanyDTOIsSet(boolean value) {
+      if (!value) {
+        this.companyDTO = null;
+      }
+    }
+
+    public long getSubReplyId() {
+      return this.subReplyId;
+    }
+
+    public deleteBySubReplyId_args setSubReplyId(long subReplyId) {
+      this.subReplyId = subReplyId;
+      setSubReplyIdIsSet(true);
+      return this;
+    }
+
+    public void unsetSubReplyId() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SUBREPLYID_ISSET_ID);
+    }
+
+    /** Returns true if field subReplyId is set (has been assigned a value) and false otherwise */
+    public boolean isSetSubReplyId() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SUBREPLYID_ISSET_ID);
+    }
+
+    public void setSubReplyIdIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUBREPLYID_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case COMPANY_DTO:
+        if (value == null) {
+          unsetCompanyDTO();
+        } else {
+          setCompanyDTO((com.aries.hermes.idl.dto.CompanyDTO)value);
+        }
+        break;
+
+      case SUB_REPLY_ID:
+        if (value == null) {
+          unsetSubReplyId();
+        } else {
+          setSubReplyId((java.lang.Long)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case COMPANY_DTO:
+        return getCompanyDTO();
+
+      case SUB_REPLY_ID:
+        return getSubReplyId();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case COMPANY_DTO:
+        return isSetCompanyDTO();
+      case SUB_REPLY_ID:
+        return isSetSubReplyId();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof deleteBySubReplyId_args)
+        return this.equals((deleteBySubReplyId_args)that);
+      return false;
+    }
+
+    public boolean equals(deleteBySubReplyId_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_companyDTO = true && this.isSetCompanyDTO();
+      boolean that_present_companyDTO = true && that.isSetCompanyDTO();
+      if (this_present_companyDTO || that_present_companyDTO) {
+        if (!(this_present_companyDTO && that_present_companyDTO))
+          return false;
+        if (!this.companyDTO.equals(that.companyDTO))
+          return false;
+      }
+
+      boolean this_present_subReplyId = true;
+      boolean that_present_subReplyId = true;
+      if (this_present_subReplyId || that_present_subReplyId) {
+        if (!(this_present_subReplyId && that_present_subReplyId))
+          return false;
+        if (this.subReplyId != that.subReplyId)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetCompanyDTO()) ? 131071 : 524287);
+      if (isSetCompanyDTO())
+        hashCode = hashCode * 8191 + companyDTO.hashCode();
+
+      hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(subReplyId);
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(deleteBySubReplyId_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetCompanyDTO()).compareTo(other.isSetCompanyDTO());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetCompanyDTO()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.companyDTO, other.companyDTO);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetSubReplyId()).compareTo(other.isSetSubReplyId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSubReplyId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.subReplyId, other.subReplyId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("deleteBySubReplyId_args(");
+      boolean first = true;
+
+      sb.append("companyDTO:");
+      if (this.companyDTO == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.companyDTO);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("subReplyId:");
+      sb.append(this.subReplyId);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (companyDTO != null) {
+        companyDTO.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class deleteBySubReplyId_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public deleteBySubReplyId_argsStandardScheme getScheme() {
+        return new deleteBySubReplyId_argsStandardScheme();
+      }
+    }
+
+    private static class deleteBySubReplyId_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<deleteBySubReplyId_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, deleteBySubReplyId_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // COMPANY_DTO
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+                struct.companyDTO.read(iprot);
+                struct.setCompanyDTOIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // SUB_REPLY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+                struct.subReplyId = iprot.readI64();
+                struct.setSubReplyIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, deleteBySubReplyId_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.companyDTO != null) {
+          oprot.writeFieldBegin(COMPANY_DTO_FIELD_DESC);
+          struct.companyDTO.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldBegin(SUB_REPLY_ID_FIELD_DESC);
+        oprot.writeI64(struct.subReplyId);
+        oprot.writeFieldEnd();
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class deleteBySubReplyId_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public deleteBySubReplyId_argsTupleScheme getScheme() {
+        return new deleteBySubReplyId_argsTupleScheme();
+      }
+    }
+
+    private static class deleteBySubReplyId_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<deleteBySubReplyId_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, deleteBySubReplyId_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetCompanyDTO()) {
+          optionals.set(0);
+        }
+        if (struct.isSetSubReplyId()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetCompanyDTO()) {
+          struct.companyDTO.write(oprot);
+        }
+        if (struct.isSetSubReplyId()) {
+          oprot.writeI64(struct.subReplyId);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, deleteBySubReplyId_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+          struct.companyDTO.read(iprot);
+          struct.setCompanyDTOIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.subReplyId = iprot.readI64();
+          struct.setSubReplyIdIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class deleteBySubReplyId_result implements org.apache.thrift.TBase<deleteBySubReplyId_result, deleteBySubReplyId_result._Fields>, java.io.Serializable, Cloneable, Comparable<deleteBySubReplyId_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("deleteBySubReplyId_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new deleteBySubReplyId_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new deleteBySubReplyId_resultTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.ThriftResponse success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.ThriftResponse.class)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(deleteBySubReplyId_result.class, metaDataMap);
+    }
+
+    public deleteBySubReplyId_result() {
+    }
+
+    public deleteBySubReplyId_result(
+      com.aries.hermes.idl.dto.ThriftResponse success)
+    {
+      this();
+      this.success = success;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public deleteBySubReplyId_result(deleteBySubReplyId_result other) {
+      if (other.isSetSuccess()) {
+        this.success = new com.aries.hermes.idl.dto.ThriftResponse(other.success);
+      }
+    }
+
+    public deleteBySubReplyId_result deepCopy() {
+      return new deleteBySubReplyId_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.ThriftResponse getSuccess() {
+      return this.success;
+    }
+
+    public deleteBySubReplyId_result setSuccess(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.ThriftResponse success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((com.aries.hermes.idl.dto.ThriftResponse)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof deleteBySubReplyId_result)
+        return this.equals((deleteBySubReplyId_result)that);
+      return false;
+    }
+
+    public boolean equals(deleteBySubReplyId_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(deleteBySubReplyId_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("deleteBySubReplyId_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (success != null) {
+        success.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class deleteBySubReplyId_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public deleteBySubReplyId_resultStandardScheme getScheme() {
+        return new deleteBySubReplyId_resultStandardScheme();
+      }
+    }
+
+    private static class deleteBySubReplyId_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<deleteBySubReplyId_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, deleteBySubReplyId_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.success = new com.aries.hermes.idl.dto.ThriftResponse();
+                struct.success.read(iprot);
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, deleteBySubReplyId_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          struct.success.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class deleteBySubReplyId_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public deleteBySubReplyId_resultTupleScheme getScheme() {
+        return new deleteBySubReplyId_resultTupleScheme();
+      }
+    }
+
+    private static class deleteBySubReplyId_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<deleteBySubReplyId_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, deleteBySubReplyId_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          struct.success.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, deleteBySubReplyId_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.success = new com.aries.hermes.idl.dto.ThriftResponse();
+          struct.success.read(iprot);
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class batchDeleteByReplyId_args implements org.apache.thrift.TBase<batchDeleteByReplyId_args, batchDeleteByReplyId_args._Fields>, java.io.Serializable, Cloneable, Comparable<batchDeleteByReplyId_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("batchDeleteByReplyId_args");
+
+    private static final org.apache.thrift.protocol.TField COMPANY_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("companyDTO", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift.protocol.TField REPLY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("replyId", org.apache.thrift.protocol.TType.I64, (short)2);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new batchDeleteByReplyId_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new batchDeleteByReplyId_argsTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO; // required
+    public long replyId; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      COMPANY_DTO((short)1, "companyDTO"),
+      REPLY_ID((short)2, "replyId");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // COMPANY_DTO
+            return COMPANY_DTO;
+          case 2: // REPLY_ID
+            return REPLY_ID;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __REPLYID_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.COMPANY_DTO, new org.apache.thrift.meta_data.FieldMetaData("companyDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.CompanyDTO.class)));
+      tmpMap.put(_Fields.REPLY_ID, new org.apache.thrift.meta_data.FieldMetaData("replyId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(batchDeleteByReplyId_args.class, metaDataMap);
+    }
+
+    public batchDeleteByReplyId_args() {
+    }
+
+    public batchDeleteByReplyId_args(
+      com.aries.hermes.idl.dto.CompanyDTO companyDTO,
+      long replyId)
+    {
+      this();
+      this.companyDTO = companyDTO;
+      this.replyId = replyId;
+      setReplyIdIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public batchDeleteByReplyId_args(batchDeleteByReplyId_args other) {
+      __isset_bitfield = other.__isset_bitfield;
+      if (other.isSetCompanyDTO()) {
+        this.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO(other.companyDTO);
+      }
+      this.replyId = other.replyId;
+    }
+
+    public batchDeleteByReplyId_args deepCopy() {
+      return new batchDeleteByReplyId_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.companyDTO = null;
+      setReplyIdIsSet(false);
+      this.replyId = 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.CompanyDTO getCompanyDTO() {
+      return this.companyDTO;
+    }
+
+    public batchDeleteByReplyId_args setCompanyDTO(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO) {
+      this.companyDTO = companyDTO;
+      return this;
+    }
+
+    public void unsetCompanyDTO() {
+      this.companyDTO = null;
+    }
+
+    /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+    public boolean isSetCompanyDTO() {
+      return this.companyDTO != null;
+    }
+
+    public void setCompanyDTOIsSet(boolean value) {
+      if (!value) {
+        this.companyDTO = null;
+      }
+    }
+
+    public long getReplyId() {
+      return this.replyId;
+    }
+
+    public batchDeleteByReplyId_args setReplyId(long replyId) {
+      this.replyId = replyId;
+      setReplyIdIsSet(true);
+      return this;
+    }
+
+    public void unsetReplyId() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __REPLYID_ISSET_ID);
+    }
+
+    /** Returns true if field replyId is set (has been assigned a value) and false otherwise */
+    public boolean isSetReplyId() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __REPLYID_ISSET_ID);
+    }
+
+    public void setReplyIdIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __REPLYID_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case COMPANY_DTO:
+        if (value == null) {
+          unsetCompanyDTO();
+        } else {
+          setCompanyDTO((com.aries.hermes.idl.dto.CompanyDTO)value);
+        }
+        break;
+
+      case REPLY_ID:
+        if (value == null) {
+          unsetReplyId();
+        } else {
+          setReplyId((java.lang.Long)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case COMPANY_DTO:
+        return getCompanyDTO();
+
+      case REPLY_ID:
+        return getReplyId();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case COMPANY_DTO:
+        return isSetCompanyDTO();
+      case REPLY_ID:
+        return isSetReplyId();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof batchDeleteByReplyId_args)
+        return this.equals((batchDeleteByReplyId_args)that);
+      return false;
+    }
+
+    public boolean equals(batchDeleteByReplyId_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_companyDTO = true && this.isSetCompanyDTO();
+      boolean that_present_companyDTO = true && that.isSetCompanyDTO();
+      if (this_present_companyDTO || that_present_companyDTO) {
+        if (!(this_present_companyDTO && that_present_companyDTO))
+          return false;
+        if (!this.companyDTO.equals(that.companyDTO))
+          return false;
+      }
+
+      boolean this_present_replyId = true;
+      boolean that_present_replyId = true;
+      if (this_present_replyId || that_present_replyId) {
+        if (!(this_present_replyId && that_present_replyId))
+          return false;
+        if (this.replyId != that.replyId)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetCompanyDTO()) ? 131071 : 524287);
+      if (isSetCompanyDTO())
+        hashCode = hashCode * 8191 + companyDTO.hashCode();
+
+      hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(replyId);
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(batchDeleteByReplyId_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetCompanyDTO()).compareTo(other.isSetCompanyDTO());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetCompanyDTO()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.companyDTO, other.companyDTO);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetReplyId()).compareTo(other.isSetReplyId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetReplyId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.replyId, other.replyId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("batchDeleteByReplyId_args(");
+      boolean first = true;
+
+      sb.append("companyDTO:");
+      if (this.companyDTO == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.companyDTO);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("replyId:");
+      sb.append(this.replyId);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (companyDTO != null) {
+        companyDTO.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class batchDeleteByReplyId_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public batchDeleteByReplyId_argsStandardScheme getScheme() {
+        return new batchDeleteByReplyId_argsStandardScheme();
+      }
+    }
+
+    private static class batchDeleteByReplyId_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<batchDeleteByReplyId_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, batchDeleteByReplyId_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // COMPANY_DTO
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+                struct.companyDTO.read(iprot);
+                struct.setCompanyDTOIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // REPLY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+                struct.replyId = iprot.readI64();
+                struct.setReplyIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, batchDeleteByReplyId_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.companyDTO != null) {
+          oprot.writeFieldBegin(COMPANY_DTO_FIELD_DESC);
+          struct.companyDTO.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldBegin(REPLY_ID_FIELD_DESC);
+        oprot.writeI64(struct.replyId);
+        oprot.writeFieldEnd();
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class batchDeleteByReplyId_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public batchDeleteByReplyId_argsTupleScheme getScheme() {
+        return new batchDeleteByReplyId_argsTupleScheme();
+      }
+    }
+
+    private static class batchDeleteByReplyId_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<batchDeleteByReplyId_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, batchDeleteByReplyId_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetCompanyDTO()) {
+          optionals.set(0);
+        }
+        if (struct.isSetReplyId()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetCompanyDTO()) {
+          struct.companyDTO.write(oprot);
+        }
+        if (struct.isSetReplyId()) {
+          oprot.writeI64(struct.replyId);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, batchDeleteByReplyId_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+          struct.companyDTO.read(iprot);
+          struct.setCompanyDTOIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.replyId = iprot.readI64();
+          struct.setReplyIdIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class batchDeleteByReplyId_result implements org.apache.thrift.TBase<batchDeleteByReplyId_result, batchDeleteByReplyId_result._Fields>, java.io.Serializable, Cloneable, Comparable<batchDeleteByReplyId_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("batchDeleteByReplyId_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new batchDeleteByReplyId_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new batchDeleteByReplyId_resultTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.ThriftResponse success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.ThriftResponse.class)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(batchDeleteByReplyId_result.class, metaDataMap);
+    }
+
+    public batchDeleteByReplyId_result() {
+    }
+
+    public batchDeleteByReplyId_result(
+      com.aries.hermes.idl.dto.ThriftResponse success)
+    {
+      this();
+      this.success = success;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public batchDeleteByReplyId_result(batchDeleteByReplyId_result other) {
+      if (other.isSetSuccess()) {
+        this.success = new com.aries.hermes.idl.dto.ThriftResponse(other.success);
+      }
+    }
+
+    public batchDeleteByReplyId_result deepCopy() {
+      return new batchDeleteByReplyId_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.ThriftResponse getSuccess() {
+      return this.success;
+    }
+
+    public batchDeleteByReplyId_result setSuccess(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.ThriftResponse success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((com.aries.hermes.idl.dto.ThriftResponse)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof batchDeleteByReplyId_result)
+        return this.equals((batchDeleteByReplyId_result)that);
+      return false;
+    }
+
+    public boolean equals(batchDeleteByReplyId_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(batchDeleteByReplyId_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("batchDeleteByReplyId_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (success != null) {
+        success.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class batchDeleteByReplyId_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public batchDeleteByReplyId_resultStandardScheme getScheme() {
+        return new batchDeleteByReplyId_resultStandardScheme();
+      }
+    }
+
+    private static class batchDeleteByReplyId_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<batchDeleteByReplyId_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, batchDeleteByReplyId_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.success = new com.aries.hermes.idl.dto.ThriftResponse();
+                struct.success.read(iprot);
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, batchDeleteByReplyId_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          struct.success.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class batchDeleteByReplyId_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public batchDeleteByReplyId_resultTupleScheme getScheme() {
+        return new batchDeleteByReplyId_resultTupleScheme();
+      }
+    }
+
+    private static class batchDeleteByReplyId_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<batchDeleteByReplyId_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, batchDeleteByReplyId_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          struct.success.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, batchDeleteByReplyId_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.success = new com.aries.hermes.idl.dto.ThriftResponse();
+          struct.success.read(iprot);
           struct.setSuccessIsSet(true);
         }
       }

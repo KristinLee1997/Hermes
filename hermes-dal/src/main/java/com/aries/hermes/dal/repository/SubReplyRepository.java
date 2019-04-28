@@ -42,7 +42,7 @@ public class SubReplyRepository {
         }
     }
 
-    public static SubReply queryNexy(String database, long replyId, long lastReplyId) {
+    public static SubReply queryNext(String database, long replyId, long lastReplyId) {
         try (SqlSession session = SqlSessionUtil.openSession(database)) {
             SubReplyMapper replyMapper = session.getMapper(SubReplyMapper.class);
 
@@ -102,7 +102,7 @@ public class SubReplyRepository {
         }
     }
 
-    public static boolean deleteByReplyId(String database, long subReplyId) {
+    public static boolean deleteBySubReplyId(String database, long subReplyId) {
         try (SqlSession session = SqlSessionUtil.openSession(database)) {
             SubReplyMapper replyMapper = session.getMapper(SubReplyMapper.class);
             int effect = replyMapper.deleteByPrimaryKey(subReplyId);
@@ -110,7 +110,7 @@ public class SubReplyRepository {
         }
     }
 
-    public static boolean batchDeleteByTopicId(String database, long replyId) {
+    public static boolean batchDeleteByReplyId(String database, long replyId) {
         try (SqlSession session = SqlSessionUtil.openSession(database)) {
             SubReplyMapper replyMapper = session.getMapper(SubReplyMapper.class);
 
