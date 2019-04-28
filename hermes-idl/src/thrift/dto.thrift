@@ -6,7 +6,7 @@ struct ThriftResponse{
 //
 //    2000：未知参数错误
 //    2001：参数非法（参数不全，参数格式错误等）
-//    2002：参数为空
+//    2002：参数为null
 //
 //    3000：系统内部未知异常
 //    3001：调用其他系统异常
@@ -18,6 +18,16 @@ struct ThriftResponse{
     2:required string message
 }
 
+enum ResponseCode{
+    SUCCESS = 1000,             // 1000：成功生效
+    NOT_CHANGED = 1001,         // 1001：成功但无变化
+    PARAM_ERROR = 2000,         // 2000：未知参数错误
+    PARAM_ILLEGAL = 2001,       // 2001：参数非法（参数不全，参数格式错误等）
+    PARAM_NULL = 2002,          // 2002：参数为null
+    SYSTEM_ERROR = 3000,        // 3000：系统内部未知异常
+    OTHERS_SYSTEM_ERROR = 3001, // 3001：调用其他系统异常
+    HOPE_RETRY = 4001,          // 4001: 希望调用方重试
+}
 struct CompanyDTO {
     1: string name,
     2: string password,
