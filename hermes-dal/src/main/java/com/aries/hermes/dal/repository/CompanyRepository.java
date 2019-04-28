@@ -21,11 +21,11 @@ public class CompanyRepository {
         }
     }
 
-    public static Company selectByNameAndPassword(String companyName, String password) {
-        try (SqlSession session = SqlSessionUtil.openSession(companyName)) {
+    public static Company selectByNameAndPassword(Company company) {
+        try (SqlSession session = SqlSessionUtil.openSession(company.getCompanyName())) {
             CompanyMapper companyMapper = session.getMapper(CompanyMapper.class);
             CompanyExample example = new CompanyExample();
-            example.createCriteria().andCompanyNameEqualTo(companyName).andPasswordEqualTo(password);
+            example.createCriteria().andCompanyNameEqualTo(company.getCompanyName()).andPasswordEqualTo(company.getPassword());
             List<Company> companyList = companyMapper.selectByExample(example);
             if (companyList != null && companyList.size() > 0) {
                 return companyList.get(0);

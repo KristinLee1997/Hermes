@@ -28,14 +28,14 @@ public class SubReply {
     @Column(name = "`receiver_gaea_id`")
     private Long receiverGaeaId;
 
-    @Column(name = "`insert_time`")
-    private Date insertTime;
-
     /**
      * 内容
      */
     @Column(name = "`content`")
     private String content;
+
+    @Column(name = "`insert_time`")
+    private Date insertTime;
 
     /**
      * @return id
@@ -106,20 +106,6 @@ public class SubReply {
     }
 
     /**
-     * @return insert_time
-     */
-    public Date getInsertTime() {
-        return insertTime;
-    }
-
-    /**
-     * @param insertTime
-     */
-    public void setInsertTime(Date insertTime) {
-        this.insertTime = insertTime;
-    }
-
-    /**
      * 获取内容
      *
      * @return content - 内容
@@ -135,5 +121,19 @@ public class SubReply {
      */
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    /**
+     * @return insert_time
+     */
+    public Date getInsertTime() {
+        return insertTime;
+    }
+
+    /**
+     * @param insertTime
+     */
+    public void setInsertTime(Date insertTime) {
+        this.insertTime = insertTime;
     }
 }

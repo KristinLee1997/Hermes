@@ -17,6 +17,12 @@ public class Topic {
     private String theme;
 
     /**
+     * 帖子内容
+     */
+    @Column(name = "`content`")
+    private String content;
+
+    /**
      * 主帖发起人id
      */
     @Column(name = "`gaea_id`")
@@ -53,12 +59,6 @@ public class Topic {
     private Date insertTime;
 
     /**
-     * 帖子内容
-     */
-    @Column(name = "`content`")
-    private String content;
-
-    /**
      * @return id
      */
     public Long getId() {
@@ -88,6 +88,24 @@ public class Topic {
      */
     public void setTheme(String theme) {
         this.theme = theme == null ? null : theme.trim();
+    }
+
+    /**
+     * 获取帖子内容
+     *
+     * @return content - 帖子内容
+     */
+    public String getContent() {
+        return content;
+    }
+
+    /**
+     * 设置帖子内容
+     *
+     * @param content 帖子内容
+     */
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
     /**
@@ -196,23 +214,5 @@ public class Topic {
      */
     public void setInsertTime(Date insertTime) {
         this.insertTime = insertTime;
-    }
-
-    /**
-     * 获取帖子内容
-     *
-     * @return content - 帖子内容
-     */
-    public String getContent() {
-        return content;
-    }
-
-    /**
-     * 设置帖子内容
-     *
-     * @param content 帖子内容
-     */
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
     }
 }

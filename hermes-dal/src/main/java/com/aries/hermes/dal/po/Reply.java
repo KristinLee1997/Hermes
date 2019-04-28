@@ -22,6 +22,12 @@ public class Reply {
     @Column(name = "`gaea_id`")
     private Long gaeaId;
 
+    /**
+     * 内容
+     */
+    @Column(name = "`content`")
+    private String content;
+
     @Column(name = "`insert_time`")
     private Date insertTime;
 
@@ -33,12 +39,6 @@ public class Reply {
      */
     @Column(name = "`anonymous_send`")
     private Boolean anonymousSend;
-
-    /**
-     * 内容
-     */
-    @Column(name = "`content`")
-    private String content;
 
     /**
      * @return id
@@ -91,6 +91,24 @@ public class Reply {
     }
 
     /**
+     * 获取内容
+     *
+     * @return content - 内容
+     */
+    public String getContent() {
+        return content;
+    }
+
+    /**
+     * 设置内容
+     *
+     * @param content 内容
+     */
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
+    }
+
+    /**
      * @return insert_time
      */
     public Date getInsertTime() {
@@ -134,23 +152,5 @@ public class Reply {
      */
     public void setAnonymousSend(Boolean anonymousSend) {
         this.anonymousSend = anonymousSend;
-    }
-
-    /**
-     * 获取内容
-     *
-     * @return content - 内容
-     */
-    public String getContent() {
-        return content;
-    }
-
-    /**
-     * 设置内容
-     *
-     * @param content 内容
-     */
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
     }
 }

@@ -54,15 +54,18 @@
         <table tableName="topic" domainObjectName="Topic" enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="content" jdbcType="VARCHAR"/>
         </table>
         <table tableName="reply" domainObjectName="Reply" enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="content" jdbcType="VARCHAR"/>
         </table>
         <table tableName="sub_reply" domainObjectName="SubReply" enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="content" jdbcType="VARCHAR"/>
         </table>
         <table tableName="category" domainObjectName="Category" enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
