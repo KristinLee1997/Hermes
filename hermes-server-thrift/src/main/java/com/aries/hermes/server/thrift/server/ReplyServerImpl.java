@@ -100,8 +100,13 @@ public class ReplyServerImpl implements ReplyServer.Iface {
             return Collections.emptyList();
         }
 
-
-        return null;
+        try {
+            List<Reply> replies = ReplyRepository.queryAllByTopicId(companyHelper.getDatabaseName(), topicId);
+            return convert2ReplyDTO(replies);
+        } catch (Exception e) {
+            log.error("queryAllByTopicId error:{}", e.getMessage(), e);
+            return Collections.emptyList();
+        }
     }
 
     @Override
@@ -111,8 +116,13 @@ public class ReplyServerImpl implements ReplyServer.Iface {
             return Collections.emptyList();
         }
 
-
-        return null;
+        try {
+            List<Reply> replies = ReplyRepository.batchQueryByTopicId(companyHelper.getDatabaseName(), topicId, page, pageSize);
+            return convert2ReplyDTO(replies);
+        } catch (Exception e) {
+            log.error("batchQueryByTopicId error:{}", e.getMessage(), e);
+            return Collections.emptyList();
+        }
     }
 
     @Override
