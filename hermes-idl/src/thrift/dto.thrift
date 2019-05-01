@@ -15,7 +15,7 @@ struct ThriftResponse{
 //    4000：
 //    4001: 希望调用方重试
     1:required i32 code,
-    2:required string message,
+    2:required string message = "",
 }
 
 enum ResponseCode{
