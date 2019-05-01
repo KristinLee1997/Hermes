@@ -54,62 +54,6 @@ public class TopicVO {
         return insertTime;
     }
 
-    public static final class TopicVOBuilder {
-        private String theme; // required
-        private String content; // required
-        private long gaeaId; // required
-        private boolean anonymousSend; // required
-        private boolean anonymousReply; // required
-        private long categoryId; // required
-
-        private TopicVOBuilder() {
-        }
-
-        public static TopicVOBuilder aTopicVO() {
-            return new TopicVOBuilder();
-        }
-
-        public TopicVOBuilder withTheme(String theme) {
-            this.theme = theme;
-            return this;
-        }
-
-        public TopicVOBuilder withContent(String content) {
-            this.content = content;
-            return this;
-        }
-
-        public TopicVOBuilder withGaeaId(long gaeaId) {
-            this.gaeaId = gaeaId;
-            return this;
-        }
-
-        public TopicVOBuilder withAnonymousSend(boolean anonymousSend) {
-            this.anonymousSend = anonymousSend;
-            return this;
-        }
-
-        public TopicVOBuilder withAnonymousReply(boolean anonymousReply) {
-            this.anonymousReply = anonymousReply;
-            return this;
-        }
-
-        public TopicVOBuilder withCategoryId(long categoryId) {
-            this.categoryId = categoryId;
-            return this;
-        }
-
-        public TopicVO build() {
-            TopicVO topicVO = new TopicVO();
-            topicVO.anonymousReply = this.anonymousReply;
-            topicVO.theme = this.theme;
-            topicVO.anonymousSend = this.anonymousSend;
-            topicVO.categoryId = this.categoryId;
-            topicVO.content = this.content;
-            topicVO.gaeaId = this.gaeaId;
-            return topicVO;
-        }
-    }
 
     public static TopicDTO toDTO(TopicVO topicVO) {
         TopicDTO topicDTO = new TopicDTO();
@@ -143,5 +87,62 @@ public class TopicVO {
         }
 
         return topicDTOList.stream().map(TopicVO::buildFromDTO).collect(Collectors.toList());
+    }
+
+    public static final class TopicVOBuilder {
+        private String theme; // required
+        private String content; // required
+        private long gaeaId; // required
+        private boolean anonymousSend; // required
+        private boolean anonymousReply; // required
+        private long categoryId; // required
+
+        private TopicVOBuilder() {
+        }
+
+        public static TopicVOBuilder aTopicVO() {
+            return new TopicVOBuilder();
+        }
+
+        public TopicVOBuilder theme(String theme) {
+            this.theme = theme;
+            return this;
+        }
+
+        public TopicVOBuilder content(String content) {
+            this.content = content;
+            return this;
+        }
+
+        public TopicVOBuilder gaeaId(long gaeaId) {
+            this.gaeaId = gaeaId;
+            return this;
+        }
+
+        public TopicVOBuilder anonymousSend(boolean anonymousSend) {
+            this.anonymousSend = anonymousSend;
+            return this;
+        }
+
+        public TopicVOBuilder anonymousReply(boolean anonymousReply) {
+            this.anonymousReply = anonymousReply;
+            return this;
+        }
+
+        public TopicVOBuilder categoryId(long categoryId) {
+            this.categoryId = categoryId;
+            return this;
+        }
+
+        public TopicVO build() {
+            TopicVO topicVO = new TopicVO();
+            topicVO.anonymousReply = this.anonymousReply;
+            topicVO.theme = this.theme;
+            topicVO.anonymousSend = this.anonymousSend;
+            topicVO.categoryId = this.categoryId;
+            topicVO.content = this.content;
+            topicVO.gaeaId = this.gaeaId;
+            return topicVO;
+        }
     }
 }
