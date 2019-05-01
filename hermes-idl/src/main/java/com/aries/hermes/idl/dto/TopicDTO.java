@@ -31,8 +31,8 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
   public boolean anonymousSend; // required
   public boolean anonymousReply; // required
   public long categoryId; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String updateTime; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String insertTime; // required
+  public @org.apache.thrift.annotation.Nullable java.lang.String updateTime; // optional
+  public @org.apache.thrift.annotation.Nullable java.lang.String insertTime; // optional
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -125,6 +125,7 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
   private static final int __ANONYMOUSREPLY_ISSET_ID = 3;
   private static final int __CATEGORYID_ISSET_ID = 4;
   private byte __isset_bitfield = 0;
+  private static final _Fields optionals[] = {_Fields.UPDATE_TIME,_Fields.INSERT_TIME};
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
@@ -142,9 +143,9 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
     tmpMap.put(_Fields.CATEGORY_ID, new org.apache.thrift.meta_data.FieldMetaData("categoryId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
-    tmpMap.put(_Fields.UPDATE_TIME, new org.apache.thrift.meta_data.FieldMetaData("updateTime", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.UPDATE_TIME, new org.apache.thrift.meta_data.FieldMetaData("updateTime", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.INSERT_TIME, new org.apache.thrift.meta_data.FieldMetaData("insertTime", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.INSERT_TIME, new org.apache.thrift.meta_data.FieldMetaData("insertTime", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TopicDTO.class, metaDataMap);
@@ -160,9 +161,7 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
     long gaeaId,
     boolean anonymousSend,
     boolean anonymousReply,
-    long categoryId,
-    java.lang.String updateTime,
-    java.lang.String insertTime)
+    long categoryId)
   {
     this();
     this.id = id;
@@ -177,8 +176,6 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
     setAnonymousReplyIsSet(true);
     this.categoryId = categoryId;
     setCategoryIdIsSet(true);
-    this.updateTime = updateTime;
-    this.insertTime = insertTime;
   }
 
   /**
@@ -868,22 +865,26 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
     sb.append("categoryId:");
     sb.append(this.categoryId);
     first = false;
-    if (!first) sb.append(", ");
-    sb.append("updateTime:");
-    if (this.updateTime == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.updateTime);
+    if (isSetUpdateTime()) {
+      if (!first) sb.append(", ");
+      sb.append("updateTime:");
+      if (this.updateTime == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.updateTime);
+      }
+      first = false;
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("insertTime:");
-    if (this.insertTime == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.insertTime);
+    if (isSetInsertTime()) {
+      if (!first) sb.append(", ");
+      sb.append("insertTime:");
+      if (this.insertTime == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.insertTime);
+      }
+      first = false;
     }
-    first = false;
     sb.append(")");
     return sb.toString();
   }
@@ -1042,14 +1043,18 @@ public class TopicDTO implements org.apache.thrift.TBase<TopicDTO, TopicDTO._Fie
       oprot.writeI64(struct.categoryId);
       oprot.writeFieldEnd();
       if (struct.updateTime != null) {
-        oprot.writeFieldBegin(UPDATE_TIME_FIELD_DESC);
-        oprot.writeString(struct.updateTime);
-        oprot.writeFieldEnd();
+        if (struct.isSetUpdateTime()) {
+          oprot.writeFieldBegin(UPDATE_TIME_FIELD_DESC);
+          oprot.writeString(struct.updateTime);
+          oprot.writeFieldEnd();
+        }
       }
       if (struct.insertTime != null) {
-        oprot.writeFieldBegin(INSERT_TIME_FIELD_DESC);
-        oprot.writeString(struct.insertTime);
-        oprot.writeFieldEnd();
+        if (struct.isSetInsertTime()) {
+          oprot.writeFieldBegin(INSERT_TIME_FIELD_DESC);
+          oprot.writeString(struct.insertTime);
+          oprot.writeFieldEnd();
+        }
       }
       oprot.writeFieldStop();
       oprot.writeStructEnd();

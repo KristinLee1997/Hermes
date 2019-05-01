@@ -27,10 +27,10 @@ public class ReplyDTO implements org.apache.thrift.TBase<ReplyDTO, ReplyDTO._Fie
   public long topicId; // required
   public long gaeaId; // required
   public @org.apache.thrift.annotation.Nullable java.lang.String content; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String insertTime; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String updateTime; // required
+  public @org.apache.thrift.annotation.Nullable java.lang.String insertTime; // optional
+  public @org.apache.thrift.annotation.Nullable java.lang.String updateTime; // optional
   public boolean anonymousSend; // required
-  public @org.apache.thrift.annotation.Nullable java.util.List<SubReplyDTO> subReplies; // required
+  public @org.apache.thrift.annotation.Nullable java.util.List<SubReplyDTO> subReplies; // optional
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -119,6 +119,7 @@ public class ReplyDTO implements org.apache.thrift.TBase<ReplyDTO, ReplyDTO._Fie
   private static final int __GAEAID_ISSET_ID = 2;
   private static final int __ANONYMOUSSEND_ISSET_ID = 3;
   private byte __isset_bitfield = 0;
+  private static final _Fields optionals[] = {_Fields.INSERT_TIME,_Fields.UPDATE_TIME,_Fields.SUB_REPLIES};
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
@@ -130,13 +131,13 @@ public class ReplyDTO implements org.apache.thrift.TBase<ReplyDTO, ReplyDTO._Fie
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
     tmpMap.put(_Fields.CONTENT, new org.apache.thrift.meta_data.FieldMetaData("content", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.INSERT_TIME, new org.apache.thrift.meta_data.FieldMetaData("insertTime", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.INSERT_TIME, new org.apache.thrift.meta_data.FieldMetaData("insertTime", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.UPDATE_TIME, new org.apache.thrift.meta_data.FieldMetaData("updateTime", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.UPDATE_TIME, new org.apache.thrift.meta_data.FieldMetaData("updateTime", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.ANONYMOUS_SEND, new org.apache.thrift.meta_data.FieldMetaData("anonymousSend", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
-    tmpMap.put(_Fields.SUB_REPLIES, new org.apache.thrift.meta_data.FieldMetaData("subReplies", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.SUB_REPLIES, new org.apache.thrift.meta_data.FieldMetaData("subReplies", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
             new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, SubReplyDTO.class))));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
@@ -151,10 +152,7 @@ public class ReplyDTO implements org.apache.thrift.TBase<ReplyDTO, ReplyDTO._Fie
     long topicId,
     long gaeaId,
     java.lang.String content,
-    java.lang.String insertTime,
-    java.lang.String updateTime,
-    boolean anonymousSend,
-    java.util.List<SubReplyDTO> subReplies)
+    boolean anonymousSend)
   {
     this();
     this.id = id;
@@ -164,11 +162,8 @@ public class ReplyDTO implements org.apache.thrift.TBase<ReplyDTO, ReplyDTO._Fie
     this.gaeaId = gaeaId;
     setGaeaIdIsSet(true);
     this.content = content;
-    this.insertTime = insertTime;
-    this.updateTime = updateTime;
     this.anonymousSend = anonymousSend;
     setAnonymousSendIsSet(true);
-    this.subReplies = subReplies;
   }
 
   /**
@@ -802,34 +797,40 @@ public class ReplyDTO implements org.apache.thrift.TBase<ReplyDTO, ReplyDTO._Fie
       sb.append(this.content);
     }
     first = false;
-    if (!first) sb.append(", ");
-    sb.append("insertTime:");
-    if (this.insertTime == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.insertTime);
+    if (isSetInsertTime()) {
+      if (!first) sb.append(", ");
+      sb.append("insertTime:");
+      if (this.insertTime == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.insertTime);
+      }
+      first = false;
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("updateTime:");
-    if (this.updateTime == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.updateTime);
+    if (isSetUpdateTime()) {
+      if (!first) sb.append(", ");
+      sb.append("updateTime:");
+      if (this.updateTime == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.updateTime);
+      }
+      first = false;
     }
-    first = false;
     if (!first) sb.append(", ");
     sb.append("anonymousSend:");
     sb.append(this.anonymousSend);
     first = false;
-    if (!first) sb.append(", ");
-    sb.append("subReplies:");
-    if (this.subReplies == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.subReplies);
+    if (isSetSubReplies()) {
+      if (!first) sb.append(", ");
+      sb.append("subReplies:");
+      if (this.subReplies == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.subReplies);
+      }
+      first = false;
     }
-    first = false;
     sb.append(")");
     return sb.toString();
   }
@@ -934,14 +935,14 @@ public class ReplyDTO implements org.apache.thrift.TBase<ReplyDTO, ReplyDTO._Fie
           case 8: // SUB_REPLIES
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
-                org.apache.thrift.protocol.TList _list0 = iprot.readListBegin();
-                struct.subReplies = new java.util.ArrayList<SubReplyDTO>(_list0.size);
-                @org.apache.thrift.annotation.Nullable SubReplyDTO _elem1;
-                for (int _i2 = 0; _i2 < _list0.size; ++_i2)
+                org.apache.thrift.protocol.TList _list8 = iprot.readListBegin();
+                struct.subReplies = new java.util.ArrayList<SubReplyDTO>(_list8.size);
+                @org.apache.thrift.annotation.Nullable SubReplyDTO _elem9;
+                for (int _i10 = 0; _i10 < _list8.size; ++_i10)
                 {
-                  _elem1 = new SubReplyDTO();
-                  _elem1.read(iprot);
-                  struct.subReplies.add(_elem1);
+                  _elem9 = new SubReplyDTO();
+                  _elem9.read(iprot);
+                  struct.subReplies.add(_elem9);
                 }
                 iprot.readListEnd();
               }
@@ -980,29 +981,35 @@ public class ReplyDTO implements org.apache.thrift.TBase<ReplyDTO, ReplyDTO._Fie
         oprot.writeFieldEnd();
       }
       if (struct.insertTime != null) {
-        oprot.writeFieldBegin(INSERT_TIME_FIELD_DESC);
-        oprot.writeString(struct.insertTime);
-        oprot.writeFieldEnd();
+        if (struct.isSetInsertTime()) {
+          oprot.writeFieldBegin(INSERT_TIME_FIELD_DESC);
+          oprot.writeString(struct.insertTime);
+          oprot.writeFieldEnd();
+        }
       }
       if (struct.updateTime != null) {
-        oprot.writeFieldBegin(UPDATE_TIME_FIELD_DESC);
-        oprot.writeString(struct.updateTime);
-        oprot.writeFieldEnd();
+        if (struct.isSetUpdateTime()) {
+          oprot.writeFieldBegin(UPDATE_TIME_FIELD_DESC);
+          oprot.writeString(struct.updateTime);
+          oprot.writeFieldEnd();
+        }
       }
       oprot.writeFieldBegin(ANONYMOUS_SEND_FIELD_DESC);
       oprot.writeBool(struct.anonymousSend);
       oprot.writeFieldEnd();
       if (struct.subReplies != null) {
-        oprot.writeFieldBegin(SUB_REPLIES_FIELD_DESC);
-        {
-          oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.subReplies.size()));
-          for (SubReplyDTO _iter3 : struct.subReplies)
+        if (struct.isSetSubReplies()) {
+          oprot.writeFieldBegin(SUB_REPLIES_FIELD_DESC);
           {
-            _iter3.write(oprot);
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.subReplies.size()));
+            for (SubReplyDTO _iter11 : struct.subReplies)
+            {
+              _iter11.write(oprot);
+            }
+            oprot.writeListEnd();
           }
-          oprot.writeListEnd();
+          oprot.writeFieldEnd();
         }
-        oprot.writeFieldEnd();
       }
       oprot.writeFieldStop();
       oprot.writeStructEnd();
@@ -1071,9 +1078,9 @@ public class ReplyDTO implements org.apache.thrift.TBase<ReplyDTO, ReplyDTO._Fie
       if (struct.isSetSubReplies()) {
         {
           oprot.writeI32(struct.subReplies.size());
-          for (SubReplyDTO _iter4 : struct.subReplies)
+          for (SubReplyDTO _iter12 : struct.subReplies)
           {
-            _iter4.write(oprot);
+            _iter12.write(oprot);
           }
         }
       }
@@ -1113,14 +1120,14 @@ public class ReplyDTO implements org.apache.thrift.TBase<ReplyDTO, ReplyDTO._Fie
       }
       if (incoming.get(7)) {
         {
-          org.apache.thrift.protocol.TList _list5 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-          struct.subReplies = new java.util.ArrayList<SubReplyDTO>(_list5.size);
-          @org.apache.thrift.annotation.Nullable SubReplyDTO _elem6;
-          for (int _i7 = 0; _i7 < _list5.size; ++_i7)
+          org.apache.thrift.protocol.TList _list13 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+          struct.subReplies = new java.util.ArrayList<SubReplyDTO>(_list13.size);
+          @org.apache.thrift.annotation.Nullable SubReplyDTO _elem14;
+          for (int _i15 = 0; _i15 < _list13.size; ++_i15)
           {
-            _elem6 = new SubReplyDTO();
-            _elem6.read(iprot);
-            struct.subReplies.add(_elem6);
+            _elem14 = new SubReplyDTO();
+            _elem14.read(iprot);
+            struct.subReplies.add(_elem14);
           }
         }
         struct.setSubRepliesIsSet(true);

@@ -26,7 +26,7 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
   public long senderGaeaId; // required
   public long receiverGaeaId; // required
   public @org.apache.thrift.annotation.Nullable java.lang.String content; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String insertTime; // required
+  public @org.apache.thrift.annotation.Nullable java.lang.String insertTime; // optional
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -109,6 +109,7 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
   private static final int __SENDERGAEAID_ISSET_ID = 2;
   private static final int __RECEIVERGAEAID_ISSET_ID = 3;
   private byte __isset_bitfield = 0;
+  private static final _Fields optionals[] = {_Fields.INSERT_TIME};
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
@@ -122,7 +123,7 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
     tmpMap.put(_Fields.CONTENT, new org.apache.thrift.meta_data.FieldMetaData("content", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.INSERT_TIME, new org.apache.thrift.meta_data.FieldMetaData("insertTime", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.INSERT_TIME, new org.apache.thrift.meta_data.FieldMetaData("insertTime", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(SubReplyDTO.class, metaDataMap);
@@ -136,8 +137,7 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
     long replyId,
     long senderGaeaId,
     long receiverGaeaId,
-    java.lang.String content,
-    java.lang.String insertTime)
+    java.lang.String content)
   {
     this();
     this.id = id;
@@ -149,7 +149,6 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
     this.receiverGaeaId = receiverGaeaId;
     setReceiverGaeaIdIsSet(true);
     this.content = content;
-    this.insertTime = insertTime;
   }
 
   /**
@@ -637,14 +636,16 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
       sb.append(this.content);
     }
     first = false;
-    if (!first) sb.append(", ");
-    sb.append("insertTime:");
-    if (this.insertTime == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.insertTime);
+    if (isSetInsertTime()) {
+      if (!first) sb.append(", ");
+      sb.append("insertTime:");
+      if (this.insertTime == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.insertTime);
+      }
+      first = false;
     }
-    first = false;
     sb.append(")");
     return sb.toString();
   }
@@ -771,9 +772,11 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
         oprot.writeFieldEnd();
       }
       if (struct.insertTime != null) {
-        oprot.writeFieldBegin(INSERT_TIME_FIELD_DESC);
-        oprot.writeString(struct.insertTime);
-        oprot.writeFieldEnd();
+        if (struct.isSetInsertTime()) {
+          oprot.writeFieldBegin(INSERT_TIME_FIELD_DESC);
+          oprot.writeString(struct.insertTime);
+          oprot.writeFieldEnd();
+        }
       }
       oprot.writeFieldStop();
       oprot.writeStructEnd();
