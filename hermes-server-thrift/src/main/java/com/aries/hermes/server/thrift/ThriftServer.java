@@ -58,7 +58,7 @@ public class ThriftServer {
                 processor.registerProcessor(simpleName, subReplyProcessor);
             }
 
-            // 从配置文件获取端口 6030
+            // 从配置文件获取端口 6022
             PropertiesProxy propertiesProxy = new PropertiesProxy("hermes-service.properties");
             int port = Integer.parseInt(propertiesProxy.readProperty("port"));
 
