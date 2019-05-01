@@ -20,7 +20,7 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
 
   public int code; // required
   public @org.apache.thrift.annotation.Nullable java.lang.String message; // required
-  public @org.apache.thrift.annotation.Nullable java.util.List<TopicDTO> topicDTO; // required
+  public @org.apache.thrift.annotation.Nullable java.util.List<TopicDTO> topicDTO; // optional
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -91,6 +91,7 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
   // isset id assignments
   private static final int __CODE_ISSET_ID = 0;
   private byte __isset_bitfield = 0;
+  private static final _Fields optionals[] = {_Fields.TOPIC_DTO};
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
@@ -98,7 +99,7 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
     tmpMap.put(_Fields.MESSAGE, new org.apache.thrift.meta_data.FieldMetaData("message", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.TOPIC_DTO, new org.apache.thrift.meta_data.FieldMetaData("topicDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.TOPIC_DTO, new org.apache.thrift.meta_data.FieldMetaData("topicDTO", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
             new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, TopicDTO.class))));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
@@ -110,14 +111,12 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
 
   public TopicThriftResponse(
     int code,
-    java.lang.String message,
-    java.util.List<TopicDTO> topicDTO)
+    java.lang.String message)
   {
     this();
     this.code = code;
     setCodeIsSet(true);
     this.message = message;
-    this.topicDTO = topicDTO;
   }
 
   /**
@@ -433,14 +432,16 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
       sb.append(this.message);
     }
     first = false;
-    if (!first) sb.append(", ");
-    sb.append("topicDTO:");
-    if (this.topicDTO == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.topicDTO);
+    if (isSetTopicDTO()) {
+      if (!first) sb.append(", ");
+      sb.append("topicDTO:");
+      if (this.topicDTO == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.topicDTO);
+      }
+      first = false;
     }
-    first = false;
     sb.append(")");
     return sb.toString();
   }
@@ -545,16 +546,18 @@ public class TopicThriftResponse implements org.apache.thrift.TBase<TopicThriftR
         oprot.writeFieldEnd();
       }
       if (struct.topicDTO != null) {
-        oprot.writeFieldBegin(TOPIC_DTO_FIELD_DESC);
-        {
-          oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.topicDTO.size()));
-          for (TopicDTO _iter3 : struct.topicDTO)
+        if (struct.isSetTopicDTO()) {
+          oprot.writeFieldBegin(TOPIC_DTO_FIELD_DESC);
           {
-            _iter3.write(oprot);
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.topicDTO.size()));
+            for (TopicDTO _iter3 : struct.topicDTO)
+            {
+              _iter3.write(oprot);
+            }
+            oprot.writeListEnd();
           }
-          oprot.writeListEnd();
+          oprot.writeFieldEnd();
         }
-        oprot.writeFieldEnd();
       }
       oprot.writeFieldStop();
       oprot.writeStructEnd();

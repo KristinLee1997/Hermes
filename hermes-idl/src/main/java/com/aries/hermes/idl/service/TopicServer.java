@@ -26,6 +26,8 @@ public class TopicServer {
 
     public com.aries.hermes.idl.dto.ThriftResponse updateById(com.aries.hermes.idl.dto.CompanyDTO companyDTO, com.aries.hermes.idl.dto.TopicDTO topicDto) throws org.apache.thrift.TException;
 
+    public long getTopicCount(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long categoryId) throws org.apache.thrift.TException;
+
   }
 
   public interface AsyncIface {
@@ -43,6 +45,8 @@ public class TopicServer {
     public void deleteById(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long id, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException;
 
     public void updateById(com.aries.hermes.idl.dto.CompanyDTO companyDTO, com.aries.hermes.idl.dto.TopicDTO topicDto, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException;
+
+    public void getTopicCount(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long categoryId, org.apache.thrift.async.AsyncMethodCallback<java.lang.Long> resultHandler) throws org.apache.thrift.TException;
 
   }
 
@@ -230,6 +234,30 @@ public class TopicServer {
         return result.success;
       }
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "updateById failed: unknown result");
+    }
+
+    public long getTopicCount(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long categoryId) throws org.apache.thrift.TException
+    {
+      send_getTopicCount(companyDTO, categoryId);
+      return recv_getTopicCount();
+    }
+
+    public void send_getTopicCount(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long categoryId) throws org.apache.thrift.TException
+    {
+      getTopicCount_args args = new getTopicCount_args();
+      args.setCompanyDTO(companyDTO);
+      args.setCategoryId(categoryId);
+      sendBase("getTopicCount", args);
+    }
+
+    public long recv_getTopicCount() throws org.apache.thrift.TException
+    {
+      getTopicCount_result result = new getTopicCount_result();
+      receiveBase(result, "getTopicCount");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getTopicCount failed: unknown result");
     }
 
   }
@@ -489,6 +517,41 @@ public class TopicServer {
       }
     }
 
+    public void getTopicCount(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long categoryId, org.apache.thrift.async.AsyncMethodCallback<java.lang.Long> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      getTopicCount_call method_call = new getTopicCount_call(companyDTO, categoryId, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class getTopicCount_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Long> {
+      private com.aries.hermes.idl.dto.CompanyDTO companyDTO;
+      private long categoryId;
+      public getTopicCount_call(com.aries.hermes.idl.dto.CompanyDTO companyDTO, long categoryId, org.apache.thrift.async.AsyncMethodCallback<java.lang.Long> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.companyDTO = companyDTO;
+        this.categoryId = categoryId;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("getTopicCount", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        getTopicCount_args args = new getTopicCount_args();
+        args.setCompanyDTO(companyDTO);
+        args.setCategoryId(categoryId);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public java.lang.Long getResult() throws org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new java.lang.IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_getTopicCount();
+      }
+    }
+
   }
 
   public static class Processor<I extends Iface> extends org.apache.thrift.TBaseProcessor<I> implements org.apache.thrift.TProcessor {
@@ -509,6 +572,7 @@ public class TopicServer {
       processMap.put("batchQueryTopics", new batchQueryTopics());
       processMap.put("deleteById", new deleteById());
       processMap.put("updateById", new updateById());
+      processMap.put("getTopicCount", new getTopicCount());
       return processMap;
     }
 
@@ -687,6 +751,32 @@ public class TopicServer {
       }
     }
 
+    public static class getTopicCount<I extends Iface> extends org.apache.thrift.ProcessFunction<I, getTopicCount_args> {
+      public getTopicCount() {
+        super("getTopicCount");
+      }
+
+      public getTopicCount_args getEmptyArgsInstance() {
+        return new getTopicCount_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      protected boolean rethrowUnhandledExceptions() {
+        return false;
+      }
+
+      public getTopicCount_result getResult(I iface, getTopicCount_args args) throws org.apache.thrift.TException {
+        getTopicCount_result result = new getTopicCount_result();
+        result.success = iface.getTopicCount(args.companyDTO, args.categoryId);
+        result.setSuccessIsSet(true);
+        return result;
+      }
+    }
+
   }
 
   public static class AsyncProcessor<I extends AsyncIface> extends org.apache.thrift.TBaseAsyncProcessor<I> {
@@ -707,6 +797,7 @@ public class TopicServer {
       processMap.put("batchQueryTopics", new batchQueryTopics());
       processMap.put("deleteById", new deleteById());
       processMap.put("updateById", new updateById());
+      processMap.put("getTopicCount", new getTopicCount());
       return processMap;
     }
 
@@ -1134,6 +1225,68 @@ public class TopicServer {
 
       public void start(I iface, updateById_args args, org.apache.thrift.async.AsyncMethodCallback<com.aries.hermes.idl.dto.ThriftResponse> resultHandler) throws org.apache.thrift.TException {
         iface.updateById(args.companyDTO, args.topicDto,resultHandler);
+      }
+    }
+
+    public static class getTopicCount<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getTopicCount_args, java.lang.Long> {
+      public getTopicCount() {
+        super("getTopicCount");
+      }
+
+      public getTopicCount_args getEmptyArgsInstance() {
+        return new getTopicCount_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Long> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Long>() { 
+          public void onComplete(java.lang.Long o) {
+            getTopicCount_result result = new getTopicCount_result();
+            result.success = o;
+            result.setSuccessIsSet(true);
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (java.lang.Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(java.lang.Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            getTopicCount_result result = new getTopicCount_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (java.lang.Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, getTopicCount_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Long> resultHandler) throws org.apache.thrift.TException {
+        iface.getTopicCount(args.companyDTO, args.categoryId,resultHandler);
       }
     }
 
@@ -6840,6 +6993,842 @@ public class TopicServer {
         if (incoming.get(0)) {
           struct.success = new com.aries.hermes.idl.dto.ThriftResponse();
           struct.success.read(iprot);
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class getTopicCount_args implements org.apache.thrift.TBase<getTopicCount_args, getTopicCount_args._Fields>, java.io.Serializable, Cloneable, Comparable<getTopicCount_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getTopicCount_args");
+
+    private static final org.apache.thrift.protocol.TField COMPANY_DTO_FIELD_DESC = new org.apache.thrift.protocol.TField("companyDTO", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift.protocol.TField CATEGORY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("categoryId", org.apache.thrift.protocol.TType.I64, (short)2);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getTopicCount_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getTopicCount_argsTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO; // required
+    public long categoryId; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      COMPANY_DTO((short)1, "companyDTO"),
+      CATEGORY_ID((short)2, "categoryId");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // COMPANY_DTO
+            return COMPANY_DTO;
+          case 2: // CATEGORY_ID
+            return CATEGORY_ID;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __CATEGORYID_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.COMPANY_DTO, new org.apache.thrift.meta_data.FieldMetaData("companyDTO", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.aries.hermes.idl.dto.CompanyDTO.class)));
+      tmpMap.put(_Fields.CATEGORY_ID, new org.apache.thrift.meta_data.FieldMetaData("categoryId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getTopicCount_args.class, metaDataMap);
+    }
+
+    public getTopicCount_args() {
+    }
+
+    public getTopicCount_args(
+      com.aries.hermes.idl.dto.CompanyDTO companyDTO,
+      long categoryId)
+    {
+      this();
+      this.companyDTO = companyDTO;
+      this.categoryId = categoryId;
+      setCategoryIdIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public getTopicCount_args(getTopicCount_args other) {
+      __isset_bitfield = other.__isset_bitfield;
+      if (other.isSetCompanyDTO()) {
+        this.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO(other.companyDTO);
+      }
+      this.categoryId = other.categoryId;
+    }
+
+    public getTopicCount_args deepCopy() {
+      return new getTopicCount_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.companyDTO = null;
+      setCategoryIdIsSet(false);
+      this.categoryId = 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public com.aries.hermes.idl.dto.CompanyDTO getCompanyDTO() {
+      return this.companyDTO;
+    }
+
+    public getTopicCount_args setCompanyDTO(@org.apache.thrift.annotation.Nullable com.aries.hermes.idl.dto.CompanyDTO companyDTO) {
+      this.companyDTO = companyDTO;
+      return this;
+    }
+
+    public void unsetCompanyDTO() {
+      this.companyDTO = null;
+    }
+
+    /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+    public boolean isSetCompanyDTO() {
+      return this.companyDTO != null;
+    }
+
+    public void setCompanyDTOIsSet(boolean value) {
+      if (!value) {
+        this.companyDTO = null;
+      }
+    }
+
+    public long getCategoryId() {
+      return this.categoryId;
+    }
+
+    public getTopicCount_args setCategoryId(long categoryId) {
+      this.categoryId = categoryId;
+      setCategoryIdIsSet(true);
+      return this;
+    }
+
+    public void unsetCategoryId() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __CATEGORYID_ISSET_ID);
+    }
+
+    /** Returns true if field categoryId is set (has been assigned a value) and false otherwise */
+    public boolean isSetCategoryId() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __CATEGORYID_ISSET_ID);
+    }
+
+    public void setCategoryIdIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __CATEGORYID_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case COMPANY_DTO:
+        if (value == null) {
+          unsetCompanyDTO();
+        } else {
+          setCompanyDTO((com.aries.hermes.idl.dto.CompanyDTO)value);
+        }
+        break;
+
+      case CATEGORY_ID:
+        if (value == null) {
+          unsetCategoryId();
+        } else {
+          setCategoryId((java.lang.Long)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case COMPANY_DTO:
+        return getCompanyDTO();
+
+      case CATEGORY_ID:
+        return getCategoryId();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case COMPANY_DTO:
+        return isSetCompanyDTO();
+      case CATEGORY_ID:
+        return isSetCategoryId();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof getTopicCount_args)
+        return this.equals((getTopicCount_args)that);
+      return false;
+    }
+
+    public boolean equals(getTopicCount_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_companyDTO = true && this.isSetCompanyDTO();
+      boolean that_present_companyDTO = true && that.isSetCompanyDTO();
+      if (this_present_companyDTO || that_present_companyDTO) {
+        if (!(this_present_companyDTO && that_present_companyDTO))
+          return false;
+        if (!this.companyDTO.equals(that.companyDTO))
+          return false;
+      }
+
+      boolean this_present_categoryId = true;
+      boolean that_present_categoryId = true;
+      if (this_present_categoryId || that_present_categoryId) {
+        if (!(this_present_categoryId && that_present_categoryId))
+          return false;
+        if (this.categoryId != that.categoryId)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetCompanyDTO()) ? 131071 : 524287);
+      if (isSetCompanyDTO())
+        hashCode = hashCode * 8191 + companyDTO.hashCode();
+
+      hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(categoryId);
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(getTopicCount_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetCompanyDTO()).compareTo(other.isSetCompanyDTO());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetCompanyDTO()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.companyDTO, other.companyDTO);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetCategoryId()).compareTo(other.isSetCategoryId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetCategoryId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.categoryId, other.categoryId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("getTopicCount_args(");
+      boolean first = true;
+
+      sb.append("companyDTO:");
+      if (this.companyDTO == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.companyDTO);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("categoryId:");
+      sb.append(this.categoryId);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (companyDTO != null) {
+        companyDTO.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class getTopicCount_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public getTopicCount_argsStandardScheme getScheme() {
+        return new getTopicCount_argsStandardScheme();
+      }
+    }
+
+    private static class getTopicCount_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<getTopicCount_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, getTopicCount_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // COMPANY_DTO
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+                struct.companyDTO.read(iprot);
+                struct.setCompanyDTOIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // CATEGORY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+                struct.categoryId = iprot.readI64();
+                struct.setCategoryIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, getTopicCount_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.companyDTO != null) {
+          oprot.writeFieldBegin(COMPANY_DTO_FIELD_DESC);
+          struct.companyDTO.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldBegin(CATEGORY_ID_FIELD_DESC);
+        oprot.writeI64(struct.categoryId);
+        oprot.writeFieldEnd();
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class getTopicCount_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public getTopicCount_argsTupleScheme getScheme() {
+        return new getTopicCount_argsTupleScheme();
+      }
+    }
+
+    private static class getTopicCount_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<getTopicCount_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, getTopicCount_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetCompanyDTO()) {
+          optionals.set(0);
+        }
+        if (struct.isSetCategoryId()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetCompanyDTO()) {
+          struct.companyDTO.write(oprot);
+        }
+        if (struct.isSetCategoryId()) {
+          oprot.writeI64(struct.categoryId);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, getTopicCount_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.companyDTO = new com.aries.hermes.idl.dto.CompanyDTO();
+          struct.companyDTO.read(iprot);
+          struct.setCompanyDTOIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.categoryId = iprot.readI64();
+          struct.setCategoryIdIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class getTopicCount_result implements org.apache.thrift.TBase<getTopicCount_result, getTopicCount_result._Fields>, java.io.Serializable, Cloneable, Comparable<getTopicCount_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getTopicCount_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.I64, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getTopicCount_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getTopicCount_resultTupleSchemeFactory();
+
+    public long success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __SUCCESS_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getTopicCount_result.class, metaDataMap);
+    }
+
+    public getTopicCount_result() {
+    }
+
+    public getTopicCount_result(
+      long success)
+    {
+      this();
+      this.success = success;
+      setSuccessIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public getTopicCount_result(getTopicCount_result other) {
+      __isset_bitfield = other.__isset_bitfield;
+      this.success = other.success;
+    }
+
+    public getTopicCount_result deepCopy() {
+      return new getTopicCount_result(this);
+    }
+
+    @Override
+    public void clear() {
+      setSuccessIsSet(false);
+      this.success = 0;
+    }
+
+    public long getSuccess() {
+      return this.success;
+    }
+
+    public getTopicCount_result setSuccess(long success) {
+      this.success = success;
+      setSuccessIsSet(true);
+      return this;
+    }
+
+    public void unsetSuccess() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((java.lang.Long)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof getTopicCount_result)
+        return this.equals((getTopicCount_result)that);
+      return false;
+    }
+
+    public boolean equals(getTopicCount_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true;
+      boolean that_present_success = true;
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (this.success != that.success)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(success);
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(getTopicCount_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("getTopicCount_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      sb.append(this.success);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class getTopicCount_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public getTopicCount_resultStandardScheme getScheme() {
+        return new getTopicCount_resultStandardScheme();
+      }
+    }
+
+    private static class getTopicCount_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<getTopicCount_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, getTopicCount_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+                struct.success = iprot.readI64();
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, getTopicCount_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.isSetSuccess()) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          oprot.writeI64(struct.success);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class getTopicCount_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public getTopicCount_resultTupleScheme getScheme() {
+        return new getTopicCount_resultTupleScheme();
+      }
+    }
+
+    private static class getTopicCount_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<getTopicCount_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, getTopicCount_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          oprot.writeI64(struct.success);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, getTopicCount_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.success = iprot.readI64();
           struct.setSuccessIsSet(true);
         }
       }

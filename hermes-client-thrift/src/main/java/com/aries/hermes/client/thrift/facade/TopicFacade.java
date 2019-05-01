@@ -8,8 +8,10 @@ import com.aries.hermes.client.thrift.exception.PageSizeLimitException;
 import com.aries.hermes.client.thrift.vo.TopicVO;
 import com.aries.hermes.idl.dto.CompanyDTO;
 import com.aries.hermes.idl.dto.ThriftResponse;
+import com.aries.hermes.idl.dto.TopicDTO;
 import com.aries.hermes.idl.dto.TopicThriftResponse;
 import com.aries.hermes.idl.service.TopicServer;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.thrift.transport.TTransportException;
 
 import java.util.Collections;
@@ -29,20 +31,37 @@ public class TopicFacade {
         return ThriftHelper.call("Hermes", TopicServer.Client.class, client -> client.addTopic(companyDTO, TopicVO.toDTO(topicVO)));
     }
 
-    public static List<TopicVO> batchQueryTopics(int page, int pageNum) throws PageSizeLimitException, CallFailedException {
+    public static List<TopicVO> batchQueryTopics(int page, int pageSize) throws PageSizeLimitException, CallFailedException {
         if (page <= 0) {
             return Collections.emptyList();
-        } else if (pageNum > 100) {
+        } else if (pageSize > 100) {
             throw new PageSizeLimitException("分页查询，最大每页100");
         }
         TopicThriftResponse topicThriftResponse = null;
         try {
-            topicThriftResponse = ThriftHelper.call("Hermes", TopicServer.Client.class, client -> client.batchQueryTopics(companyDTO, page, pageNum));
+            topicThriftResponse = ThriftHelper.call("Hermes", TopicServer.Client.class, client -> client.batchQueryTopics(companyDTO, page, pageSize));
         } catch (TTransportException e) {
             throw new CallFailedException("TTransportException", e);
         } catch (ServiceNotFoundException e) {
             throw new CallFailedException("hermes服务未找到", e);
         }
         return TopicVO.buildFromDTO(topicThriftResponse.topicDTO);
+    }
+
+
+    public static TopicVO queryById(long topicId) throws CallFailedException {
+        TopicDTO topicDTO = new TopicDTO();
+        topicDTO.setId(topicId);
+        try {
+            TopicThriftResponse topicThriftResponse = ThriftHelper.call("Hermes", TopicServer.Client.class, client -> client.selectTopics(companyDTO, topicDTO));
+            if (topicThriftResponse == null || CollectionUtils.isEmpty(topicThriftResponse.getTopicDTO())) {
+                return null;
+            }
+            return TopicVO.buildFromDTO(topicThriftResponse.getTopicDTO().get(0));
+        } catch (TTransportException e) {
+            throw new CallFailedException("TTransportException", e);
+        } catch (ServiceNotFoundException e) {
+            throw new CallFailedException("hermes服务未找到", e);
+        }
     }
 }
