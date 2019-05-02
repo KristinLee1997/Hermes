@@ -128,6 +128,11 @@ public class TopicServerImpl implements TopicServer.Iface {
         }
     }
 
+    @Override
+    public long getTopicCount(CompanyDTO companyDTO, long categoryId) throws TException {
+        return 0;
+    }
+
     private static Topic convert2TopicPO(TopicDTO topicDTO) {
         Topic topic = new Topic();
         topic.setTheme(topicDTO.getTheme());
