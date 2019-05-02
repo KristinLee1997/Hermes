@@ -1,7 +1,7 @@
 package com.aries.hermes.dal.po;
 
-import java.util.Date;
 import javax.persistence.*;
+import java.util.Date;
 
 @Table(name = "`reply`")
 public class Reply {
