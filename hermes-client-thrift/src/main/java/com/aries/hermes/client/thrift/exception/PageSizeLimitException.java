@@ -1,6 +1,6 @@
 package com.aries.hermes.client.thrift.exception;
 
-public class PageSizeLimitException extends Exception{
+public class PageSizeLimitException extends Exception {
     public PageSizeLimitException() {
     }
 

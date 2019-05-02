@@ -169,6 +169,11 @@ public class SubReplyServerImpl implements SubReplyServer.Iface {
         }
     }
 
+    @Override
+    public long getSubReplyCount(CompanyDTO companyDTO, long replyId) throws TException {
+        return 0;
+    }
+
     private static SubReplyDTO convert2SubReplyDTO(SubReply subReply) {
         if (subReply == null) {
             return null;

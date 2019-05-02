@@ -14,6 +14,7 @@ import org.apache.thrift.TException;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.aries.hermes.server.thrift.constants.HermesResponseEnum.*;
@@ -176,18 +177,24 @@ public class ReplyServerImpl implements ReplyServer.Iface {
         }
     }
 
+    @Override
+    public long getReplyCount(CompanyDTO companyDTO, long topicId) throws TException {
+        return 0;
+    }
+
     private static ReplyDTO convert2ReplyDTO(Reply reply) {
         if (reply == null) {
             return null;
         }
         ReplyDTO replyDTO = new ReplyDTO();
         replyDTO.setId(reply.getId());
+
         replyDTO.setTopicId(reply.getTopicId());
-        replyDTO.setGaeaId(reply.getGaeaId());
+        replyDTO.setGaeaId(Optional.ofNullable(reply.getGaeaId()).orElse(0L));
         replyDTO.setContent(reply.getContent());
         replyDTO.setInsertTime(reply.getInsertTime().toString());
         replyDTO.setUpdateTime(reply.getUpdateTime().toString());
-        replyDTO.setAnonymousSend(reply.getAnonymousSend());
+        replyDTO.setAnonymousSend(Optional.ofNullable(reply.getAnonymousSend()).orElse(false));
         return replyDTO;
     }
 

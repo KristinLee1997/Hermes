@@ -8,7 +8,8 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
-import static com.aries.hermes.server.thrift.constants.HermesResponseEnum.*;
+import static com.aries.hermes.server.thrift.constants.HermesResponseEnum.PARAM_NULL;
+import static com.aries.hermes.server.thrift.constants.HermesResponseEnum.PERMISSION_FAIL;
 
 
 @Getter

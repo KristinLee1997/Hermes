@@ -1,6 +1,5 @@
 package com.aries.hermes.dal.util;
 
-import com.aries.hermes.dal.constants.SystemConstants;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 

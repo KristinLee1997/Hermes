@@ -29,7 +29,7 @@ public class ReplyFacade {
         return ThriftHelper.call("Hermes", ReplyServer.Client.class, client -> client.addReply(companyDTO, ReplyVO.toDTO(replyVO)));
     }
 
-    public static List<ReplyVO> batchQueryTopics(long topicId, int page, int pageSize) throws PageSizeLimitException, CallFailedException {
+    public static List<ReplyVO> batchQueryByTopicId(long topicId, int page, int pageSize) throws PageSizeLimitException, CallFailedException {
         if (page <= 0) {
             return Collections.emptyList();
         } else if (pageSize > 100) {

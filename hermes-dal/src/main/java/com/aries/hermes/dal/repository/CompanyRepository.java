@@ -8,7 +8,6 @@ import com.aries.hermes.dal.util.SqlSessionUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.ibatis.session.SqlSession;
 
-import java.util.Collections;
 import java.util.List;
 
 public class CompanyRepository {
