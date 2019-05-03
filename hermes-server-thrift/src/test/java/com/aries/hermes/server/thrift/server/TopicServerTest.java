@@ -1,6 +1,5 @@
 package com.aries.hermes.server.thrift.server;
 
-import com.aries.hermes.dal.po.Topic;
 import com.aries.hermes.idl.dto.CompanyDTO;
 import com.aries.hermes.idl.dto.ThriftResponse;
 import com.aries.hermes.idl.dto.TopicDTO;

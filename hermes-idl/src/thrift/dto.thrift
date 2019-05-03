@@ -15,7 +15,7 @@ struct ThriftResponse{
 //    4000：
 //    4001: 希望调用方重试
     1:required i32 code,
-    2:required string message,
+    2:required string message = "",
 }
 
 enum ResponseCode{
@@ -43,14 +43,39 @@ struct TopicDTO{
     5:bool anonymousSend,
     6:bool anonymousReply,
     7:i64 categoryId,
-    8:string updateTime,
-    9:string insertTime,
+    8:optional string updateTime,
+    9:optional string insertTime,
 }
 
 struct TopicThriftResponse{
     1:i32 code,
     2:string message,
-    3:list<TopicDTO> topicDTO,
+    3:optional list<TopicDTO> topicDTO,
+}
+
+struct CategoryDTO {
+    1: i64 id,
+    2: string name,
+}
+
+struct SubReplyDTO {
+    1: i64 id,
+    2: i64 replyId,
+    3: i64 senderGaeaId,
+    4: i64 receiverGaeaId,
+    5: string content,
+    6: optional string insertTime,
+}
+
+struct ReplyDTO {
+    1: i64 id,
+    2: i64 topicId,
+    3: i64 gaeaId,
+    4: string content,
+    5: optional string insertTime,
+    6: optional string updateTime,
+    7: bool anonymousSend,
+    8: optional list<SubReplyDTO> subReplies,
 }
 
 

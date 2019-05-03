@@ -1,6 +1,6 @@
 package com.aries.hermes.client.thrift.exception;
 
-public class CallFailedException extends Exception{
+public class CallFailedException extends Exception {
     public CallFailedException() {
     }
 
