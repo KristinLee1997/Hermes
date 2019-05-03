@@ -16,7 +16,10 @@ import org.apache.thrift.TException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.aries.hermes.server.thrift.constants.HermesResponseEnum.*;
+import static com.aries.hermes.server.thrift.constants.HermesResponseEnum.NOT_CHANGED;
+import static com.aries.hermes.server.thrift.constants.HermesResponseEnum.SUCCESS;
+import static com.aries.hermes.server.thrift.constants.HermesResponseEnum.SYSTEM_ERROR;
+
 
 @Slf4j
 public class TopicServerImpl implements TopicServer.Iface {
@@ -56,6 +59,31 @@ public class TopicServerImpl implements TopicServer.Iface {
         response.setCode(SUCCESS.of().getCode());
         response.setMessage(SUCCESS.of().getMessage());
         response.setTopicDTO(convert2TopicDTOList(topicList));
+        return response;
+    }
+
+    @Override
+    public TopicThriftResponse selectById(CompanyDTO companyDTO, long id) throws TException {
+        CompanyHelper companyHelper = new CompanyHelper(companyDTO).check();
+        TopicThriftResponse response = new TopicThriftResponse();
+        if (companyHelper.isError()) {
+            response.setCode(companyHelper.getResponse().getCode());
+            response.setMessage(companyHelper.getResponse().getMessage());
+            log.warn("公司{}，无调用权限", companyDTO.getName());
+            return response;
+        }
+        Topic topic = TopicRepository.selectById(companyHelper.getDatabaseName(), id);
+        if (topic == null) {
+            response.setCode(SYSTEM_ERROR.of().getCode());
+            response.setMessage(SYSTEM_ERROR.of().getMessage());
+            return response;
+        }
+        response.setCode(SUCCESS.of().getCode());
+        response.setMessage(SUCCESS.of().getMessage());
+        TopicDTO topicDTO = convert2TopicDTO(topic);
+        List<TopicDTO> list = new ArrayList<>();
+        list.add(topicDTO);
+        response.setTopicDTO(list);
         return response;
     }
 

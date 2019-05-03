@@ -124,4 +124,11 @@ public class TopicServerTest {
         ThriftResponse response = server.updateById(companyDTO, topicDTO);
         System.out.println(response.getMessage());
     }
+
+    @Test
+    public void selectByIdTest() throws TException {
+        TopicThriftResponse response = server.selectById(companyDTO, 2);
+        System.out.println(response.getTopicDTO().get(0).getTheme());
+        System.out.println(response.getMessage());
+    }
 }

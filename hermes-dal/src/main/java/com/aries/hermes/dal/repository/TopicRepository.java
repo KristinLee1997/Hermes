@@ -124,4 +124,18 @@ public class TopicRepository {
             return i > 0;
         }
     }
+
+    /**
+     * 根据主键查询主帖
+     *
+     * @param database
+     * @param id
+     * @return
+     */
+    public static Topic selectById(String database, Long id) {
+        try (SqlSession sqlsession = SqlSessionUtil.openSession(database)) {
+            TopicMapper mapper = sqlsession.getMapper(TopicMapper.class);
+            return mapper.selectByPrimaryKey(id);
+        }
+    }
 }

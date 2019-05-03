@@ -8,7 +8,6 @@ import com.aries.hermes.client.thrift.exception.PageSizeLimitException;
 import com.aries.hermes.client.thrift.vo.TopicVO;
 import com.aries.hermes.idl.dto.CompanyDTO;
 import com.aries.hermes.idl.dto.ThriftResponse;
-import com.aries.hermes.idl.dto.TopicDTO;
 import com.aries.hermes.idl.dto.TopicThriftResponse;
 import com.aries.hermes.idl.service.TopicServer;
 import org.apache.commons.collections4.CollectionUtils;
@@ -50,10 +49,11 @@ public class TopicFacade {
 
 
     public static TopicVO queryById(long topicId) throws CallFailedException {
-        TopicDTO topicDTO = new TopicDTO();
-        topicDTO.setId(topicId);
+        if (topicId < 0) {
+            return null;
+        }
         try {
-            TopicThriftResponse topicThriftResponse = ThriftHelper.call("Hermes", TopicServer.Client.class, client -> client.selectTopics(companyDTO, topicDTO));
+            TopicThriftResponse topicThriftResponse = ThriftHelper.call("Hermes", TopicServer.Client.class, client -> client.selectById(companyDTO, topicId));
             if (topicThriftResponse == null || CollectionUtils.isEmpty(topicThriftResponse.getTopicDTO())) {
                 return null;
             }
