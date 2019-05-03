@@ -3,7 +3,6 @@ package com.aries.hermes.server.thrift.constants;
 
 import com.aries.hermes.idl.dto.ResponseCode;
 import com.aries.hermes.idl.dto.ThriftResponse;
-import lombok.Data;
 
 public enum HermesResponseEnum {
     SUCCESS(ResponseCode.SUCCESS.getValue(), "成功生效"),
@@ -26,9 +25,6 @@ public enum HermesResponseEnum {
     }
 
     public ThriftResponse of() {
-        return new ThriftResponse() {{
-            setCode(code);
-            setMessage(message);
-        }};
+        return new ThriftResponse(code, message);
     }
 }
