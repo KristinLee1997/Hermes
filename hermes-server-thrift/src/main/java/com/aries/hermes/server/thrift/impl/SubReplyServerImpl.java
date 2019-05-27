@@ -1,4 +1,4 @@
-package com.aries.hermes.server.thrift.server;
+package com.aries.hermes.server.thrift.impl;
 
 import com.aries.hermes.dal.po.SubReply;
 import com.aries.hermes.dal.repository.SubReplyRepository;

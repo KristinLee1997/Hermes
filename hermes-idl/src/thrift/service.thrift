@@ -5,12 +5,12 @@ service TopicServer{
     string ping();
     dto.ThriftResponse addTopic(1:dto.CompanyDTO companyDTO, 2:dto.TopicDTO topicDto);
     dto.TopicThriftResponse selectTopics(1:dto.CompanyDTO companyDTO, 2:dto.TopicDTO topicDto);
-    dto.TopicThriftResponse selectById(1:dto.CompanyDTO companyDTO,2:i64 id);
+    dto.TopicThriftResponse selectById(1:dto.CompanyDTO companyDTO, 2:i64 id);
     dto.TopicThriftResponse selectAllTopics(1:dto.CompanyDTO companyDTO);
     dto.TopicThriftResponse batchQueryTopics(1:dto.CompanyDTO companyDTO, 2:i32 page, 3:i32 pagesize);
     dto.ThriftResponse deleteById(1:dto.CompanyDTO companyDTO, 2:i64 id);
-    dto.ThriftResponse updateById(1:dto.CompanyDTO companyDTO,2:dto.TopicDTO topicDto);
-    i64 getTopicCount(1:dto.CompanyDTO companyDTO,2:i64 categoryId);
+    dto.ThriftResponse updateById(1:dto.CompanyDTO companyDTO, 2:i64 id, 3:dto.TopicDTO topicDto);
+    i64 getTopicCount(1:dto.CompanyDTO companyDTO, 2:i64 categoryId);
 }
 
 service ReplyServer{

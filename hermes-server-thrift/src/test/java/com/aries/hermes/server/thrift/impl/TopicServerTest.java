@@ -1,4 +1,4 @@
-package com.aries.hermes.server.thrift.server;
+package com.aries.hermes.server.thrift.impl;
 
 import com.aries.hermes.idl.dto.CompanyDTO;
 import com.aries.hermes.idl.dto.ThriftResponse;
@@ -16,10 +16,12 @@ import java.util.Collection;
 public class TopicServerTest {
     private CompanyDTO companyDTO;
     private TopicDTO topicDTO;
+    private long id;
     private TopicServerImpl server = new TopicServerImpl();
 
-    public TopicServerTest(CompanyDTO companyDTO, TopicDTO topicDTO) {
+    public TopicServerTest(CompanyDTO companyDTO, long id, TopicDTO topicDTO) {
         this.companyDTO = companyDTO;
+        this.id = id;
         this.topicDTO = topicDTO;
     }
 
@@ -31,13 +33,13 @@ public class TopicServerTest {
                             setName("aries_edu");
                             setPassword("123123");
                         }},
+                        1L,
                         new TopicDTO() {{
                             setTheme("怎样学习Java");
                             setContent("多打代码");
                             setAnonymousReply(true);
                             setAnonymousSend(true);
                             setGaeaId(115203L);
-                            setCategoryId(1L);
                         }}
                 },
                 {
@@ -45,13 +47,13 @@ public class TopicServerTest {
                             setName("aries_edu");
                             setPassword("123123");
                         }},
+                        1L,
                         new TopicDTO() {{
                             setTheme("怎样学习Python");
                             setContent("多打代码");
                             setAnonymousReply(true);
                             setAnonymousSend(true);
                             setGaeaId(115203L);
-                            setCategoryId(1L);
                         }}
                 },
                 {
@@ -59,13 +61,13 @@ public class TopicServerTest {
                             setName("aries_edu");
                             setPassword("123123");
                         }},
+                        1L,
                         new TopicDTO() {{
                             setTheme("怎样学习C");
                             setContent("多打代码");
                             setAnonymousReply(true);
                             setAnonymousSend(true);
                             setGaeaId(115203L);
-                            setCategoryId(1L);
                         }}
                 },
                 {
@@ -73,13 +75,13 @@ public class TopicServerTest {
                             setName("aries_edu");
                             setPassword("123123");
                         }},
+                        1L,
                         new TopicDTO() {{
                             setTheme("怎样学习C++");
                             setContent("多打代码");
                             setAnonymousReply(true);
                             setAnonymousSend(true);
                             setGaeaId(115203L);
-                            setCategoryId(1L);
                         }}
                 }
         });
@@ -121,7 +123,7 @@ public class TopicServerTest {
 
     @Test
     public void updateByIdTest() throws TException {
-        ThriftResponse response = server.updateById(companyDTO, topicDTO);
+        ThriftResponse response = server.updateById(companyDTO, id, topicDTO);
         System.out.println(response.getMessage());
     }
 

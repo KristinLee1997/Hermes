@@ -1,4 +1,4 @@
-package com.aries.hermes.server.thrift.server;
+package com.aries.hermes.server.thrift.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.aries.hermes.dal.po.Category;

@@ -1,18 +1,14 @@
 package com.aries.hermes.client.thrift;
 
+import com.alibaba.fastjson.JSON;
+import com.aries.hermes.client.thrift.exception.CallFailedException;
+import com.aries.hermes.client.thrift.facade.TopicFacade;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
 
-/**
- * Unit test for simple App.
- */
 public class AppTest {
-    /**
-     * Rigorous Test :-)
-     */
     @Test
-    public void shouldAnswerWithTrue() {
-        assertTrue(true);
+    public void addTopic() throws CallFailedException {
+        System.out.println(JSON.toJSONString(TopicFacade.queryById(1)));
     }
 }

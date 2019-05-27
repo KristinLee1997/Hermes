@@ -47,6 +47,13 @@ public class TopicFacade {
         return TopicVO.buildFromDTO(topicThriftResponse.topicDTO);
     }
 
+    /**
+     * 将topicVO对象中，已被设置的变量作为条件，进行查询。(除了id。如果知道id，请根据queryById()方法进行查找)
+     */
+    public static TopicThriftResponse selectBySelective(TopicVO topicVO) throws ServiceNotFoundException, TTransportException {
+        return ThriftHelper.call("Hermes", TopicServer.Client.class, client -> client.selectTopics(companyDTO, TopicVO.toDTO(topicVO)));
+    }
+
 
     public static TopicVO queryById(long topicId) throws CallFailedException {
         if (topicId < 0) {
@@ -63,5 +70,20 @@ public class TopicFacade {
         } catch (ServiceNotFoundException e) {
             throw new CallFailedException("hermes服务未找到", e);
         }
+    }
+
+    public static TopicThriftResponse selectAllTopics() throws ServiceNotFoundException, TTransportException {
+        return ThriftHelper.call("Hermes", TopicServer.Client.class, client -> client.selectAllTopics(companyDTO));
+    }
+
+    public static ThriftResponse deleteById(long id) throws ServiceNotFoundException, TTransportException {
+        return ThriftHelper.call("Hermes", TopicServer.Client.class, client -> client.deleteById(companyDTO, id));
+    }
+//    public static ThriftResponse updateById(long id) throws ServiceNotFoundException, TTransportException {
+//        return ThriftHelper.call("Hermes", TopicServer.Client.class, client -> client.updateById(companyDTO, id));
+//    }
+
+    public static Long getTopicCount(long categoryId) throws ServiceNotFoundException, TTransportException {
+        return ThriftHelper.call("Hermes", TopicServer.Client.class, client -> client.getTopicCount(companyDTO, categoryId));
     }
 }

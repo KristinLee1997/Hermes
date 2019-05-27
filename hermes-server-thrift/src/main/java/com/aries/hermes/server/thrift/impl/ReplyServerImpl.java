@@ -1,4 +1,4 @@
-package com.aries.hermes.server.thrift.server;
+package com.aries.hermes.server.thrift.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.aries.hermes.dal.po.Reply;
@@ -179,7 +179,12 @@ public class ReplyServerImpl implements ReplyServer.Iface {
 
     @Override
     public long getReplyCount(CompanyDTO companyDTO, long topicId) throws TException {
-        return 0;
+        CompanyHelper companyHelper = new CompanyHelper(companyDTO).check();
+        if (companyHelper.isError()) {
+            log.warn("batchDeleteByTopicId 没有权限,companyDTO:{}, topicId:{}", JSON.toJSONString(companyDTO), topicId);
+            throw new TException("解析公司错误:" + JSON.toJSONString(companyDTO));
+        }
+        return ReplyRepository.getReplyCount(companyHelper.getDatabaseName(), topicId);
     }
 
     private static ReplyDTO convert2ReplyDTO(Reply reply) {
