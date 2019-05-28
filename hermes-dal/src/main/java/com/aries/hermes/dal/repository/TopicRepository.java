@@ -139,4 +139,13 @@ public class TopicRepository {
             return mapper.selectByPrimaryKey(id);
         }
     }
+
+    public static int getTopicCount(String database, long categoryId) {
+        try (SqlSession sqlsession = SqlSessionUtil.openSession(database)) {
+            TopicMapper mapper = sqlsession.getMapper(TopicMapper.class);
+            Example example = new Example(Topic.class);
+            example.createCriteria().andEqualTo("categoryId", categoryId);
+            return mapper.selectCountByExample(example);
+        }
+    }
 }

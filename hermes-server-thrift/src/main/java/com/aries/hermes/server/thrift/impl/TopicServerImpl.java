@@ -156,7 +156,13 @@ public class TopicServerImpl implements TopicServer.Iface {
 
     @Override
     public long getTopicCount(CompanyDTO companyDTO, long categoryId) throws TException {
-        return 0;
+        CompanyHelper companyHelper = new CompanyHelper(companyDTO).check();
+        if (companyHelper.isError()) {
+            log.warn("batchDeleteByTopicId 没有权限,companyDTO:{}, categoryId:{}", JSON.toJSONString(companyDTO), categoryId);
+            throw new TException("解析公司错误:" + JSON.toJSONString(companyDTO));
+        }
+
+        return TopicRepository.getTopicCount(companyHelper.getDatabaseName(), categoryId);
     }
 
     private static Topic convert2TopicPO(TopicDTO topicDTO) {
