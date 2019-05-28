@@ -31,7 +31,9 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
     public @org.apache.thrift.annotation.Nullable
     java.lang.String insertTime; // optional
 
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    /**
+     * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+     */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
         ID((short) 1, "id"),
         REPLY_ID((short) 2, "replyId"),
@@ -203,7 +205,9 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
         __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __ID_ISSET_ID);
     }
 
-    /** Returns true if field id is set (has been assigned a value) and false otherwise */
+    /**
+     * Returns true if field id is set (has been assigned a value) and false otherwise
+     */
     public boolean isSetId() {
         return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __ID_ISSET_ID);
     }
@@ -226,7 +230,9 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
         __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __REPLYID_ISSET_ID);
     }
 
-    /** Returns true if field replyId is set (has been assigned a value) and false otherwise */
+    /**
+     * Returns true if field replyId is set (has been assigned a value) and false otherwise
+     */
     public boolean isSetReplyId() {
         return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __REPLYID_ISSET_ID);
     }
@@ -249,7 +255,9 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
         __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SENDERGAEAID_ISSET_ID);
     }
 
-    /** Returns true if field senderGaeaId is set (has been assigned a value) and false otherwise */
+    /**
+     * Returns true if field senderGaeaId is set (has been assigned a value) and false otherwise
+     */
     public boolean isSetSenderGaeaId() {
         return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SENDERGAEAID_ISSET_ID);
     }
@@ -272,7 +280,9 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
         __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __RECEIVERGAEAID_ISSET_ID);
     }
 
-    /** Returns true if field receiverGaeaId is set (has been assigned a value) and false otherwise */
+    /**
+     * Returns true if field receiverGaeaId is set (has been assigned a value) and false otherwise
+     */
     public boolean isSetReceiverGaeaId() {
         return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __RECEIVERGAEAID_ISSET_ID);
     }
@@ -295,7 +305,9 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
         this.content = null;
     }
 
-    /** Returns true if field content is set (has been assigned a value) and false otherwise */
+    /**
+     * Returns true if field content is set (has been assigned a value) and false otherwise
+     */
     public boolean isSetContent() {
         return this.content != null;
     }
@@ -320,7 +332,9 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
         this.insertTime = null;
     }
 
-    /** Returns true if field insertTime is set (has been assigned a value) and false otherwise */
+    /**
+     * Returns true if field insertTime is set (has been assigned a value) and false otherwise
+     */
     public boolean isSetInsertTime() {
         return this.insertTime != null;
     }
@@ -409,7 +423,9 @@ public class SubReplyDTO implements org.apache.thrift.TBase<SubReplyDTO, SubRepl
         throw new java.lang.IllegalStateException();
     }
 
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    /**
+     * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+     */
     public boolean isSet(_Fields field) {
         if (field == null) {
             throw new java.lang.IllegalArgumentException();

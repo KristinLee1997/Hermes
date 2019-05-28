@@ -79,6 +79,7 @@ public class TopicFacade {
     public static ThriftResponse deleteById(long id) throws ServiceNotFoundException, TTransportException {
         return ThriftHelper.call("Hermes", TopicServer.Client.class, client -> client.deleteById(companyDTO, id));
     }
+
 //    public static ThriftResponse updateById(long id) throws ServiceNotFoundException, TTransportException {
 //        return ThriftHelper.call("Hermes", TopicServer.Client.class, client -> client.updateById(companyDTO, id));
 //    }

@@ -13,6 +13,7 @@ import com.aries.hermes.server.thrift.util.CompanyHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.thrift.TException;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -184,8 +185,10 @@ public class TopicServerImpl implements TopicServer.Iface {
         topicDTO.setGaeaId(topic.getGaeaId());
         topicDTO.setAnonymousSend(topic.getAnonymousSend());
         topicDTO.setAnonymousReply(topic.getAnonymousReply());
-        topicDTO.setUpdateTime(String.valueOf(topic.getUpdateTime()));
-        topicDTO.setInsertTime(String.valueOf(topic.getInsertTime()));
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        topicDTO.setUpdateTime(formatter.format(topic.getUpdateTime()));
+        topicDTO.setInsertTime(formatter.format(topic.getInsertTime()));
         return topicDTO;
     }
 

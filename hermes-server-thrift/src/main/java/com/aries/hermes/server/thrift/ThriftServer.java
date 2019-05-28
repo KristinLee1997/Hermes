@@ -18,6 +18,7 @@ import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TServerTransport;
 
+import static com.aries.hermes.core.constant.AppConst.APP_NAME;
 import static com.aries.hermes.core.constant.AppConst.PORT;
 
 @Slf4j
@@ -78,8 +79,8 @@ public class ThriftServer {
             PropertiesProxy heraProperties = new PropertiesProxy("/opt/config/local.properties");
             String apphost = heraProperties.readProperty("host");
 
-            DiscoverClient.registe(new ServiceInfo("Hermes", apphost, PORT));
-            log.info("注册服务, appname:{}, host:{}, port:{}", "Hermes", apphost, PORT);
+            DiscoverClient.registe(new ServiceInfo(APP_NAME, apphost, PORT));
+            log.info("注册服务, appname:{}, host:{}, port:{}", APP_NAME, apphost, PORT);
         } catch (Exception x) {
             log.error("创建服务失败,error:{}", x.getMessage(), x);
         }

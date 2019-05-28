@@ -1001,7 +1001,9 @@ public class CategoryServer {
         private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new ping_argsTupleSchemeFactory();
 
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             ;
 
@@ -1097,7 +1099,9 @@ public class CategoryServer {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();
@@ -1260,7 +1264,9 @@ public class CategoryServer {
         public @org.apache.thrift.annotation.Nullable
         java.lang.String success; // required
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             SUCCESS((short) 0, "success");
 
@@ -1373,7 +1379,9 @@ public class CategoryServer {
             this.success = null;
         }
 
-        /** Returns true if field success is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field success is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetSuccess() {
             return this.success != null;
         }
@@ -1407,7 +1415,9 @@ public class CategoryServer {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();
@@ -1631,7 +1641,9 @@ public class CategoryServer {
         public @org.apache.thrift.annotation.Nullable
         java.lang.String categoryName; // required
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             COMPANY_DTO((short) 1, "companyDTO"),
             CATEGORY_NAME((short) 2, "categoryName");
@@ -1755,7 +1767,9 @@ public class CategoryServer {
             this.companyDTO = null;
         }
 
-        /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field companyDTO is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetCompanyDTO() {
             return this.companyDTO != null;
         }
@@ -1780,7 +1794,9 @@ public class CategoryServer {
             this.categoryName = null;
         }
 
-        /** Returns true if field categoryName is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field categoryName is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetCategoryName() {
             return this.categoryName != null;
         }
@@ -1825,7 +1841,9 @@ public class CategoryServer {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();
@@ -2107,7 +2125,9 @@ public class CategoryServer {
         public @org.apache.thrift.annotation.Nullable
         com.aries.hermes.idl.dto.ThriftResponse success; // required
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             SUCCESS((short) 0, "success");
 
@@ -2220,7 +2240,9 @@ public class CategoryServer {
             this.success = null;
         }
 
-        /** Returns true if field success is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field success is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetSuccess() {
             return this.success != null;
         }
@@ -2254,7 +2276,9 @@ public class CategoryServer {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();
@@ -2482,7 +2506,9 @@ public class CategoryServer {
         com.aries.hermes.idl.dto.CompanyDTO companyDTO; // required
         public long id; // required
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             COMPANY_DTO((short) 1, "companyDTO"),
             ID((short) 2, "id");
@@ -2609,7 +2635,9 @@ public class CategoryServer {
             this.companyDTO = null;
         }
 
-        /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field companyDTO is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetCompanyDTO() {
             return this.companyDTO != null;
         }
@@ -2634,7 +2662,9 @@ public class CategoryServer {
             __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __ID_ISSET_ID);
         }
 
-        /** Returns true if field id is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field id is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetId() {
             return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __ID_ISSET_ID);
         }
@@ -2677,7 +2707,9 @@ public class CategoryServer {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();
@@ -2953,7 +2985,9 @@ public class CategoryServer {
         public @org.apache.thrift.annotation.Nullable
         com.aries.hermes.idl.dto.CategoryDTO success; // required
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             SUCCESS((short) 0, "success");
 
@@ -3066,7 +3100,9 @@ public class CategoryServer {
             this.success = null;
         }
 
-        /** Returns true if field success is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field success is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetSuccess() {
             return this.success != null;
         }
@@ -3100,7 +3136,9 @@ public class CategoryServer {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();
@@ -3326,7 +3364,9 @@ public class CategoryServer {
         public @org.apache.thrift.annotation.Nullable
         com.aries.hermes.idl.dto.CompanyDTO companyDTO; // required
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             COMPANY_DTO((short) 1, "companyDTO");
 
@@ -3439,7 +3479,9 @@ public class CategoryServer {
             this.companyDTO = null;
         }
 
-        /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field companyDTO is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetCompanyDTO() {
             return this.companyDTO != null;
         }
@@ -3473,7 +3515,9 @@ public class CategoryServer {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();
@@ -3699,7 +3743,9 @@ public class CategoryServer {
         public @org.apache.thrift.annotation.Nullable
         java.util.List<com.aries.hermes.idl.dto.CategoryDTO> success; // required
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             SUCCESS((short) 0, "success");
 
@@ -3833,7 +3879,9 @@ public class CategoryServer {
             this.success = null;
         }
 
-        /** Returns true if field success is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field success is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetSuccess() {
             return this.success != null;
         }
@@ -3867,7 +3915,9 @@ public class CategoryServer {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();
@@ -4122,7 +4172,9 @@ public class CategoryServer {
         public int page; // required
         public int pageSize; // required
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             COMPANY_DTO((short) 1, "companyDTO"),
             PAGE((short) 2, "page"),
@@ -4261,7 +4313,9 @@ public class CategoryServer {
             this.companyDTO = null;
         }
 
-        /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field companyDTO is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetCompanyDTO() {
             return this.companyDTO != null;
         }
@@ -4286,7 +4340,9 @@ public class CategoryServer {
             __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __PAGE_ISSET_ID);
         }
 
-        /** Returns true if field page is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field page is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetPage() {
             return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __PAGE_ISSET_ID);
         }
@@ -4309,7 +4365,9 @@ public class CategoryServer {
             __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __PAGESIZE_ISSET_ID);
         }
 
-        /** Returns true if field pageSize is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field pageSize is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetPageSize() {
             return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __PAGESIZE_ISSET_ID);
         }
@@ -4363,7 +4421,9 @@ public class CategoryServer {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();
@@ -4687,7 +4747,9 @@ public class CategoryServer {
         public @org.apache.thrift.annotation.Nullable
         java.util.List<com.aries.hermes.idl.dto.CategoryDTO> success; // required
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             SUCCESS((short) 0, "success");
 
@@ -4821,7 +4883,9 @@ public class CategoryServer {
             this.success = null;
         }
 
-        /** Returns true if field success is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field success is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetSuccess() {
             return this.success != null;
         }
@@ -4855,7 +4919,9 @@ public class CategoryServer {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();
@@ -5111,7 +5177,9 @@ public class CategoryServer {
         public @org.apache.thrift.annotation.Nullable
         java.lang.String categoryName; // required
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             COMPANY_DTO((short) 1, "companyDTO"),
             ID((short) 2, "id"),
@@ -5249,7 +5317,9 @@ public class CategoryServer {
             this.companyDTO = null;
         }
 
-        /** Returns true if field companyDTO is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field companyDTO is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetCompanyDTO() {
             return this.companyDTO != null;
         }
@@ -5274,7 +5344,9 @@ public class CategoryServer {
             __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __ID_ISSET_ID);
         }
 
-        /** Returns true if field id is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field id is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetId() {
             return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __ID_ISSET_ID);
         }
@@ -5297,7 +5369,9 @@ public class CategoryServer {
             this.categoryName = null;
         }
 
-        /** Returns true if field categoryName is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field categoryName is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetCategoryName() {
             return this.categoryName != null;
         }
@@ -5353,7 +5427,9 @@ public class CategoryServer {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();
@@ -5685,7 +5761,9 @@ public class CategoryServer {
         public @org.apache.thrift.annotation.Nullable
         com.aries.hermes.idl.dto.ThriftResponse success; // required
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             SUCCESS((short) 0, "success");
 
@@ -5798,7 +5876,9 @@ public class CategoryServer {
             this.success = null;
         }
 
-        /** Returns true if field success is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field success is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetSuccess() {
             return this.success != null;
         }
@@ -5832,7 +5912,9 @@ public class CategoryServer {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();

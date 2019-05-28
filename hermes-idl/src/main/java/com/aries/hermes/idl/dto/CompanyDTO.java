@@ -26,7 +26,9 @@ public class CompanyDTO implements org.apache.thrift.TBase<CompanyDTO, CompanyDT
     public @org.apache.thrift.annotation.Nullable
     java.lang.String keyword; // required
 
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    /**
+     * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+     */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
         NAME((short) 1, "name"),
         PASSWORD((short) 2, "password"),
@@ -160,7 +162,9 @@ public class CompanyDTO implements org.apache.thrift.TBase<CompanyDTO, CompanyDT
         this.name = null;
     }
 
-    /** Returns true if field name is set (has been assigned a value) and false otherwise */
+    /**
+     * Returns true if field name is set (has been assigned a value) and false otherwise
+     */
     public boolean isSetName() {
         return this.name != null;
     }
@@ -185,7 +189,9 @@ public class CompanyDTO implements org.apache.thrift.TBase<CompanyDTO, CompanyDT
         this.password = null;
     }
 
-    /** Returns true if field password is set (has been assigned a value) and false otherwise */
+    /**
+     * Returns true if field password is set (has been assigned a value) and false otherwise
+     */
     public boolean isSetPassword() {
         return this.password != null;
     }
@@ -210,7 +216,9 @@ public class CompanyDTO implements org.apache.thrift.TBase<CompanyDTO, CompanyDT
         this.keyword = null;
     }
 
-    /** Returns true if field keyword is set (has been assigned a value) and false otherwise */
+    /**
+     * Returns true if field keyword is set (has been assigned a value) and false otherwise
+     */
     public boolean isSetKeyword() {
         return this.keyword != null;
     }
@@ -266,7 +274,9 @@ public class CompanyDTO implements org.apache.thrift.TBase<CompanyDTO, CompanyDT
         throw new java.lang.IllegalStateException();
     }
 
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    /**
+     * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+     */
     public boolean isSet(_Fields field) {
         if (field == null) {
             throw new java.lang.IllegalArgumentException();

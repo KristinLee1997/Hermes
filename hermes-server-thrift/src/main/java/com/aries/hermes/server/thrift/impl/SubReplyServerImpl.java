@@ -1,5 +1,6 @@
 package com.aries.hermes.server.thrift.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.aries.hermes.dal.po.SubReply;
 import com.aries.hermes.dal.repository.SubReplyRepository;
 import com.aries.hermes.idl.dto.CompanyDTO;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.thrift.TException;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -171,7 +173,13 @@ public class SubReplyServerImpl implements SubReplyServer.Iface {
 
     @Override
     public long getSubReplyCount(CompanyDTO companyDTO, long replyId) throws TException {
-        return 0;
+        CompanyHelper companyHelper = new CompanyHelper(companyDTO).check();
+        if (companyHelper.isError()) {
+            log.warn("batchDeleteByTopicId 没有权限,companyDTO:{}, replyId:{}", JSON.toJSONString(companyDTO), replyId);
+            throw new TException("解析公司错误:" + JSON.toJSONString(companyDTO));
+        }
+
+        return SubReplyRepository.getSubReplyCount(companyHelper.getDatabaseName(), replyId);
     }
 
     private static SubReplyDTO convert2SubReplyDTO(SubReply subReply) {
@@ -184,7 +192,8 @@ public class SubReplyServerImpl implements SubReplyServer.Iface {
         subReplyDTO.setSenderGaeaId(subReply.getSenderGaeaId());
         subReplyDTO.setReceiverGaeaId(subReply.getReceiverGaeaId());
         subReplyDTO.setContent(subReply.getContent());
-        subReplyDTO.setInsertTime(subReply.getInsertTime().toString());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        subReplyDTO.setInsertTime(formatter.format(subReply.getInsertTime()));
         return subReplyDTO;
     }
 
