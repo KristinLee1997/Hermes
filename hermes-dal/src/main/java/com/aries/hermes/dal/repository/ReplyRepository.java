@@ -125,4 +125,14 @@ public class ReplyRepository {
             return effect > 0;
         }
     }
+
+    public static long getReplyCount(String database, long topicId) {
+        try (SqlSession session = SqlSessionUtil.openSession(database)) {
+            ReplyMapper replyMapper = session.getMapper(ReplyMapper.class);
+
+            Reply reply = new Reply();
+            reply.setTopicId(topicId);
+            return replyMapper.selectCount(reply);
+        }
+    }
 }

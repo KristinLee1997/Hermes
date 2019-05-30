@@ -1,5 +1,12 @@
 package com.aries.hermes.client.thrift.vo;
 
+import com.aries.hermes.idl.dto.SubReplyDTO;
+import org.apache.commons.collections4.CollectionUtils;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class SubReplyVO {
     private long id;
     private long replyId;
@@ -74,5 +81,32 @@ public class SubReplyVO {
             subReplyVO.content = this.content;
             return subReplyVO;
         }
+    }
+
+    public static SubReplyDTO toDTO(SubReplyVO subReplyVO) {
+        SubReplyDTO subReplyDTO = new SubReplyDTO();
+        subReplyDTO.replyId = subReplyVO.replyId;
+        subReplyDTO.senderGaeaId = subReplyVO.senderGaeaId;
+        subReplyDTO.receiverGaeaId = subReplyVO.receiverGaeaId;
+        subReplyDTO.content = subReplyVO.content;
+        return subReplyDTO;
+    }
+
+    public static SubReplyVO buildFromDTO(SubReplyDTO subReplyDTO) {
+        SubReplyVO subReplyVO = new SubReplyVO();
+        subReplyVO.id = subReplyDTO.id;
+        subReplyVO.replyId = subReplyDTO.replyId;
+        subReplyVO.senderGaeaId = subReplyDTO.senderGaeaId;
+        subReplyVO.receiverGaeaId = subReplyDTO.receiverGaeaId;
+        subReplyVO.content = subReplyDTO.content;
+        subReplyVO.insertTime = subReplyDTO.insertTime;
+        return subReplyVO;
+    }
+
+    public static List<SubReplyVO> buildFromDTO(List<SubReplyDTO> subReplyDTOList) {
+        if (CollectionUtils.isEmpty(subReplyDTOList)) {
+            return Collections.emptyList();
+        }
+        return subReplyDTOList.stream().map(SubReplyVO::buildFromDTO).collect(Collectors.toList());
     }
 }

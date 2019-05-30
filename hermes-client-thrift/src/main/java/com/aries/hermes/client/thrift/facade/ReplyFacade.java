@@ -29,6 +29,22 @@ public class ReplyFacade {
         return ThriftHelper.call("Hermes", ReplyServer.Client.class, client -> client.addReply(companyDTO, ReplyVO.toDTO(replyVO)));
     }
 
+    public static ReplyDTO queryFirst(long topicId) throws ServiceNotFoundException, TTransportException {
+        return ThriftHelper.call("Hermes", ReplyServer.Client.class, client -> client.queryFirst(companyDTO, topicId));
+    }
+
+    public static ReplyDTO queryById(long replyId) throws ServiceNotFoundException, TTransportException {
+        return ThriftHelper.call("Hermes", ReplyServer.Client.class, client -> client.queryById(companyDTO, replyId));
+    }
+
+    public static ReplyDTO queryNext(long topicId, long lastReplyId) throws ServiceNotFoundException, TTransportException {
+        return ThriftHelper.call("Hermes", ReplyServer.Client.class, client -> client.queryNext(companyDTO, topicId, lastReplyId));
+    }
+
+    public static List<ReplyDTO> queryAllByTopicId(long topicId) throws ServiceNotFoundException, TTransportException {
+        return ThriftHelper.call("Hermes", ReplyServer.Client.class, client -> client.queryAllByTopicId(companyDTO, topicId));
+    }
+
     public static List<ReplyVO> batchQueryByTopicId(long topicId, int page, int pageSize) throws PageSizeLimitException, CallFailedException {
         if (page <= 0) {
             return Collections.emptyList();
@@ -45,5 +61,21 @@ public class ReplyFacade {
         }
         return ReplyVO.buildFromDTO(replyDTOList);
 
+    }
+
+    public static ThriftResponse updateContent(long replyId, String content) throws ServiceNotFoundException, TTransportException {
+        return ThriftHelper.call("Hermes", ReplyServer.Client.class, client -> client.updateContent(companyDTO, replyId, content));
+    }
+
+    public static ThriftResponse deleteByReplyId(long replyId) throws ServiceNotFoundException, TTransportException {
+        return ThriftHelper.call("Hermes", ReplyServer.Client.class, client -> client.deleteByReplyId(companyDTO, replyId));
+    }
+
+    public static ThriftResponse batchDeleteByTopicId(long topicId) throws ServiceNotFoundException, TTransportException {
+        return ThriftHelper.call("Hermes", ReplyServer.Client.class, client -> client.batchDeleteByTopicId(companyDTO, topicId));
+    }
+
+    public static Long getReplyCount(long topicId) throws ServiceNotFoundException, TTransportException {
+        return ThriftHelper.call("Hermes", ReplyServer.Client.class, client -> client.getReplyCount(companyDTO, topicId));
     }
 }

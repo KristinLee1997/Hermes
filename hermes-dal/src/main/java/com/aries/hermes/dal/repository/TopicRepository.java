@@ -117,9 +117,10 @@ public class TopicRepository {
      * @param topic
      * @return
      */
-    public static boolean updateTopic(String database, Topic topic) {
+    public static boolean updateTopic(String database, long id, Topic topic) {
         try (SqlSession sqlsession = SqlSessionUtil.openSession(database)) {
             TopicMapper mapper = sqlsession.getMapper(TopicMapper.class);
+            topic.setId(id);
             int i = mapper.updateByPrimaryKeySelective(topic);
             return i > 0;
         }
@@ -136,6 +137,15 @@ public class TopicRepository {
         try (SqlSession sqlsession = SqlSessionUtil.openSession(database)) {
             TopicMapper mapper = sqlsession.getMapper(TopicMapper.class);
             return mapper.selectByPrimaryKey(id);
+        }
+    }
+
+    public static int getTopicCount(String database, long categoryId) {
+        try (SqlSession sqlsession = SqlSessionUtil.openSession(database)) {
+            TopicMapper mapper = sqlsession.getMapper(TopicMapper.class);
+            Example example = new Example(Topic.class);
+            example.createCriteria().andEqualTo("categoryId", categoryId);
+            return mapper.selectCountByExample(example);
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.aries.hermes.server.thrift.server;
+package com.aries.hermes.server.thrift.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.aries.hermes.dal.po.Reply;
@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.thrift.TException;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -179,7 +180,12 @@ public class ReplyServerImpl implements ReplyServer.Iface {
 
     @Override
     public long getReplyCount(CompanyDTO companyDTO, long topicId) throws TException {
-        return 0;
+        CompanyHelper companyHelper = new CompanyHelper(companyDTO).check();
+        if (companyHelper.isError()) {
+            log.warn("batchDeleteByTopicId 没有权限,companyDTO:{}, topicId:{}", JSON.toJSONString(companyDTO), topicId);
+            throw new TException("解析公司错误:" + JSON.toJSONString(companyDTO));
+        }
+        return ReplyRepository.getReplyCount(companyHelper.getDatabaseName(), topicId);
     }
 
     private static ReplyDTO convert2ReplyDTO(Reply reply) {
@@ -192,9 +198,11 @@ public class ReplyServerImpl implements ReplyServer.Iface {
         replyDTO.setTopicId(reply.getTopicId());
         replyDTO.setGaeaId(Optional.ofNullable(reply.getGaeaId()).orElse(0L));
         replyDTO.setContent(reply.getContent());
-        replyDTO.setInsertTime(reply.getInsertTime().toString());
-        replyDTO.setUpdateTime(reply.getUpdateTime().toString());
         replyDTO.setAnonymousSend(Optional.ofNullable(reply.getAnonymousSend()).orElse(false));
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        replyDTO.setInsertTime(formatter.format(reply.getInsertTime()));
+        replyDTO.setUpdateTime(formatter.format(reply.getUpdateTime()));
         return replyDTO;
     }
 

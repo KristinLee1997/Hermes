@@ -8,15 +8,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TopicVO {
-    private long id; // required
-    private String theme; // required
-    private String content; // required
-    private long gaeaId; // required
-    private boolean anonymousSend; // required
-    private boolean anonymousReply; // required
-    private long categoryId; // required
-    private String updateTime; // required
-    private String insertTime; // required
+    private long id;
+    private String theme;
+    private String content;
+    private long gaeaId;
+    private boolean anonymousSend;
+    private boolean anonymousReply;
+    private long categoryId;
+    private String updateTime;
+    private String insertTime;
 
     public long getId() {
         return id;

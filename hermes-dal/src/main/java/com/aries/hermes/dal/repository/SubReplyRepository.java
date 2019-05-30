@@ -122,4 +122,15 @@ public class SubReplyRepository {
             return effect > 0;
         }
     }
+
+    public static long getSubReplyCount(String database, long replyId) {
+        try (SqlSession session = SqlSessionUtil.openSession(database)) {
+            SubReplyMapper replyMapper = session.getMapper(SubReplyMapper.class);
+
+            SubReply reply = new SubReply();
+            reply.setReplyId(replyId);
+
+            return replyMapper.selectCount(reply);
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package com.aries.hermes.server.thrift.server;
+package com.aries.hermes.server.thrift.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.aries.hermes.dal.exception.BatchQueryException;
@@ -13,12 +13,11 @@ import com.aries.hermes.server.thrift.util.CompanyHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.thrift.TException;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.aries.hermes.server.thrift.constants.HermesResponseEnum.NOT_CHANGED;
-import static com.aries.hermes.server.thrift.constants.HermesResponseEnum.SUCCESS;
-import static com.aries.hermes.server.thrift.constants.HermesResponseEnum.SYSTEM_ERROR;
+import static com.aries.hermes.server.thrift.constants.HermesResponseEnum.*;
 
 
 @Slf4j
@@ -142,13 +141,13 @@ public class TopicServerImpl implements TopicServer.Iface {
     }
 
     @Override
-    public ThriftResponse updateById(CompanyDTO companyDTO, TopicDTO topicDTO) throws TException {
+    public ThriftResponse updateById(CompanyDTO companyDTO, long id, TopicDTO topicDTO) throws TException {
         CompanyHelper companyHelper = new CompanyHelper(companyDTO).check();
         if (companyHelper.isError()) {
             return companyHelper.getResponse();
         }
         try {
-            boolean effect = TopicRepository.updateTopic(companyHelper.getDatabaseName(), convert2TopicPO(topicDTO));
+            boolean effect = TopicRepository.updateTopic(companyHelper.getDatabaseName(), id, convert2TopicPO(topicDTO));
             return effect ? SUCCESS.of() : NOT_CHANGED.of();
         } catch (Exception e) {
             log.error("根据id更新主帖失败，companyName:{},database:{},error:{}", companyDTO.getName(), companyHelper.getDatabaseName(), e.getMessage(), e);
@@ -158,7 +157,13 @@ public class TopicServerImpl implements TopicServer.Iface {
 
     @Override
     public long getTopicCount(CompanyDTO companyDTO, long categoryId) throws TException {
-        return 0;
+        CompanyHelper companyHelper = new CompanyHelper(companyDTO).check();
+        if (companyHelper.isError()) {
+            log.warn("batchDeleteByTopicId 没有权限,companyDTO:{}, categoryId:{}", JSON.toJSONString(companyDTO), categoryId);
+            throw new TException("解析公司错误:" + JSON.toJSONString(companyDTO));
+        }
+
+        return TopicRepository.getTopicCount(companyHelper.getDatabaseName(), categoryId);
     }
 
     private static Topic convert2TopicPO(TopicDTO topicDTO) {
@@ -180,8 +185,10 @@ public class TopicServerImpl implements TopicServer.Iface {
         topicDTO.setGaeaId(topic.getGaeaId());
         topicDTO.setAnonymousSend(topic.getAnonymousSend());
         topicDTO.setAnonymousReply(topic.getAnonymousReply());
-        topicDTO.setUpdateTime(String.valueOf(topic.getUpdateTime()));
-        topicDTO.setInsertTime(String.valueOf(topic.getInsertTime()));
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        topicDTO.setUpdateTime(formatter.format(topic.getUpdateTime()));
+        topicDTO.setInsertTime(formatter.format(topic.getInsertTime()));
         return topicDTO;
     }
 

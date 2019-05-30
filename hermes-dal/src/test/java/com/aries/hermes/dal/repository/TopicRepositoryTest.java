@@ -77,9 +77,8 @@ public class TopicRepositoryTest {
     @Test
     public void updateTopic() {
         Topic topic = new Topic() {{
-            setId(1L);
             setTheme("新主帖");
         }};
-        TopicRepository.updateTopic("hermes_aries_edu", topic);
+        TopicRepository.updateTopic("hermes_aries_edu", 1L, topic);
     }
 }

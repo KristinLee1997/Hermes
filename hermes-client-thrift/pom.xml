@@ -29,6 +29,10 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.aries.hera</groupId>
+            <artifactId>hera-client-thrift</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
